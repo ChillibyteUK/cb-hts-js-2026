@@ -1,0 +1,104 @@
+/*
+ * Utility bar (above the primary nav), nav CTA layout, and dropdown group
+ * labels — ported directly from cb-hts2026's src/sass/theme/_header.scss.
+ * Not covered by .navbar/.nav-link (nav.css) or .btn/.btn-primary/
+ * .btn-outline-dark (forms.css).
+ */
+
+.utility-bar {
+	padding-block: 0.6875rem; /* 11px */
+	background: var(--col-navy);
+	color: rgb(255 255 255 / 70%);
+	font-size: var(--fs-caption);
+	border-bottom: 1px solid rgb(255 255 255 / 6%);
+}
+
+@media (max-width: 74.9375rem) {
+	/* 1199px — the source's own breakpoint for this element specifically,
+	   not the 992px "lg" used everywhere else in this theme. */
+	.utility-bar {
+		display: none;
+	}
+}
+
+.utility-bar a {
+	color: rgb(255 255 255 / 80%);
+	text-decoration: none;
+	transition: color 0.2s;
+}
+
+.utility-bar a:hover {
+	color: var(--col-orange);
+}
+
+.utility-bar__pill {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.375rem;
+	padding: 0.1875rem 0.625rem; /* 3px 10px */
+	border-radius: 999px;
+	background: rgb(232 104 32 / 18%);
+	color: #ffb07a;
+	font-size: var(--fs-nano);
+	font-weight: var(--fw-600);
+	letter-spacing: var(--ls-wider);
+	text-transform: var(--tt-upper);
+}
+
+.utility-bar__pill::before {
+	content: "";
+	inline-size: 0.375rem;
+	block-size: 0.375rem;
+	background: var(--col-orange);
+	border-radius: 50%;
+	animation: cb-hts-js-2026-utility-pulse 2s infinite;
+}
+
+@keyframes cb-hts-js-2026-utility-pulse {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.4;
+	}
+}
+
+/* Nav CTA buttons, shown alongside the primary nav links */
+.nav-cta {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-2);
+	margin-top: var(--space-3);
+}
+
+@media (min-width: 992px) {
+	.nav-cta {
+		flex-direction: row;
+		align-items: center;
+		margin-top: 0;
+	}
+}
+
+/* Compact CTA buttons in the navbar context — overrides .btn's own
+   16px/28px base padding and --fs-body-xs font-size (both correct
+   elsewhere on the site, just not here). */
+.nav-cta .btn {
+	padding: 0.8125rem 1.375rem; /* 13px 22px */
+	font-size: var(--fs-micro);
+}
+
+/* Non-clickable submenu group heading (menu items tagged "menu-divider-label") */
+.dropdown-divider-label {
+	display: block;
+	padding: 0.35rem 1rem 0.4rem;
+	color: var(--col-muted);
+	font-size: var(--fs-caption);
+	font-weight: var(--fw-500);
+	letter-spacing: var(--ls-label);
+	text-transform: var(--tt-upper);
+	line-height: 1.2;
+	white-space: nowrap;
+	cursor: default;
+	pointer-events: none;
+}

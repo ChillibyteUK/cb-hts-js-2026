@@ -1,0 +1,23 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "cb-hts-js-2026/cb-client-projects-gallery",
+	"title": "CB Client Projects Gallery",
+	"category": "cb-hts-js-2026",
+	"icon": "format-gallery",
+	"description": "Lightbox image gallery — a repeating five-tile mosaic, or one large feature tile plus half-width tiles with hover captions.",
+	"attributes": {
+		"layout": { "type": "string", "default": "mosaic" },
+		"eyebrow": { "type": "string", "default": "" },
+		"heading": { "type": "string", "default": "" },
+		"intro": { "type": "string", "default": "" },
+		"images": { "type": "array", "default": [] }
+	},
+	"supports": {
+		"anchor": true,
+		"className": true,
+		"align": true
+	},
+	"editorScript": "file:./build/index.js",
+	"render": "file:./render.php"
+}

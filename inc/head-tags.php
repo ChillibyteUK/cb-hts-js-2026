@@ -16,7 +16,7 @@ defined( 'ABSPATH' ) || exit;
  *
  * @return void
  */
-function lc_js_skeleton_preload_fonts() {
+function cb_hts_js_2026_preload_fonts() {
 	$fonts_dir = get_stylesheet_directory() . '/fonts';
 	$fonts_url = get_stylesheet_directory_uri() . '/fonts';
 
@@ -28,7 +28,7 @@ function lc_js_skeleton_preload_fonts() {
 		);
 	}
 }
-add_action( 'wp_head', 'lc_js_skeleton_preload_fonts', 1 );
+add_action( 'wp_head', 'cb_hts_js_2026_preload_fonts', 1 );
 
 /**
  * GA/GTM tags and search-engine verification meta — all read from the
@@ -37,9 +37,9 @@ add_action( 'wp_head', 'lc_js_skeleton_preload_fonts', 1 );
  *
  * @return void
  */
-function lc_js_skeleton_head_tags() {
+function cb_hts_js_2026_head_tags() {
 	if ( ! is_user_logged_in() ) {
-		$ga_property = lc_js_skeleton_get_setting( 'ga_property' );
+		$ga_property = cb_hts_js_2026_get_setting( 'ga_property' );
 		if ( $ga_property ) {
 			?>
 			<!-- Google Analytics -->
@@ -53,7 +53,7 @@ function lc_js_skeleton_head_tags() {
 			<?php
 		}
 
-		$gtm_property = lc_js_skeleton_get_setting( 'gtm_property' );
+		$gtm_property = cb_hts_js_2026_get_setting( 'gtm_property' );
 		if ( $gtm_property ) {
 			?>
 			<!-- Google Tag Manager -->
@@ -65,17 +65,17 @@ function lc_js_skeleton_head_tags() {
 		}
 	}
 
-	$google_verification = lc_js_skeleton_get_setting( 'google_site_verification' );
+	$google_verification = cb_hts_js_2026_get_setting( 'google_site_verification' );
 	if ( $google_verification ) {
 		printf( '<meta name="google-site-verification" content="%s" />' . "\n", esc_attr( $google_verification ) );
 	}
 
-	$bing_verification = lc_js_skeleton_get_setting( 'bing_site_verification' );
+	$bing_verification = cb_hts_js_2026_get_setting( 'bing_site_verification' );
 	if ( $bing_verification ) {
 		printf( '<meta name="msvalidate.01" content="%s" />' . "\n", esc_attr( $bing_verification ) );
 	}
 }
-add_action( 'wp_head', 'lc_js_skeleton_head_tags', 1 );
+add_action( 'wp_head', 'cb_hts_js_2026_head_tags', 1 );
 
 /**
  * GTM noscript fallback — placed right after <body> opens via wp_body_open,
@@ -84,12 +84,12 @@ add_action( 'wp_head', 'lc_js_skeleton_head_tags', 1 );
  *
  * @return void
  */
-function lc_js_skeleton_gtm_noscript() {
+function cb_hts_js_2026_gtm_noscript() {
 	if ( is_user_logged_in() ) {
 		return;
 	}
 
-	$gtm_property = lc_js_skeleton_get_setting( 'gtm_property' );
+	$gtm_property = cb_hts_js_2026_get_setting( 'gtm_property' );
 	if ( ! $gtm_property ) {
 		return;
 	}
@@ -99,4 +99,4 @@ function lc_js_skeleton_gtm_noscript() {
 	<!-- End Google Tag Manager (noscript) -->
 	<?php
 }
-add_action( 'wp_body_open', 'lc_js_skeleton_gtm_noscript' );
+add_action( 'wp_body_open', 'cb_hts_js_2026_gtm_noscript' );

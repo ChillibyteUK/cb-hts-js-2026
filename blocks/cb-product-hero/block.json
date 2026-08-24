@@ -1,0 +1,34 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "cb-hts-js-2026/cb-product-hero",
+	"title": "CB Product / Project Hero",
+	"category": "cb-hts-js-2026",
+	"icon": "cover-image",
+	"description": "Split hero — copy on the left, image with stat badge on the right. Reuses CB Home Hero's layout classes; for Product/Project single pages rather than the homepage.",
+	"attributes": {
+		"tag": { "type": "string", "default": "" },
+		"h1": { "type": "string", "default": "" },
+		"lede": { "type": "string", "default": "" },
+		"bullets": { "type": "string", "default": "" },
+		"ctaPrimaryText": { "type": "string", "default": "" },
+		"ctaPrimaryUrl": { "type": "string", "default": "" },
+		"ctaPrimaryTarget": { "type": "boolean", "default": false },
+		"ctaSecondaryText": { "type": "string", "default": "" },
+		"ctaSecondaryUrl": { "type": "string", "default": "" },
+		"ctaSecondaryTarget": { "type": "boolean", "default": false },
+		"imageId": { "type": "number", "default": 0 },
+		"imageUrl": { "type": "string", "default": "" },
+		"imageAlt": { "type": "string", "default": "" },
+		"badgeNumber": { "type": "string", "default": "" },
+		"badgeSuffix": { "type": "string", "default": "" },
+		"badgeLabel": { "type": "string", "default": "" }
+	},
+	"supports": {
+		"anchor": true,
+		"className": true,
+		"align": true
+	},
+	"editorScript": "file:./build/index.js",
+	"render": "file:./render.php"
+}

@@ -1,0 +1,170 @@
+.faq {
+	position: relative;
+	overflow: clip;
+	padding-block: clamp(5rem, 10vw, 8.75rem);
+	background: var(--col-white);
+	--faq-watermark-opacity: 0.02;
+	--faq-watermark-scale: 0.96;
+	--faq-watermark-shift: 1.5rem;
+}
+
+.faq-watermark {
+	position: sticky;
+	top: var(--nav-height);
+	height: 0;
+	z-index: 0;
+	pointer-events: none;
+}
+
+.faq-watermark::before {
+	content: "FAQ";
+	position: absolute;
+	inset-block-start: clamp(2rem, 7vw, 5rem);
+	inset-inline-end: clamp(0rem, 2vw, 2rem);
+	font-size: clamp(6rem, 19vw, 17.5rem);
+	font-weight: var(--fw-800);
+	letter-spacing: -0.04em;
+	line-height: 1;
+	color: rgba(0, 60, 130, var(--faq-watermark-opacity));
+	transform: translate3d(0, var(--faq-watermark-shift), 0) scale(var(--faq-watermark-scale));
+	transform-origin: top right;
+	transition:
+		color 0.8s ease,
+		transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.faq.is-in-view {
+	--faq-watermark-opacity: 0.04;
+	--faq-watermark-scale: 1;
+	--faq-watermark-shift: 0rem;
+}
+
+.faq > .container {
+	position: relative;
+	z-index: 1;
+}
+
+.faq-header {
+	margin-block-end: clamp(3rem, 7vw, 5rem);
+	text-align: center;
+}
+
+.faq-headline {
+	max-inline-size: 47.5rem;
+	margin-inline: auto;
+	margin-block-end: 1rem;
+	color: var(--col-navy);
+
+	> span {
+		color: var(--col-orange);
+		font-style: italic;
+	}
+}
+
+.faq-sub {
+	max-inline-size: 40rem;
+	margin-inline: auto;
+	color: var(--col-body);
+	font-size: var(--fs-body);
+	line-height: var(--lh-relaxed);
+}
+
+/*
+ * Bootstrap-style class names, vanilla JS (src/js/accordion.js) — no real
+ * Bootstrap, so the full accordion component is written out here rather
+ * than overriding a handful of --bs-accordion-* custom properties the way
+ * the source does.
+ */
+.accordion {
+	max-inline-size: 52rem;
+	margin-inline: auto;
+}
+
+.accordion-item {
+	border-inline: 0;
+	border-block-start: 1px solid var(--col-light-border);
+	border-block-end: 1px solid var(--col-light-border);
+}
+
+.accordion-item + .accordion-item {
+	border-block-start: 0;
+}
+
+.accordion-item:first-child {
+	border-block-start: 1px solid var(--col-rule);
+}
+
+.accordion-item:last-child {
+	border-block-end: 0;
+}
+
+.accordion-header {
+	margin: 0;
+}
+
+.accordion-button {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	width: 100%;
+	padding-block: 1.5rem;
+	padding-inline: 0;
+	border: 0;
+	background: transparent;
+	color: var(--col-navy);
+	font-size: var(--fs-body);
+	font-weight: var(--fw-600);
+	line-height: var(--lh-snug);
+	text-align: start;
+	cursor: pointer;
+}
+
+.accordion-button:hover {
+	color: var(--col-orange);
+}
+
+.accordion-button:not(.collapsed) {
+	color: var(--col-orange);
+}
+
+.accordion-button::after {
+	content: "";
+	flex: none;
+	inline-size: 1.25rem;
+	block-size: 1.25rem;
+	background-repeat: no-repeat;
+	background-size: 1.25rem;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2327383a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='12' y1='5' x2='12' y2='19'/%3E%3Cline x1='5' y1='12' x2='19' y2='12'/%3E%3C/svg%3E");
+}
+
+.accordion-button:not(.collapsed)::after {
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e86820' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='5' y1='12' x2='19' y2='12'/%3E%3C/svg%3E");
+}
+
+.accordion-collapse {
+	display: none;
+}
+
+.accordion-collapse.show {
+	display: block;
+}
+
+.accordion-body {
+	color: var(--col-body);
+	font-size: var(--fs-body-sm);
+	line-height: var(--lh-relaxed);
+	padding-block-end: 1.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.faq {
+		--faq-watermark-opacity: 0.04;
+		--faq-watermark-scale: 1;
+		--faq-watermark-shift: 0rem;
+	}
+
+	.faq-watermark::before {
+		transition: none;
+	}
+}

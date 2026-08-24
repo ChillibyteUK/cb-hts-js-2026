@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "cb-hts-js-2026/cb-home-hero",
+	"title": "CB Home Hero",
+	"category": "cb-hts-js-2026",
+	"icon": "cover-image",
+	"attributes": {
+		"metaItems": { "type": "string", "default": "" },
+		"h1Line1Text": { "type": "string", "default": "" },
+		"h1Line1Highlight": { "type": "string", "default": "" },
+		"h1Line2Text": { "type": "string", "default": "" },
+		"h1Line2Highlight": { "type": "string", "default": "" },
+		"lede": { "type": "string", "default": "" },
+		"bullets": { "type": "string", "default": "" },
+		"ctaPrimaryText": { "type": "string", "default": "" },
+		"ctaPrimaryUrl": { "type": "string", "default": "" },
+		"ctaPrimaryTarget": { "type": "boolean", "default": false },
+		"ctaSecondaryText": { "type": "string", "default": "" },
+		"ctaSecondaryUrl": { "type": "string", "default": "" },
+		"ctaSecondaryTarget": { "type": "boolean", "default": false },
+		"imageId": { "type": "number", "default": 0 },
+		"imageUrl": { "type": "string", "default": "" },
+		"imageAlt": { "type": "string", "default": "" },
+		"badgeNumber": { "type": "string", "default": "" },
+		"badgeSuffix": { "type": "string", "default": "" },
+		"badgeLabel": { "type": "string", "default": "" }
+	},
+	"supports": {
+		"anchor": true,
+		"className": true,
+		"align": true
+	},
+	"editorScript": "file:./build/index.js",
+	"render": "file:./render.php"
+}

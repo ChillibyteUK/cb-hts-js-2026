@@ -1,0 +1,26 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "cb-hts-js-2026/cb-downloads",
+	"title": "CB Downloads",
+	"category": "cb-hts-js-2026",
+	"icon": "media-document",
+	"description": "Grid of downloadable PDFs — data sheets, certifications, brochures. File type and size are read from the attachment, not typed by hand.",
+	"attributes": {
+		"eyebrow": { "type": "string", "default": "" },
+		"headline": { "type": "string", "default": "" },
+		"intro": { "type": "string", "default": "" },
+		"items": { "type": "array", "default": [] }
+	},
+	"supports": {
+		"anchor": true,
+		"className": true,
+		"align": true,
+		"color": {
+			"background": true,
+			"text": true
+		}
+	},
+	"editorScript": "file:./build/index.js",
+	"render": "file:./render.php"
+}

@@ -10,12 +10,12 @@
 
 defined( 'ABSPATH' ) || exit;
 
-if ( ! class_exists( 'LC_JS_Skeleton_Nav_Walker' ) ) {
+if ( ! class_exists( 'CB_HTS_JS_2026_Nav_Walker' ) ) {
 
 	/**
 	 * Custom nav walker.
 	 */
-	class LC_JS_Skeleton_Nav_Walker extends Walker_Nav_Menu {
+	class CB_HTS_JS_2026_Nav_Walker extends Walker_Nav_Menu {
 
 		/**
 		 * Holds the id of the submenu currently being opened, so start_lvl()
@@ -61,8 +61,20 @@ if ( ! class_exists( 'LC_JS_Skeleton_Nav_Walker' ) ) {
 		 * @return void
 		 */
 		public function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
+			// A menu item tagged with the CSS class "menu-divider-label" in
+			// the admin (Appearance > Menus > this item > CSS Classes) renders
+			// as a non-clickable label instead of a link — used to group
+			// submenu items under a heading rather than a real destination.
+			if ( in_array( 'menu-divider-label', $item->classes, true ) ) {
+				$output .= '<li class="nav-item">';
+				$output .= '<span class="dropdown-divider-label">' . esc_html( $item->title ) . '</span>';
+				return;
+			}
+
 			$has_children = in_array( 'menu-item-has-children', $item->classes, true );
-			$is_current   = in_array( 'current-menu-item', $item->classes, true );
+			$is_current   = in_array( 'current-menu-item', $item->classes, true )
+				|| in_array( 'current-menu-parent', $item->classes, true )
+				|| in_array( 'current_page_parent', $item->classes, true );
 
 			$li_classes = array( 'nav-item' );
 			if ( $has_children ) {
@@ -74,8 +86,12 @@ if ( ! class_exists( 'LC_JS_Skeleton_Nav_Walker' ) ) {
 			if ( $has_children ) {
 				// Dropdown parents never navigate — the whole item is the toggle.
 				$this->current_submenu_id = 'dropdown-' . $item->ID;
-				$output                  .= '<button type="button" class="nav-link dropdown-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="' . esc_attr( $this->current_submenu_id ) . '">';
-				$output                  .= '<span>' . esc_html( $item->title ) . '</span>';
+				$toggle_classes            = array( 'nav-link', 'dropdown-toggle' );
+				if ( $is_current ) {
+					$toggle_classes[] = 'active';
+				}
+				$output .= '<button type="button" class="' . esc_attr( implode( ' ', $toggle_classes ) ) . '" aria-haspopup="true" aria-expanded="false" aria-controls="' . esc_attr( $this->current_submenu_id ) . '">';
+				$output .= '<span>' . esc_html( $item->title ) . '</span>';
 				$output                  .= '<svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" /></svg>';
 				$output                  .= '</button>';
 			} else {

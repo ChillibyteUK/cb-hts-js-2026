@@ -1,0 +1,23 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "cb-hts-js-2026/cb-why-split",
+	"title": "CB Why Split",
+	"category": "cb-hts-js-2026",
+	"icon": "columns",
+	"description": "Sticky headline/copy/stats column beside a numbered list of reasons, with a scroll-triggered watermark.",
+	"attributes": {
+		"eyebrow": { "type": "string", "default": "" },
+		"headline": { "type": "string", "default": "" },
+		"body": { "type": "string", "default": "" },
+		"stats": { "type": "array", "default": [] },
+		"reasons": { "type": "array", "default": [] }
+	},
+	"supports": {
+		"anchor": true,
+		"className": true,
+		"align": true
+	},
+	"editorScript": "file:./build/index.js",
+	"render": "file:./render.php"
+}

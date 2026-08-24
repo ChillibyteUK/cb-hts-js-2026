@@ -36,9 +36,111 @@
           "origin": "theme"
         },
         {
-          "name": "blue-700",
-          "slug": "blue-700",
-          "color": "#1d4ed8",
+          "name": "navy",
+          "slug": "navy",
+          "color": "#003c82",
+          "origin": "theme"
+        },
+        {
+          "name": "navy-deep",
+          "slug": "navy-deep",
+          "color": "#002558",
+          "origin": "theme"
+        },
+        {
+          "name": "navy-80",
+          "slug": "navy-80",
+          "color": "#1a4d94",
+          "origin": "theme"
+        },
+        {
+          "name": "navy-60",
+          "slug": "navy-60",
+          "color": "#416e94",
+          "origin": "theme"
+        },
+        {
+          "name": "navy-25",
+          "slug": "navy-25",
+          "color": "#8296aa",
+          "origin": "theme"
+        },
+        {
+          "name": "navy-10",
+          "slug": "navy-10",
+          "color": "#c2d0d9",
+          "origin": "theme"
+        },
+        {
+          "name": "navy-5",
+          "slug": "navy-5",
+          "color": "#eef2f6",
+          "origin": "theme"
+        },
+        {
+          "name": "dark-grey",
+          "slug": "dark-grey",
+          "color": "#3c3c3c",
+          "origin": "theme"
+        },
+        {
+          "name": "orange",
+          "slug": "orange",
+          "color": "#e86820",
+          "origin": "theme"
+        },
+        {
+          "name": "orange-bright",
+          "slug": "orange-bright",
+          "color": "#ff7a2a",
+          "origin": "theme"
+        },
+        {
+          "name": "orange-15",
+          "slug": "orange-15",
+          "color": "#faded0",
+          "origin": "theme"
+        },
+        {
+          "name": "ink",
+          "slug": "ink",
+          "color": "#0b1220",
+          "origin": "theme"
+        },
+        {
+          "name": "body",
+          "slug": "body",
+          "color": "#374151",
+          "origin": "theme"
+        },
+        {
+          "name": "muted",
+          "slug": "muted",
+          "color": "#6b7280",
+          "origin": "theme"
+        },
+        {
+          "name": "rule",
+          "slug": "rule",
+          "color": "#d1d5db",
+          "origin": "theme"
+        },
+        {
+          "name": "light-border",
+          "slug": "light-border",
+          "color": "#e5e7eb",
+          "origin": "theme"
+        },
+        {
+          "name": "paper",
+          "slug": "paper",
+          "color": "#f4f1ec",
+          "origin": "theme"
+        },
+        {
+          "name": "section-bg",
+          "slug": "section-bg",
+          "color": "#eef2f6",
           "origin": "theme"
         }
       ]
@@ -51,39 +153,119 @@
           "size": "1rem"
         },
         {
+          "name": "hero",
+          "slug": "hero",
+          "size": "clamp(3rem, 4.2vw + 2rem, 5rem)"
+        },
+        {
           "name": "h1",
           "slug": "h1",
-          "size": "clamp(2rem, 1.6rem + 2vw, 3rem)"
+          "size": "clamp(2.5rem, 3.2vw + 1.5rem, 4rem)"
         },
         {
           "name": "h2",
           "slug": "h2",
-          "size": "clamp(1.6rem, 1.35rem + 1.25vw, 2.25rem)"
+          "size": "clamp(2.25rem, 2.6vw + 1.375rem, 3.375rem)"
         },
         {
           "name": "h3",
           "slug": "h3",
-          "size": "clamp(1.3rem, 1.15rem + 0.75vw, 1.75rem)"
+          "size": "clamp(2rem, 1.6vw + 1.375rem, 2.625rem)"
         },
         {
           "name": "h4",
           "slug": "h4",
-          "size": "1.25rem"
+          "size": "1.75rem"
         },
         {
           "name": "h5",
           "slug": "h5",
-          "size": "1.1rem"
+          "size": "1.5rem"
         },
         {
           "name": "h6",
           "slug": "h6",
+          "size": "1.375rem"
+        },
+        {
+          "name": "card-title",
+          "slug": "card-title",
+          "size": "1.25rem"
+        },
+        {
+          "name": "stat-xl",
+          "slug": "stat-xl",
+          "size": "clamp(2.25rem, 2.2vw + 1.5rem, 3rem)"
+        },
+        {
+          "name": "stat-lg",
+          "slug": "stat-lg",
+          "size": "2.125rem"
+        },
+        {
+          "name": "stat-md",
+          "slug": "stat-md",
+          "size": "2rem"
+        },
+        {
+          "name": "lede",
+          "slug": "lede",
+          "size": "1.25rem"
+        },
+        {
+          "name": "body-lg",
+          "slug": "body-lg",
+          "size": "1.125rem"
+        },
+        {
+          "name": "body",
+          "slug": "body",
+          "size": "1.0625rem"
+        },
+        {
+          "name": "body-md",
+          "slug": "body-md",
           "size": "1rem"
         },
         {
-          "name": "small",
-          "slug": "small",
+          "name": "body-sm",
+          "slug": "body-sm",
+          "size": "0.9375rem"
+        },
+        {
+          "name": "body-xs",
+          "slug": "body-xs",
           "size": "0.875rem"
+        },
+        {
+          "name": "meta",
+          "slug": "meta",
+          "size": "0.8125rem"
+        },
+        {
+          "name": "caption",
+          "slug": "caption",
+          "size": "0.75rem"
+        },
+        {
+          "name": "micro",
+          "slug": "micro",
+          "size": "0.6875rem"
+        },
+        {
+          "name": "nano",
+          "slug": "nano",
+          "size": "0.625rem"
+        },
+        {
+          "name": "decor-lg",
+          "slug": "decor-lg",
+          "size": "7.5rem"
+        },
+        {
+          "name": "decor-xl",
+          "slug": "decor-xl",
+          "size": "17.5rem"
         }
       ]
     }

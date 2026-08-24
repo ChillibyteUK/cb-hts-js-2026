@@ -1,0 +1,189 @@
+.downloads {
+	padding-block: clamp(4rem, 8vw, 7rem);
+	background: var(--col-paper);
+	border-top: 1px solid var(--col-rule);
+}
+
+/*
+ * Source markup is `class="row g-4"` — matched via a scoped override rather
+ * than building out a full gutter-utility system (same pattern as
+ * .footer-top / .apps-header / .config-inner / .specs .row).
+ */
+.downloads-header {
+	gap: var(--space-4);
+	margin-block-end: clamp(2.5rem, 6vw, 4rem);
+}
+
+.downloads-headline {
+	color: var(--col-navy);
+	margin-block-end: 0;
+
+	> span {
+		color: var(--col-orange);
+		font-style: italic;
+	}
+}
+
+.downloads-intro {
+	color: var(--col-muted);
+	margin-block-end: 0;
+}
+
+.downloads-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 0.75rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+@media (max-width: 767px) {
+	.downloads-grid {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+
+.downloads-item {
+	background: var(--col-white);
+	border: 1px solid var(--col-rule);
+}
+
+.downloads-link {
+	--downloads-pad-y: clamp(0.875rem, 1.5vw, 1.125rem);
+	--downloads-pad-x: clamp(1rem, 2vw, 1.25rem);
+
+	display: flex;
+	align-items: stretch;
+	gap: 0;
+	block-size: 100%;
+	padding: 0;
+	overflow: hidden;
+	text-decoration: none;
+	color: inherit;
+	transition:
+		background var(--transition),
+		color var(--transition);
+}
+
+.downloads-link:hover,
+.downloads-link:focus-visible {
+	background: var(--col-navy);
+	color: var(--col-white);
+}
+
+.downloads-link:hover .downloads-item-icon,
+.downloads-link:focus-visible .downloads-item-icon {
+	background: var(--col-orange);
+	color: var(--col-white);
+	border-color: var(--col-orange);
+}
+
+.downloads-link:hover .downloads-item-icon--cover,
+.downloads-link:focus-visible .downloads-item-icon--cover {
+	background: var(--col-white);
+}
+
+.downloads-link:hover .downloads-item-meta,
+.downloads-link:hover .downloads-item-spec,
+.downloads-link:focus-visible .downloads-item-meta,
+.downloads-link:focus-visible .downloads-item-spec {
+	color: rgba(255, 255, 255, 0.72);
+}
+
+.downloads-link:hover .downloads-item-arrow,
+.downloads-link:focus-visible .downloads-item-arrow {
+	transform: translate3d(0, 0.25rem, 0);
+	border-color: var(--col-orange);
+}
+
+/* Extension badge — the fallback when a file has no preview. Inset like the text. */
+.downloads-item-icon {
+	flex: 0 0 auto;
+	display: grid;
+	place-items: center;
+	align-self: center;
+	inline-size: 2.5rem;
+	block-size: 2.875rem;
+	margin-inline-start: var(--downloads-pad-x);
+	border: 1px solid var(--col-light-border);
+	background: var(--col-navy-5);
+	color: var(--col-navy);
+	transition:
+		background var(--transition),
+		border-color var(--transition),
+		color var(--transition);
+}
+
+/* A4 cover — bleeds to the card edge, full height, width follows the ratio. */
+.downloads-item-icon--cover {
+	align-self: stretch;
+	inline-size: auto;
+	block-size: auto;
+	aspect-ratio: 1 / 1.414;
+	margin-inline-start: 0;
+	border: 0;
+	border-inline-end: 1px solid var(--col-rule);
+	background: var(--col-white);
+	overflow: hidden;
+}
+
+.downloads-item-cover {
+	inline-size: 100%;
+	block-size: 100%;
+	object-fit: cover;
+	object-position: top center;
+	display: block;
+}
+
+.downloads-item-ext {
+	font-size: var(--fs-nano);
+	font-weight: var(--fw-700);
+	letter-spacing: 0.04em;
+	line-height: 1;
+}
+
+.downloads-item-text {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 0.25rem;
+	min-inline-size: 0;
+	padding: var(--downloads-pad-y) var(--downloads-pad-x);
+}
+
+.downloads-item-title {
+	font-size: var(--fs-card-title);
+	font-weight: var(--fw-700);
+	line-height: 1.3;
+	text-wrap: pretty;
+}
+
+.downloads-item-meta {
+	font-size: var(--fs-body-xs);
+	color: var(--col-muted);
+	transition: color var(--transition);
+}
+
+.downloads-item-spec {
+	font-size: var(--fs-nano);
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	color: var(--col-muted);
+	transition: color var(--transition);
+}
+
+.downloads-item-arrow {
+	flex: 0 0 auto;
+	align-self: center;
+	margin-inline-start: auto;
+	margin-inline-end: var(--downloads-pad-x);
+	inline-size: 0.625rem;
+	block-size: 0.625rem;
+	border-inline-end: 2px solid var(--col-navy-25);
+	border-block-end: 2px solid var(--col-navy-25);
+	transform: rotate(45deg);
+	transition:
+		transform var(--transition),
+		border-color var(--transition);
+}

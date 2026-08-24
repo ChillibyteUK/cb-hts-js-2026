@@ -38,18 +38,135 @@ select {
 	}
 }
 
+/* Ported from cb-hts2026's src/sass/theme/_buttons.scss ("Bootstrap 5 .btn
+   variants" section — this is the one that wins the cascade there too,
+   since it's declared after the base BS5-compat .btn block). */
 .btn {
-	display: inline-block;
-	padding: var(--space-2) var(--space-3);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.625rem;
+	padding: 1rem 1.75rem;
 	border: 1px solid var(--col-primary);
-	border-radius: var(--radius-sm);
+	border-radius: 0;
 	background-color: var(--col-primary);
 	color: var(--col-white);
+	font-size: var(--fs-body-xs);
+	font-weight: var(--fw-600);
+	letter-spacing: var(--ls-wide);
+	text-transform: var(--tt-upper);
+	line-height: 1;
 	text-decoration: none;
 	cursor: pointer;
+	transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
 
 	&:focus-visible {
-		outline: 2px solid var(--col-primary);
+		/* Source references --col-accent-400 here, which is never actually
+		   defined there (see tokens.css's own note on dropping it) — using
+		   --col-orange instead of carrying that bug forward. */
+		outline: 2px solid var(--col-orange);
 		outline-offset: 2px;
+	}
+
+	&:active {
+		transform: translateY(1px);
+	}
+
+	&[disabled],
+	&:disabled {
+		opacity: 0.55;
+		cursor: not-allowed;
+	}
+}
+
+.btn > svg {
+	inline-size: 1em;
+	block-size: 1em;
+}
+
+.btn-primary {
+	border-color: var(--col-orange);
+	background-color: var(--col-orange);
+	color: var(--col-white);
+
+	&:hover,
+	&:active {
+		border-color: #d05a18;
+		background-color: #d05a18;
+		color: var(--col-white);
+	}
+}
+
+.btn-outline-dark {
+	border-width: 1.5px;
+	border-color: var(--col-navy);
+	background-color: transparent;
+	color: var(--col-navy);
+
+	&:hover,
+	&:active {
+		background-color: var(--col-navy);
+		color: var(--col-white);
+	}
+}
+
+.btn-outline-light {
+	border-width: 1.5px;
+	border-color: var(--col-white);
+	background-color: transparent;
+	color: var(--col-white);
+
+	&:hover,
+	&:active {
+		background-color: var(--col-white);
+		color: var(--col-navy);
+	}
+}
+
+/*
+ * Gravity Forms overrides — ported from cb-hts2026's _forms.scss. The
+ * source's generic `input, select, textarea` block is not re-ported here;
+ * this project's own text-field rule above already covers it (more
+ * precisely, since it excludes non-text input types). The submit button
+ * itself is restyled via a `gform_submit_button` filter, not CSS — see
+ * inc/helpers.php.
+ */
+.gform-field-label--type-inline {
+	/*
+	 * Source's base `label` selector is `display: inline-block` (a wider
+	 * Bootstrap-style default this project's own minimal forms.css
+	 * deliberately doesn't carry — see the file-top comment). That
+	 * difference only actually shows up on this one "inline" GF label
+	 * variant (the consent checkbox), where a block-level label wraps
+	 * onto its own line below the checkbox instead of sitting beside it.
+	 * Scoped here rather than changed globally, since every other field
+	 * label on the site (and the block-editor's own field labels) wants
+	 * to stay block/stacked-above-input.
+	 */
+	display: inline-block;
+	margin-left: 0.5rem;
+}
+
+.gform_heading .gform_required_legend {
+	font-size: var(--fs-nano);
+}
+
+.gform_wrapper.gravity-theme .gfield_label.gform-field-label {
+	text-transform: var(--tt-upper);
+	font-size: var(--fs-micro);
+	letter-spacing: var(--ls-widest);
+	color: var(--col-body);
+}
+
+.gform-field-label.gform-field-label--type-inline.gfield_consent_label {
+	font-size: var(--fs-body-xs);
+
+	a {
+		color: var(--col-orange);
+		text-decoration: underline;
+
+		&:hover {
+			text-decoration: none;
+		}
 	}
 }

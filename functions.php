@@ -23,4 +23,6 @@ require_once CB_HTS_JS_2026_DIR . '/inc/head-tags.php';
 require_once CB_HTS_JS_2026_DIR . '/inc/block-usage.php';
 require_once CB_HTS_JS_2026_DIR . '/inc/utilities.php';
 require_once CB_HTS_JS_2026_DIR . '/inc/posttypes.php';
+require_once CB_HTS_JS_2026_DIR . '/inc/product-meta.php';
 require_once CB_HTS_JS_2026_DIR . '/inc/taxonomies.php';
+require_once CB_HTS_JS_2026_DIR . '/inc/helpers.php';

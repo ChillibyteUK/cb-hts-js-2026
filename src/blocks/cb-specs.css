@@ -1,0 +1,151 @@
+.specs {
+	position: relative;
+	overflow: clip;
+	padding-block: clamp(5rem, 10vw, 8.75rem);
+	border-top: 1px solid var(--col-rule);
+	--specs-watermark-opacity: 0.02;
+	--specs-watermark-scale: 0.96;
+	--specs-watermark-shift: 1.5rem;
+}
+
+/*
+ * Source markup is `class="row g-5 g-xl-6"` — g-xl-6 is a broken/no-op
+ * class there: Bootstrap's $spacers map only defines steps 0-5 (g-5 = 3rem)
+ * and nothing in the source's own _child_theme_variables.scss extends it
+ * to add a 6th step, so g-xl-6 compiles to nothing. Only g-5 is real;
+ * matched here the same way as every other block's gutter override
+ * (.footer-top, .apps-header, .config-inner) — scoped to this row rather
+ * than building a full gutter-utility system.
+ */
+.specs .row {
+	gap: var(--space-5);
+}
+
+.specs-watermark {
+	position: sticky;
+	top: var(--nav-height);
+	height: 0;
+	z-index: 0;
+	pointer-events: none;
+}
+
+.specs-watermark::before {
+	content: "SPEC";
+	position: absolute;
+	inset-block-start: clamp(2rem, 7vw, 5rem);
+	inset-inline-end: clamp(0rem, 2vw, 2rem);
+	font-size: clamp(6rem, 19vw, 17.5rem);
+	font-weight: var(--fw-800);
+	letter-spacing: -0.04em;
+	line-height: 1;
+	color: rgba(0, 60, 130, var(--specs-watermark-opacity));
+	transform: translate3d(0, var(--specs-watermark-shift), 0) scale(var(--specs-watermark-scale));
+	transform-origin: top right;
+	transition:
+		color 0.8s ease,
+		transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.specs.is-in-view {
+	--specs-watermark-opacity: 0.04;
+	--specs-watermark-scale: 1;
+	--specs-watermark-shift: 0rem;
+}
+
+.specs .container,
+.specs .row {
+	position: relative;
+	z-index: 1;
+}
+
+.specs-headline {
+	margin-block-end: 1.25rem;
+	color: var(--col-navy);
+
+	> span {
+		color: var(--col-orange);
+		font-style: italic;
+	}
+}
+
+.specs-intro {
+	max-inline-size: 27.5rem;
+	color: var(--col-body);
+	font-size: var(--fs-body);
+	line-height: 1.7;
+}
+
+.specs-left {
+	position: sticky;
+	top: var(--nav-height);
+	height: fit-content;
+}
+
+.specs-table {
+	inline-size: 100%;
+	border-collapse: collapse;
+}
+
+.specs-table tr {
+	border-block-end: 1px solid var(--col-rule);
+}
+
+.specs-table tr:first-child {
+	border-block-start: 1px solid var(--col-rule);
+}
+
+.specs-table td {
+	padding-block: 1.25rem;
+	vertical-align: top;
+}
+
+.specs-label {
+	inline-size: 30%;
+	padding-inline-end: 1.5rem;
+	color: var(--col-orange);
+	font-size: var(--fs-micro);
+	font-weight: var(--fw-700);
+	letter-spacing: 0.14em;
+	text-transform: var(--tt-upper);
+}
+
+.specs-value {
+	color: var(--col-ink);
+	font-size: var(--fs-body-sm);
+	line-height: 1.6;
+}
+
+@media (max-width: 767px) {
+	.specs-table,
+	.specs-table tbody,
+	.specs-table tr,
+	.specs-table td {
+		display: block;
+	}
+
+	.specs-table tr {
+		padding-block: 1rem;
+	}
+
+	.specs-table td {
+		padding: 0;
+	}
+
+	.specs-label {
+		inline-size: auto;
+		margin-block-end: 0.5rem;
+		padding-inline-end: 0;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.specs {
+		--specs-watermark-opacity: 0.04;
+		--specs-watermark-scale: 1;
+		--specs-watermark-shift: 0rem;
+	}
+
+	.specs-watermark::before {
+		transition: none;
+	}
+}

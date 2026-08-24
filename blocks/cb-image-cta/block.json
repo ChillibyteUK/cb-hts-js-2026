@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "cb-hts-js-2026/cb-image-cta",
+	"title": "CB Image CTA",
+	"category": "cb-hts-js-2026",
+	"icon": "cover-image",
+	"description": "Full-bleed dark image band with centered eyebrow/headline/content and up to two CTAs, with a scroll-parallax background.",
+	"attributes": {
+		"imageId": { "type": "number", "default": 0 },
+		"imageUrl": { "type": "string", "default": "" },
+		"imageAlt": { "type": "string", "default": "" },
+		"eyebrow": { "type": "string", "default": "" },
+		"headline": { "type": "string", "default": "" },
+		"content": { "type": "string", "default": "" },
+		"buttonText": { "type": "string", "default": "" },
+		"buttonUrl": { "type": "string", "default": "" },
+		"buttonTarget": { "type": "boolean", "default": false },
+		"buttonSecondaryText": { "type": "string", "default": "" },
+		"buttonSecondaryUrl": { "type": "string", "default": "" },
+		"buttonSecondaryTarget": { "type": "boolean", "default": false }
+	},
+	"supports": {
+		"anchor": true,
+		"className": true,
+		"align": true
+	},
+	"editorScript": "file:./build/index.js",
+	"render": "file:./render.php"
+}

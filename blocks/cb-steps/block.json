@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "cb-hts-js-2026/cb-steps",
+	"title": "CB Steps",
+	"category": "cb-hts-js-2026",
+	"icon": "cover-image",
+	"attributes": {
+		"eyebrow": { "type": "string", "default": "" },
+		"headline": { "type": "string", "default": "" },
+		"intro": { "type": "string", "default": "" },
+		"steps": {
+			"type": "array",
+			"default": [ { "body": "" }, { "body": "" }, { "body": "" }, { "body": "" }, { "body": "" } ]
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"className": true,
+		"align": true
+	},
+	"editorScript": "file:./build/index.js",
+	"render": "file:./render.php"
+}

@@ -3,7 +3,7 @@ set -e
 
 # One-time bootstrap: run this straight after checking out and renaming the
 # skeleton directory for a new project. Renames every cb-hts-js-2026 /
-# CB HTS JS 2026 / lc_js_skeleton_ / CB_HTS_JS_2026_ / LC_JS_Skeleton_ reference to
+# CB HTS JS 2026 / cb_hts_js_2026_ / CB_HTS_JS_2026_ / CB_HTS_JS_2026_ reference to
 # your new theme, then resets git to a fresh history so this project doesn't
 # drag the skeleton's own commit log around. Leaves GitHub itself to you
 # (gh repo create + push) — deliberately not automated, see README.
@@ -64,7 +64,7 @@ done
 new_prefix=$(echo "$new_slug" | tr '-' '_')
 new_prefix_upper=$(echo "$new_prefix" | tr '[:lower:]' '[:upper:]')
 
-# The one class name (LC_JS_Skeleton_Nav_Walker) uses mixed case, so it's
+# The one class name (CB_HTS_JS_2026_Nav_Walker) uses mixed case, so it's
 # derived from the name instead, word by word — already-uppercase words
 # (acronyms like "LC") are preserved as typed rather than forced to "Lc".
 new_prefix_pascal=""
@@ -160,6 +160,10 @@ if [ -f "$header_partial" ] && [ -f "header.php" ]; then
     skip { next }
     { print }
   ' header.php > "$tmp_header"
+  # mktemp defaults to 0600, owner-only — mv would otherwise leave header.php
+  # unreadable by the webserver user, a 500 error the moment this runs on a
+  # real site. Match the original file's permissions instead of the temp file's.
+  chmod --reference=header.php "$tmp_header" 2>/dev/null || chmod 664 "$tmp_header"
   mv "$tmp_header" header.php
   echo "Wrote $header_partial into header.php"
 else
@@ -178,9 +182,34 @@ git init -q
 git add -A
 git commit -q -m "Initial commit from ${old_slug} skeleton"
 
+# Rename the checkout's own directory to match the new slug — everything
+# above rewrites file contents, but the folder you `git clone`d into keeps
+# its original name (e.g. "cb-hts-js-2026") unless done explicitly.
+# Done last, after every other file operation, since renaming the directory
+# out from under a running script is only safe once nothing after it still
+# needs to resolve paths relative to the old name.
+old_dir="$(pwd)"
+parent_dir="$(dirname "$old_dir")"
+new_dir="${parent_dir}/${new_slug}"
+
+if [ "$old_dir" = "$new_dir" ]; then
+  : # Already checked out under the new slug — nothing to rename.
+elif [ -e "$new_dir" ]; then
+  echo ""
+  echo "Warning: $new_dir already exists — leaving this folder named $(basename "$old_dir")."
+  echo "Rename it yourself once that's resolved: mv \"$old_dir\" \"$new_dir\""
+else
+  cd "$parent_dir"
+  mv "$(basename "$old_dir")" "$new_slug"
+  cd "$new_dir"
+  echo ""
+  echo "Renamed folder: $(basename "$old_dir") -> $new_slug"
+fi
+
 echo ""
 echo "Done. New theme: \"$new_name\" ($new_slug)."
 echo ""
 echo "Next steps:"
+echo "  cd ../$new_slug   # if your shell is still in the old folder path"
 echo "  npm install"
 echo "  gh repo create LamcatUK/$new_slug --public --source=. --push   # when you're ready"
