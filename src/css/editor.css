@@ -45,12 +45,27 @@
  * render.php produces unrelated frontend markup and shouldn't carry these
  * classes.
  */
-.lc-js-skeleton-editor-block {
+.cb-hts-js-2026-editor-block {
 	border: 1px solid #ccc;
 	padding: 2rem;
 }
 
-.lc-js-skeleton-editor-block__title {
+/*
+ * Compact variant for small repeater-row blocks (e.g. Marquee Stat) nested
+ * inside a parent's InnerBlocks area — the full 2rem padding/title treatment
+ * is sized for whole sections, not a two-field row.
+ */
+.cb-hts-js-2026-editor-block--item {
+	padding: 1rem;
+}
+
+.cb-hts-js-2026-editor-block__marquee-items {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.cb-hts-js-2026-editor-block__title {
 	margin: 0 0 1rem;
 	padding-bottom: 0.5rem;
 	border-bottom: 1px solid #ccc;
@@ -63,7 +78,7 @@
 
 /*
  * RichText and MediaUpload don't render their own visible label the way
- * TextControl/SelectControl/etc. do — .lc-js-skeleton-editor-field supplies
+ * TextControl/SelectControl/etc. do — .cb-hts-js-2026-editor-field supplies
  * one, plus a border around the control itself so the editable area reads
  * as a distinct field like the others.
  *
@@ -74,12 +89,12 @@
  * runtime as generated CSS-in-JS classes tied to that specific component
  * instance — the plain class name alone carries no styling to borrow.
  */
-.lc-js-skeleton-editor-field {
+.cb-hts-js-2026-editor-field {
 	margin-top: 1.5rem;
 	margin-bottom: 1.5rem;
 }
 
-.lc-js-skeleton-editor-field__label {
+.cb-hts-js-2026-editor-field__label {
 	display: block;
 	margin-bottom: 0.5rem;
 	font-size: 0.6875rem;
@@ -87,7 +102,112 @@
 	text-transform: uppercase;
 }
 
-.lc-js-skeleton-editor-field__control {
+.cb-hts-js-2026-editor-field__control {
 	border: 1px solid #ccc;
 	padding: 0.75rem;
+}
+
+/*
+ * Matches native BaseControl help text (font-size/color) so RichText and
+ * MediaUpload fields — which don't get the `help` prop TextControl/etc. use —
+ * read consistently with the rest of a block's fields.
+ */
+.cb-hts-js-2026-editor-field__help {
+	margin: 0.5rem 0 0;
+	font-size: 0.8125rem;
+	color: #757575;
+}
+
+/*
+ * Generic repeater field (blocks/_shared/RepeaterField.js) — used by any
+ * repeater-shaped block's edit.js in place of the old InnerBlocks-based
+ * item-block pattern.
+ */
+.cb-hts-js-2026-repeater-field__header {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	padding: 0 0.75rem;
+	margin-bottom: 0.25rem;
+}
+
+.cb-hts-js-2026-repeater-field__number-spacer {
+	flex: none;
+	width: 22px;
+}
+
+.cb-hts-js-2026-repeater-field__header-cell {
+	flex: 1 1 0%;
+	min-width: 0;
+	font-size: 0.75rem;
+	font-weight: 600;
+}
+
+.cb-hts-js-2026-repeater-field__header-cell--image {
+	flex: none;
+	width: 60px;
+}
+
+.cb-hts-js-2026-repeater-field__row-actions-spacer {
+	flex: none;
+	width: 88px;
+}
+
+.cb-hts-js-2026-repeater-field__row {
+	display: flex;
+	align-items: flex-start;
+	gap: 0.75rem;
+	border: 1px solid #ccc;
+	padding: 0.75rem;
+	margin-bottom: 0.5rem;
+
+	& > * {
+		flex: 1 1 0%;
+		min-width: 0;
+	}
+}
+
+.cb-hts-js-2026-repeater-field__row-actions {
+	display: flex;
+	gap: 0.25rem;
+	flex: none;
+}
+
+.cb-hts-js-2026-repeater-field__number {
+	flex: none;
+	align-self: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 22px;
+	height: 22px;
+	border-radius: 50%;
+	background: #f0f0f1;
+	font-size: 0.75rem;
+	font-weight: 600;
+	color: #50575e;
+}
+
+.cb-hts-js-2026-repeater-field__image {
+	flex: none;
+}
+
+.cb-hts-js-2026-repeater-field__image img {
+	display: block;
+	max-width: 60px;
+	max-height: 60px;
+	margin-bottom: 4px;
+	background: #fff;
+	border: 1px solid #ccc;
+}
+
+.cb-hts-js-2026-repeater-field__file-name {
+	display: block;
+	max-width: 100px;
+	margin-bottom: 4px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-size: 0.6875rem;
+	color: #50575e;
 }

@@ -5,36 +5,120 @@
  * an @media condition, so breakpoints live in src/build/tokens.config.js instead,
  * and generate-utilities.js is what turns them into actual responsive CSS. Keep
  * that file as the only place breakpoint pixel values are written down.
+ *
+ * Ported from HTS's cb-hts2026 (src/sass/theme/_tokens.scss) as part of the
+ * ACF -> native block migration. That source has no spacing, radius, or
+ * shadow scale at all (everything hardcoded ad hoc per component) — this
+ * file's existing spacing/radius/shadow tokens are kept as-is rather than
+ * invented from scratch. Font sizes/line-heights/letter-spacing are HTS's
+ * real values, converted from px to rem to match this file's convention.
+ * --shadow-active/--col-accent-400 from the source were dropped: the color
+ * was referenced but never actually defined there — a latent bug, not
+ * carried forward.
  */
 
 :root {
-  /* Colour palette — rename/replace per project, keep the slug shape */
+  /* Colour palette — HTS brand palette */
   --col-white: #ffffff;
   --col-black: #000000;
   --col-grey-100: #f5f5f5;
   --col-grey-300: #d9d9d9;
   --col-grey-700: #4a4a4a;
-  --col-blue-700: #1d4ed8;
+  --col-navy: #003c82;
+  --col-navy-deep: #002558;
+  --col-navy-80: #1a4d94;
+  --col-navy-60: #416e94;
+  --col-navy-25: #8296aa;
+  --col-navy-10: #c2d0d9;
+  --col-navy-5: #eef2f6;
+  --col-dark-grey: #3c3c3c;
+  --col-orange: #e86820;
+  --col-orange-bright: #ff7a2a;
+  --col-orange-15: #faded0;
+  --col-ink: #0b1220;
+  --col-body: #374151;
+  --col-muted: #6b7280;
+  --col-rule: #d1d5db;
+  --col-light-border: #e5e7eb;
+  --col-paper: #f4f1ec;
+  --col-section-bg: #eef2f6;
 
-  --col-primary: var(--col-blue-700);
-  --col-body: var(--col-black);
+  --col-primary: var(--col-navy);
   --col-body-bg: var(--col-white);
 
   /* Type scale */
-  --font-family-base: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --fs-base: 1rem;
-  --fs-h1: clamp(2rem, 1.6rem + 2vw, 3rem);
-  --fs-h2: clamp(1.6rem, 1.35rem + 1.25vw, 2.25rem);
-  --fs-h3: clamp(1.3rem, 1.15rem + 0.75vw, 1.75rem);
-  --fs-h4: 1.25rem;
-  --fs-h5: 1.1rem;
-  --fs-h6: 1rem;
-  --fs-small: 0.875rem;
+  --font-family-base:
+    "Inter", Arial, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+  --fs-base: 1rem; /* = --fs-body-md below, HTS's base reading size */
+
   --fw-400: 400;
+  --fw-500: 500;
   --fw-600: 600;
   --fw-700: 700;
-  --line-height-base: 1.5;
-  --line-height-heading: 1.2;
+  --fw-800: 800;
+
+  --line-height-base: 1.7; /* = --lh-loose below, base body copy */
+  --line-height-heading: 1.05; /* = --lh-headline below */
+
+  /* Fluid display/heading sizes (min @ ~375px, max @ ~1280px) */
+  --fs-hero: clamp(3rem, 4.2vw + 2rem, 5rem); /* hero h1 */
+  --fs-h1: clamp(2.5rem, 3.2vw + 1.5rem, 4rem); /* apps headline */
+  --fs-h2: clamp(2.25rem, 2.6vw + 1.375rem, 3.375rem); /* section h2s */
+  --fs-h3: clamp(2rem, 1.6vw + 1.375rem, 2.625rem); /* parent h2 */
+  --fs-h4: 1.75rem; /* form-title */
+  --fs-h5: 1.5rem; /* marquee num, proj-card wide title */
+  --fs-h6: 1.375rem; /* product / reason title */
+  --fs-card-title: 1.25rem; /* app-card, step, proj-card */
+
+  /* Numeric / stat display */
+  --fs-stat-xl: clamp(2.25rem, 2.2vw + 1.5rem, 3rem); /* split-stat, parent-stat */
+  --fs-stat-lg: 2.125rem; /* hero-badge num, proj hero title */
+  --fs-stat-md: 2rem; /* config-img-tag num */
+
+  /* Body / prose */
+  --fs-lede: 1.25rem; /* intro first paragraph */
+  --fs-body-lg: 1.125rem; /* hero lede, marquee, client name, step title */
+  --fs-body: 1.0625rem; /* section body */
+  --fs-body-md: 1rem; /* base body, parent body */
+  --fs-body-sm: 0.9375rem; /* hero bullets, reason body, table cells */
+  --fs-body-xs: 0.875rem; /* small body, links, inputs */
+  --fs-meta: 0.8125rem; /* btn text, intro signature, form subtitle */
+  --fs-caption: 0.75rem; /* utility bar, nav links, stat labels */
+  --fs-micro: 0.6875rem; /* eyebrows, tags, step nums, labels */
+  --fs-nano: 0.625rem; /* footer bottom, tiny tags */
+
+  /* Decorative (background watermarks) */
+  --fs-decor-lg: 7.5rem; /* intro decorative label */
+  --fs-decor-xl: 17.5rem; /* split ::before "WHY" */
+
+  /* Line heights */
+  --lh-flat: 1; /* badge nums, stats */
+  --lh-display: 0.96; /* hero h1 */
+  --lh-headline: 1.05; /* large section h2s */
+  --lh-snug: 1.1; /* parent h2 */
+  --lh-title: 1.2; /* card titles */
+  --lh-label: 1.4; /* small label blocks */
+  --lh-snug-prose: 1.55; /* intro lede, hero bullets */
+  --lh-body: 1.6; /* step body, table cells */
+  --lh-relaxed: 1.65; /* most body copy */
+  --lh-loose: 1.7; /* base body */
+
+  /* Letter spacing */
+  --ls-display: -0.035em; /* hero h1 */
+  --ls-headline: -0.03em; /* hero/apps headlines */
+  --ls-tight: -0.02em; /* large nums, proj hero title */
+  --ls-snug: -0.01em; /* card titles */
+  --ls-normal: 0;
+  --ls-wide: 0.04em; /* btn, marquee, step num */
+  --ls-wider: 0.06em; /* nav links, utility pill */
+  --ls-widest: 0.1em; /* product card link */
+  --ls-label: 0.12em; /* detail labels, stat labels */
+  --ls-tag: 0.14em; /* product tags, table labels */
+  --ls-eyebrow: 0.16em; /* contact detail num, footer label */
+  --ls-caps: 0.18em; /* eyebrow, hero meta, step num */
+
+  --tt-upper: uppercase;
 
   /* Spacing scale — used by both hand-authored CSS and the utility generator */
   --space-0: 0;
@@ -49,11 +133,11 @@
   --radius-lg: 0.5rem;
   --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.08);
   --shadow-lg: 0 8px 24px rgb(0 0 0 / 0.12);
-  --transition: 150ms ease-in-out;
+  --transition: 250ms ease-out;
 
   /* Layout */
-  --container-max-width: 1320px;
-  --container-padding: var(--space-3);
+  --container-max-width: 1360px;
+  --container-padding: 0.75rem; /* Bootstrap $grid-gutter-width (1.5rem) halved */
   --grid-columns: 12;
   --grid-gutter: var(--space-3);
 
@@ -62,5 +146,5 @@
 	   a new class per layout. Smaller value = more columns fit. */
   --grid-min: 16rem;
 
-  --nav-height: 4rem;
+  --nav-height: 3.875rem; /* = HTS's --h-top: 62px */
 }

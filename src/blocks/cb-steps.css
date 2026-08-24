@@ -1,0 +1,163 @@
+.process {
+	padding-block: clamp(5rem, 10vw, 8.75rem);
+	background: var(--col-white);
+	border-block-start: 1px solid var(--col-rule);
+}
+
+.process-header {
+	margin-block-end: clamp(3rem, 7vw, 5rem);
+	text-align: center;
+}
+
+/*
+ * Source markup is `class="eyebrow center"` — same dead-class pattern
+ * already found on CB Image CTA (a bare "center" class was never defined
+ * anywhere in the source, only "eyebrow--plain" is real). The centering is
+ * genuinely happening here, just via `.process-header { text-align: center }`
+ * above acting on .eyebrow's inline-flex (inline-level) box — no extra rule
+ * needed, and "center" isn't added to render.php's markup.
+ */
+.process-headline {
+	max-inline-size: 47.5rem;
+	margin-inline: auto;
+	margin-block-end: 1rem;
+	color: var(--col-navy);
+
+	> span {
+		color: var(--col-orange);
+		font-style: italic;
+	}
+}
+
+.process-sub {
+	max-inline-size: 32.5rem;
+	margin-inline: auto;
+	color: var(--col-body);
+	font-size: var(--fs-body);
+	line-height: var(--lh-relaxed);
+}
+
+/*
+ * Exact 5/3/2/1 columns at literal px breakpoints matching
+ * src/build/tokens.config.js's xl (1200) / md (768), plus one extra
+ * source-only step at 540px (below this project's sm of 576, kept literal
+ * to match the source exactly rather than snapping to a token breakpoint
+ * that isn't quite the same value).
+ */
+.process-steps {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	border-block: 1px solid var(--col-rule);
+}
+
+@media (max-width: 1199px) {
+	.process-steps {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+@media (max-width: 767px) {
+	.process-steps {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 540px) {
+	.process-steps {
+		grid-template-columns: 1fr;
+	}
+}
+
+.process-step {
+	position: relative;
+	padding: 2.5rem 1.5rem;
+	border-inline-end: 1px solid var(--col-rule);
+	transition: background 0.25s ease;
+}
+
+.process-step:hover {
+	background: var(--col-paper);
+}
+
+@media (min-width: 1200px) {
+	.process-step:last-child {
+		border-inline-end: 0;
+	}
+}
+
+@media (max-width: 1199px) {
+	.process-step {
+		border-block-end: 1px solid var(--col-rule);
+	}
+
+	.process-step:nth-child(3n) {
+		border-inline-end: 0;
+	}
+
+	.process-step:nth-last-child(-n + 2) {
+		border-block-end: 0;
+	}
+}
+
+@media (max-width: 767px) {
+	.process-step:nth-child(3n) {
+		border-inline-end: 1px solid var(--col-rule);
+	}
+
+	.process-step:nth-child(2n) {
+		border-inline-end: 0;
+	}
+
+	.process-step:nth-last-child(-n + 2) {
+		border-block-end: 0;
+	}
+}
+
+@media (max-width: 540px) {
+	.process-step {
+		border-inline-end: 0;
+	}
+
+	.process-step:not(:last-child) {
+		border-block-end: 1px solid var(--col-rule);
+	}
+
+	.process-step:last-child {
+		border-block-end: 0;
+	}
+}
+
+.step-num {
+	margin-block-end: 1.5rem;
+	color: var(--col-orange);
+	font-size: var(--fs-micro);
+	font-weight: var(--fw-700);
+	letter-spacing: var(--ls-caps);
+}
+
+.step-icon {
+	inline-size: 2.5rem;
+	block-size: 2.5rem;
+	margin-block-end: 1.5rem;
+	color: var(--col-navy);
+}
+
+.step-icon svg {
+	inline-size: 100%;
+	block-size: 100%;
+}
+
+.step-title {
+	margin-block-end: 0.625rem;
+	color: var(--col-navy);
+	font-size: var(--fs-body-lg);
+	font-weight: var(--fw-700);
+	letter-spacing: var(--ls-snug);
+	line-height: 1.25;
+}
+
+.step-body {
+	color: var(--col-muted);
+	font-size: var(--fs-body-xs);
+	line-height: var(--lh-body);
+}

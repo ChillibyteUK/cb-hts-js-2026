@@ -1,0 +1,163 @@
+/*
+ * Inter font-face declarations — ported from cb-hts2026's
+ * src/sass/theme/_typography.scss. Without these, "Inter" in
+ * --font-family-base (tokens.css) never resolves to an installed/loaded
+ * font and silently falls back to Arial — the font files being present in
+ * /fonts/ and preloaded (inc/head-tags.php) isn't enough on its own; a
+ * preload just primes the cache, it doesn't register the font-family name.
+ */
+
+/* inter-regular - latin */
+@font-face {
+	font-display: swap;
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 400;
+	src: url("../fonts/inter-v20-latin-regular.woff2") format("woff2");
+}
+/* inter-500 - latin */
+@font-face {
+	font-display: swap;
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 500;
+	src: url("../fonts/inter-v20-latin-500.woff2") format("woff2");
+}
+/* inter-600 - latin */
+@font-face {
+	font-display: swap;
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 600;
+	src: url("../fonts/inter-v20-latin-600.woff2") format("woff2");
+}
+/* inter-700 - latin */
+@font-face {
+	font-display: swap;
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 700;
+	src: url("../fonts/inter-v20-latin-700.woff2") format("woff2");
+}
+/* inter-800 - latin */
+@font-face {
+	font-display: swap;
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 800;
+	src: url("../fonts/inter-v20-latin-800.woff2") format("woff2");
+}
+
+/* Eyebrows & labels */
+.eyebrow {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.625rem;
+	font-size: var(--fs-micro);
+	font-weight: var(--fw-600);
+	letter-spacing: var(--ls-caps);
+	text-transform: uppercase;
+	line-height: var(--lh-flat);
+	color: var(--col-orange);
+	margin-bottom: 1.125rem;
+
+	&::before {
+		content: "";
+		inline-size: 2rem;
+		block-size: 1px;
+		background: currentColor;
+		flex: none;
+	}
+}
+
+.eyebrow--plain::before {
+	display: none;
+}
+
+.eyebrow--light {
+	color: var(--col-orange-bright);
+}
+
+/*
+ * Unified heading utility classes — distinct from the bare h1-h6 element
+ * selectors in base.css. Applied to a heading tag alongside its own
+ * component-specific class (e.g. <h2 class="intro-headline h2">) to give
+ * consistent size/weight/line-height/letter-spacing across sections that
+ * don't otherwise share markup.
+ */
+.h1 {
+	font-weight: var(--fw-700);
+	font-size: var(--fs-h1);
+	line-height: var(--lh-headline);
+	letter-spacing: var(--ls-headline);
+}
+
+.h2 {
+	/* unified section h2 (intro/split/products/projects/config/contact/process/mid-cta) */
+	font-weight: var(--fw-700);
+	font-size: var(--fs-h2);
+	line-height: var(--lh-headline);
+	letter-spacing: var(--ls-headline);
+}
+
+.h3 {
+	/* parent-h2 */
+	font-weight: var(--fw-700);
+	font-size: var(--fs-h3);
+	line-height: var(--lh-snug);
+	letter-spacing: var(--ls-tight);
+}
+
+.h4 {
+	/* form-title */
+	font-weight: var(--fw-700);
+	font-size: var(--fs-h4);
+	letter-spacing: var(--ls-tight);
+}
+
+.h5 {
+	font-weight: var(--fw-700);
+	font-size: var(--fs-h5);
+	line-height: var(--lh-title);
+	letter-spacing: var(--ls-tight);
+}
+
+.h6 {
+	/* product / reason title */
+	font-weight: var(--fw-700);
+	font-size: var(--fs-h6);
+	line-height: var(--lh-title);
+	letter-spacing: var(--ls-snug);
+}
+
+/* Body / prose */
+.prose-lede {
+	font-size: var(--fs-lede);
+	line-height: var(--lh-snug-prose);
+	font-weight: var(--fw-500);
+}
+
+.prose-lg {
+	font-size: var(--fs-body-lg);
+	line-height: var(--lh-relaxed);
+}
+
+.prose-md {
+	font-size: var(--fs-body);
+	line-height: var(--lh-relaxed);
+}
+
+.prose-base {
+	font-size: var(--fs-body-md);
+	line-height: var(--lh-loose);
+}
+
+.prose-sm {
+	font-size: var(--fs-body-sm);
+	line-height: var(--lh-relaxed);
+}
+
+.prose-xs {
+	font-size: var(--fs-body-xs);
+	line-height: var(--lh-relaxed);
+}

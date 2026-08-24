@@ -1,0 +1,53 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "cb-hts-js-2026/test-layout-block",
+  "title": "Test Layout Block",
+  "category": "cb-hts-js-2026",
+  "icon": "cover-image",
+  "attributes": {
+    "lede": {
+      "type": "string",
+      "default": ""
+    },
+    "ctaPrimaryText": {
+      "type": "string",
+      "default": ""
+    },
+    "ctaPrimaryUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "ctaPrimaryTarget": {
+      "type": "boolean",
+      "default": false
+    },
+    "ctaSecondaryText": {
+      "type": "string",
+      "default": ""
+    },
+    "ctaSecondaryUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "badgeNumber": {
+      "type": "string",
+      "default": ""
+    },
+    "badgeSuffix": {
+      "type": "string",
+      "default": ""
+    },
+    "badgeLabel": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "anchor": true,
+    "className": true,
+    "align": true
+  },
+  "editorScript": "file:./build/index.js",
+  "render": "file:./render.php"
+}

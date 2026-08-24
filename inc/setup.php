@@ -12,7 +12,7 @@ defined( 'ABSPATH' ) || exit;
  *
  * @return void
  */
-function lc_js_skeleton_setup() {
+function cb_hts_js_2026_setup() {
 	load_theme_textdomain( 'cb-hts-js-2026', get_template_directory() . '/languages' );
 
 	add_theme_support( 'title-tag' ); // Site title in <head> — no separate "site title" support needed beyond this.
@@ -22,13 +22,16 @@ function lc_js_skeleton_setup() {
 	add_theme_support( 'align-wide' );
 	add_theme_support( 'editor-styles' );
 	add_theme_support( 'disable-custom-colors' );
+	remove_theme_support( 'core-block-patterns' );
 
-	// Rename/extend per project.
 	register_nav_menus(
 		array(
-			'primary' => __( 'Primary Menu', 'cb-hts-js-2026' ),
-			'footer'  => __( 'Footer Menu', 'cb-hts-js-2026' ),
+			'primary_nav'              => __( 'Primary Nav', 'cb-hts-js-2026' ),
+			'footer_menu_products'     => __( 'Footer Products', 'cb-hts-js-2026' ),
+			'footer_menu_applications' => __( 'Footer Applications', 'cb-hts-js-2026' ),
 		)
 	);
 }
-add_action( 'after_setup_theme', 'lc_js_skeleton_setup' );
+add_action( 'after_setup_theme', 'cb_hts_js_2026_setup' );
+
+add_filter( 'should_load_remote_block_patterns', '__return_false' );

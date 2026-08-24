@@ -23,7 +23,7 @@ add_shortcode(
 
 		$links = '';
 		foreach ( $platforms as $slug => $label ) {
-			$url = lc_js_skeleton_get_setting( $slug . '_url' );
+			$url = cb_hts_js_2026_get_setting( $slug . '_url' );
 			if ( ! $url ) {
 				continue;
 			}

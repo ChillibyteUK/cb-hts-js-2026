@@ -1,0 +1,176 @@
+.parent {
+	padding-block: clamp(5rem, 9vw, 6rem);
+	background: linear-gradient(135deg, var(--col-navy-deep) 0%, var(--col-navy-60) 100%);
+	border-block-start: 3px solid var(--col-orange);
+	color: var(--col-white);
+}
+
+/* Source's `g-5 g-xl-6` — g-xl-6 is the same Bootstrap $spacers no-op documented for CB Specs/CB Why Split/CB Contact; only g-5 is real. */
+.parent .row {
+	gap: var(--space-5);
+}
+
+.parent-h2 {
+	margin-block-end: 1.125rem;
+	color: var(--col-white);
+
+	> span {
+		color: var(--col-white);
+		font-style: italic;
+		text-decoration: underline;
+		text-decoration-color: rgba(232, 104, 32, 0.85);
+		text-underline-offset: 0.375rem;
+		text-decoration-thickness: 3px;
+	}
+}
+
+.parent-body {
+	max-inline-size: 35rem;
+	margin-block-end: 1.75rem;
+	color: rgba(255, 255, 255, 0.85);
+	font-size: var(--fs-body);
+	line-height: var(--lh-loose);
+}
+
+.parent-stats {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	padding-inline-start: clamp(1.5rem, 4vw, 3rem);
+	border-inline-start: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+@media (max-width: 991px) {
+	.parent-stats {
+		padding-inline-start: 0;
+		border-inline-start: 0;
+		padding-block-start: 1.5rem;
+		border-block-start: 1px solid rgba(255, 255, 255, 0.2);
+	}
+}
+
+.parent-stat {
+	display: flex;
+	align-items: baseline;
+	gap: 1.125rem;
+}
+
+@media (max-width: 540px) {
+	.parent-stat {
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+}
+
+/*
+ * Source markup also carries a "stat-lg" class (_typography.scss) here.
+ * That class's own font-weight references --fw-extrabold, a token that
+ * doesn't exist anywhere in the source's tokens file, so that one
+ * declaration drops out of the cascade and this rule's own font-weight
+ * wins instead — the same latent bug already documented for CB Why
+ * Split's stat value. Confirmed live on both hts.local variants: rendered
+ * font-weight is 700 (this rule's own --fw-700), never the broken
+ * extrabold. ".stat-lg" isn't ported as a class — its other, actually-valid
+ * parts (font-size, line-height, letter-spacing) are folded directly in
+ * below instead, matching what's actually rendered rather than either
+ * class's presumed intent.
+ */
+.parent-stat-num {
+	min-inline-size: 7.5rem;
+	color: var(--col-white);
+	font-size: var(--fs-stat-lg);
+	line-height: var(--lh-flat);
+	font-weight: var(--fw-700);
+	letter-spacing: var(--ls-headline);
+}
+
+.parent-stat-num sup {
+	position: relative;
+	top: -0.75em;
+	font-size: 0.55em;
+	color: var(--col-orange-bright);
+	vertical-align: baseline;
+	margin-inline-start: 0.05em;
+	font-weight: var(--fw-700);
+}
+
+.parent-stat-label {
+	color: rgba(255, 255, 255, 0.85);
+	font-size: 0.8125rem;
+	font-weight: var(--fw-500);
+	letter-spacing: 0.04em;
+	line-height: 1.4;
+}
+
+/* ─── Pull-quote variant (case study outcome band) ─── */
+.parent--quote {
+	background: var(--col-paper);
+	border-block-start: 0;
+	color: var(--col-body);
+}
+
+.parent--quote .parent-h2 {
+	color: var(--col-navy);
+	font-size: var(--fs-h3);
+	font-weight: var(--fw-600);
+	line-height: 1.25;
+	letter-spacing: var(--ls-headline);
+	text-wrap: pretty;
+}
+
+.parent--quote .parent-h2 > span {
+	color: var(--col-orange);
+	font-style: italic;
+	text-decoration: none;
+}
+
+.parent--quote .parent-body {
+	color: var(--col-body);
+}
+
+.parent--quote .parent-stats {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 1px;
+	padding-inline-start: 0;
+	background: var(--col-rule);
+	border-inline-start: 0;
+}
+
+@media (max-width: 991px) {
+	.parent--quote .parent-stats {
+		padding-block-start: 0;
+		border-block-start: 0;
+	}
+}
+
+@media (max-width: 540px) {
+	.parent--quote .parent-stats {
+		grid-template-columns: 1fr;
+	}
+}
+
+.parent--quote .parent-stat {
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 0.75rem;
+	padding: 1.875rem 1.625rem;
+	background: var(--col-paper);
+}
+
+.parent--quote .parent-stat-num {
+	min-inline-size: 0;
+	color: var(--col-navy);
+	font-size: var(--fs-stat-xl);
+}
+
+.parent--quote .parent-stat-num sup {
+	color: var(--col-orange);
+}
+
+.parent--quote .parent-stat-label {
+	color: var(--col-muted);
+	font-size: var(--fs-caption);
+	letter-spacing: var(--ls-label);
+	text-transform: var(--tt-upper);
+}

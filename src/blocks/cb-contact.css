@@ -1,0 +1,118 @@
+.contact {
+	padding-block: clamp(5rem, 10vw, 8.75rem);
+	background: var(--col-white);
+}
+
+/*
+ * Source markup is `row g-5 g-xl-6` — g-xl-6 is the same Bootstrap
+ * $spacers-map no-op documented for CB Specs/CB Why Split (only steps 0-5
+ * exist, g-5 = 3rem is the real gutter). Only the real g-5 is ported.
+ */
+.contact .row {
+	gap: var(--space-5);
+}
+
+.contact-h2 {
+	margin-block-end: 1.25rem;
+	color: var(--col-navy);
+
+	> span {
+		color: var(--col-orange);
+		font-style: italic;
+	}
+}
+
+.contact-body {
+	max-inline-size: 27.5rem;
+	margin-block-end: 2.5rem;
+	color: var(--col-body);
+}
+
+.contact-details {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	padding-block-start: 2rem;
+	border-block-start: 1px solid var(--col-rule);
+}
+
+.contact-detail {
+	display: flex;
+	gap: 1rem;
+	align-items: flex-start;
+}
+
+.contact-icon {
+	flex: none;
+	inline-size: 2.5rem;
+	block-size: 2.5rem;
+	color: var(--col-orange);
+
+	svg {
+		inline-size: 100%;
+		block-size: 100%;
+	}
+}
+
+.contact-detail-label {
+	margin-block-end: 0.25rem;
+	color: var(--col-muted);
+	font-size: var(--fs-micro);
+	font-weight: var(--fw-600);
+	letter-spacing: var(--ls-caps);
+	text-transform: var(--tt-upper);
+}
+
+.contact-detail-value {
+	color: var(--col-ink);
+	font-size: var(--fs-body-lg);
+	font-weight: var(--fw-500);
+
+	a {
+		color: var(--col-orange);
+		text-decoration: none;
+	}
+}
+
+.contact-note {
+	margin-block-start: 0.5rem;
+	padding: 1rem 1.125rem;
+	background: var(--col-paper);
+	border-inline-start: 3px solid var(--col-orange);
+}
+
+.contact-note-title {
+	margin-block-end: 0.375rem;
+}
+
+.contact-note-body {
+	color: var(--col-muted);
+	font-size: 0.8125rem;
+	font-style: italic;
+	line-height: 1.6;
+}
+
+.contact-form {
+	padding: clamp(2rem, 5vw, 3rem);
+	background: var(--col-paper);
+}
+
+.contact-form--on-bg {
+	background: var(--col-white);
+}
+
+.form-title {
+	margin-block-end: 0.5rem;
+	color: var(--col-navy);
+}
+
+.form-subtitle {
+	margin-block-end: 1.75rem;
+	color: var(--col-muted);
+	font-size: var(--fs-meta);
+	line-height: var(--lh-body);
+}
+
+.contact-form-shortcode .gform_wrapper {
+	margin: 0;
+}

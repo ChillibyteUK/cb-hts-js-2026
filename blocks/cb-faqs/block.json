@@ -1,0 +1,25 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "cb-hts-js-2026/cb-faqs",
+	"title": "CB FAQs",
+	"category": "cb-hts-js-2026",
+	"icon": "editor-help",
+	"description": "Accordion of questions and answers, with a scroll-triggered watermark and FAQPage structured data.",
+	"attributes": {
+		"headline": { "type": "string", "default": "" },
+		"intro": { "type": "string", "default": "" },
+		"faqs": { "type": "array", "default": [] }
+	},
+	"supports": {
+		"anchor": true,
+		"className": true,
+		"align": true,
+		"color": {
+			"background": true,
+			"text": true
+		}
+	},
+	"editorScript": "file:./build/index.js",
+	"render": "file:./render.php"
+}

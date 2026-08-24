@@ -16,7 +16,7 @@ defined( 'ABSPATH' ) || exit;
  *
  * @return string HTML table of block usage.
  */
-function lc_js_skeleton_block_usage_table_shortcode() {
+function cb_hts_js_2026_block_usage_table_shortcode() {
 	$blocks_dir  = get_stylesheet_directory() . '/blocks/';
 	$block_files = glob( $blocks_dir . '*/block.json' );
 
@@ -70,31 +70,45 @@ function lc_js_skeleton_block_usage_table_shortcode() {
 			</tr>
 		</thead>
 		<tbody>
-			<?php foreach ( $usage_map as $block_name => $posts_using_block ) : ?>
+			<?php
+			foreach ( $usage_map as $block_name => $posts_using_block ) {
+				?>
 				<tr style="border-bottom: 1px solid #eee;">
 					<td style="padding: 8px; vertical-align: top;"><?php echo esc_html( $block_name ); ?></td>
 					<td style="padding: 8px;">
-						<?php if ( empty( $posts_using_block ) ) : ?>
+						<?php
+						if ( empty( $posts_using_block ) ) {
+							?>
 							<em style="color: #999;">Not used</em>
-						<?php else : ?>
+							<?php
+						} else {
+							?>
 							<ul style="margin: 0; padding-left: 20px;">
-								<?php foreach ( $posts_using_block as $post ) : ?>
+								<?php
+								foreach ( $posts_using_block as $post ) {
+									?>
 									<li>
 										<a href="<?php echo esc_url( get_edit_post_link( $post->ID ) ); ?>" target="_blank">
 											<?php echo esc_html( $post->post_title ); ?>
 										</a>
 										<span style="color: #999; font-size: 0.9em;">(<?php echo esc_html( ucfirst( $post->post_type ) ); ?>)</span>
 									</li>
-								<?php endforeach; ?>
+									<?php
+								}
+								?>
 							</ul>
-						<?php endif; ?>
+							<?php
+						}
+						?>
 					</td>
 				</tr>
-			<?php endforeach; ?>
+				<?php
+			}
+			?>
 		</tbody>
 	</table>
 	</div>
 	<?php
 	return ob_get_clean();
 }
-add_shortcode( 'block_usage_table', 'lc_js_skeleton_block_usage_table_shortcode' );
+add_shortcode( 'block_usage_table', 'cb_hts_js_2026_block_usage_table_shortcode' );

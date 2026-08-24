@@ -87,3 +87,15 @@ ol {
 	white-space: nowrap !important;
 	border: 0 !important;
 }
+
+/* Bootstrap's standard vertical-rule divider — a static single-purpose
+   utility like .visually-hidden above, not a generated one (no variants or
+   responsive suffixes make sense for it, so it doesn't fit
+   generate-utilities.js's parameterized-utility model). */
+.vr {
+	align-self: stretch;
+	width: 1px;
+	min-height: 1em;
+	background-color: currentColor;
+	opacity: 0.25;
+}

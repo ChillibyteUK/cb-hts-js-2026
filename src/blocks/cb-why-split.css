@@ -1,0 +1,192 @@
+.why-split {
+	position: relative;
+	overflow: clip;
+	padding-block: clamp(5rem, 10vw, 8.75rem);
+	background: var(--col-section-bg);
+	border-top: 1px solid var(--col-rule);
+	color: var(--col-ink);
+	--why-watermark-opacity: 0.02;
+	--why-watermark-scale: 0.96;
+	--why-watermark-shift: 1.5rem;
+}
+
+/*
+ * Source markup is `class="row g-5 g-xl-6"` — g-xl-6 is the same broken/
+ * no-op class documented on .specs .row (Bootstrap's $spacers map stops at
+ * 5, g-xl-6 compiles to nothing in the live source). Only g-5 is real.
+ */
+.why-split .row {
+	gap: var(--space-5);
+}
+
+.why-split-watermark {
+	position: sticky;
+	top: var(--nav-height);
+	height: 0;
+	z-index: 0;
+	pointer-events: none;
+}
+
+.why-split-watermark::before {
+	content: "WHY";
+	position: absolute;
+	inset-block-start: clamp(2rem, 7vw, 5rem);
+	inset-inline-end: clamp(0rem, 2vw, 2rem);
+	font-size: clamp(6rem, 19vw, 17.5rem);
+	font-weight: var(--fw-800);
+	letter-spacing: -0.04em;
+	line-height: 1;
+	color: rgba(0, 60, 130, var(--why-watermark-opacity));
+	transform: translate3d(0, var(--why-watermark-shift), 0) scale(var(--why-watermark-scale));
+	transform-origin: top right;
+	transition:
+		color 0.8s ease,
+		transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.why-split.is-in-view {
+	--why-watermark-opacity: 0.04;
+	--why-watermark-scale: 1;
+	--why-watermark-shift: 0rem;
+}
+
+.why-split .container,
+.why-split .row {
+	position: relative;
+	z-index: 1;
+}
+
+.why-split-headline {
+	margin-block-end: 1.5rem;
+	color: var(--col-navy);
+
+	> span {
+		color: var(--col-orange);
+		font-style: italic;
+	}
+}
+
+.why-split-copy,
+.why-split-reason-body {
+	color: var(--col-body);
+}
+
+.why-split-copy {
+	max-inline-size: 28rem;
+	margin-block-end: 2.25rem;
+	font-size: var(--fs-body-lg);
+	line-height: var(--lh-relaxed);
+}
+
+/*
+ * .why-split-stats is source's `.row.row-cols-2.g-4` — this project's
+ * .row/.col-* system is CSS Grid, not Bootstrap's flex-based row-cols-N
+ * mechanism, and this is the only place row-cols has been needed so far,
+ * so it's a plain 2-column grid here rather than a new generated utility
+ * (unlike .grid, which is for "roughly N items, however many fit" —
+ * row-cols-2 guarantees exactly 2 regardless of width, a different
+ * contract).
+ */
+.why-split-stats {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: var(--space-4);
+	padding-block-start: 1.75rem;
+	border-block-start: 1px solid var(--col-navy-25);
+}
+
+/*
+ * Source's .why-split-stat-value carries both its own class and the global
+ * .stat-lg (_typography.scss). .stat-lg's own font-weight: var(--fw-extrabold)
+ * references a token that doesn't exist anywhere in the source's tokens —
+ * an invalid var() with no fallback, so that one declaration is dropped by
+ * the browser and the real rendered weight falls through to this rule's own
+ * font-weight instead (confirmed live: computes to 700, not 800). Ported
+ * to match what actually renders, not what either class's author probably
+ * intended — .stat-lg itself isn't needed elsewhere yet, so it isn't
+ * ported as its own class; font-size/letter-spacing (the parts of .stat-lg
+ * that *are* valid) are folded in directly here instead.
+ */
+.why-split-stat-value {
+	margin-block-end: 0.5rem;
+	color: var(--col-navy);
+	font-size: var(--fs-stat-lg);
+	font-weight: var(--fw-700);
+	line-height: 1;
+	letter-spacing: var(--ls-headline);
+}
+
+.why-split-stat-value sup {
+	position: relative;
+	top: -0.75em;
+	font-size: 0.55em;
+	color: var(--col-orange);
+	vertical-align: baseline;
+	margin-inline-start: 0.05em;
+	font-weight: var(--fw-700);
+}
+
+.why-split-stat-label {
+	font-size: var(--fs-micro);
+	font-weight: var(--fw-500);
+	letter-spacing: var(--ls-caps);
+	text-transform: var(--tt-upper);
+	color: var(--col-muted);
+	line-height: 1.5;
+}
+
+.why-split-reasons {
+	border-block-start: 1px solid var(--col-navy-25);
+}
+
+.why-split-reason {
+	display: grid;
+	grid-template-columns: 4rem 1fr;
+	gap: 1.5rem;
+	padding-block: 1.75rem;
+	border-block-end: 1px solid var(--col-navy-25);
+	transition: transform 0.25s ease;
+}
+
+@media (max-width: 540px) {
+	.why-split-reason {
+		grid-template-columns: 1fr;
+		gap: 0.75rem;
+	}
+}
+
+.why-split-reason-num {
+	padding-block-start: 0.2rem;
+	font-size: var(--fs-body-sm);
+	font-weight: var(--fw-700);
+	letter-spacing: 0.04em;
+	color: var(--col-orange);
+}
+
+.why-split-reason-title {
+	margin-block-end: 0.5rem;
+	color: var(--col-navy);
+}
+
+.why-split-reason-body {
+	font-size: var(--fs-body-sm);
+	line-height: var(--lh-relaxed);
+}
+
+.why-split-left {
+	position: sticky;
+	top: var(--nav-height);
+	height: fit-content;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.why-split {
+		--why-watermark-opacity: 0.04;
+		--why-watermark-scale: 1;
+		--why-watermark-shift: 0rem;
+	}
+
+	.why-split-watermark::before {
+		transition: none;
+	}
+}

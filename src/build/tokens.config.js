@@ -67,6 +67,16 @@ const utilities = {
 		tokenPrefix: 'fw-',
 		responsive: false,
 	},
+	// Responsive on purpose — source enables `"width": { responsive: true }`
+	// via a $utilities map-merge in _child_theme_variables.scss, unlike
+	// stock Bootstrap where sizing utilities aren't responsive. First needed
+	// by CB Configurator's CTA (`w-100 w-md-auto` — full-width button on
+	// small screens, auto-width from md up).
+	width: {
+		className: 'w',
+		prop: 'width',
+		values: { 25: '25%', 50: '50%', 75: '75%', 100: '100%', auto: 'auto' },
+	},
 };
 
 // Spacing utilities (gap, margin, padding) driven off the tokens.css spacing scale.

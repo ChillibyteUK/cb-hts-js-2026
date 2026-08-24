@@ -1,0 +1,22 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "cb-hts-js-2026/cb-specs",
+	"title": "CB Specs",
+	"category": "cb-hts-js-2026",
+	"icon": "list-view",
+	"description": "Sticky headline/intro column beside a spec table, with a scroll-triggered watermark.",
+	"attributes": {
+		"eyebrow": { "type": "string", "default": "" },
+		"headline": { "type": "string", "default": "" },
+		"intro": { "type": "string", "default": "" },
+		"rows": { "type": "array", "default": [] }
+	},
+	"supports": {
+		"anchor": true,
+		"className": true,
+		"align": true
+	},
+	"editorScript": "file:./build/index.js",
+	"render": "file:./render.php"
+}
