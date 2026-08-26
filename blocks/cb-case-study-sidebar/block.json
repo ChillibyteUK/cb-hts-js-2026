@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "cb-hts-js-2026/cb-case-study-sidebar",
+	"title": "CB Case Study Sidebar",
+	"category": "cb-hts-js-2026",
+	"icon": "cover-image",
+	"attributes": {
+		"facts": {
+			"type": "array",
+			"default": []
+		},
+		"ctaText": {
+			"type": "string",
+			"default": ""
+		},
+		"ctaUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"ctaTarget": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"className": true,
+		"align": true
+	},
+	"editorScript": "file:./build/index.js",
+	"render": "file:./render.php"
+}
