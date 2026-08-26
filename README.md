@@ -10,22 +10,16 @@ blocks and a plain Settings API page instead of ACF. See that skeleton's own
 docs if a project specifically needs ACF; see this file's "Adding a block"
 section below for how blocks work here.
 
-## Starting a new project
+## What this checkout is
 
-```
-git clone git@github.com:LamcatUK/cb-hts-js-2026.git my-new-project
-cd my-new-project
-./setup.sh
-```
-
-`setup.sh` prompts for a theme name, suggests a slug from it (press enter to
-accept, or type your own — names and slugs often want to diverge), then
-renames every `cb-hts-js-2026` / `CB HTS JS 2026` / `lc_js_skeleton_` /
-`LC_JS_Skeleton_` reference across the whole repo to match, and resets git to a
-single fresh commit (no skeleton commit history, no GitHub repo created —
-that part's manual: `gh repo create LamcatUK/{slug} --public --source=.
---push` when you're ready). Refuses to run on a dirty tree or an
-already-renamed project.
+This is the **live HTS Industries client project**, not a template — it was
+created by running `setup.sh` once against the `lc-js-skeleton2026` skeleton
+(see that repo if you need to start a *different* new project the same way).
+`setup.sh`'s own rename loop runs over every tracked file including itself,
+so this checkout's copy of `setup.sh` now has its `old_slug`/`old_prefix*`
+variables pointing at `cb-hts-js-2026` instead of the skeleton's originals —
+**do not run it again here**, it would try to re-rename an already-renamed
+project. See `CLAUDE.md` for the full explanation.
 
 ## This is Bootstrap-*named*, not Bootstrap
 
@@ -82,16 +76,16 @@ nesting are all used without hesitation.
 ## Build
 
 ```
-npm install
-npm run watch        # rebuilds theme-wide CSS/JS on save
-npm run watch-bs     # same, plus browser-sync live reload (proxies localhost/)
-npm run blocks:build # compiles every block's src/index.js
-npm run blocks:start # watch mode for block JS
-npm run dist         # one-off full build: css + js + blocks
-npm run generate-theme-json   # regenerate theme.json from tokens.css
+pnpm install
+pnpm run watch        # rebuilds theme-wide CSS/JS on save
+pnpm run watch-bs     # same, plus browser-sync live reload (proxies localhost/)
+pnpm run blocks:build # compiles every block's src/index.js
+pnpm run blocks:start # watch mode for block JS
+pnpm run dist         # one-off full build: css + js + blocks
+pnpm run generate-theme-json   # regenerate theme.json from tokens.css
 ```
 
-`npm run css` runs three steps: `generate-utilities.js` (produces
+`pnpm run css` runs three steps: `generate-utilities.js` (produces
 `src/css/utilities.css` — the breakpoint-suffixed grid/utility classes — and
 `src/css/blocks.css`, a concatenation of `src/blocks/*.css`), then
 PostCSS (`postcss-import` + `postcss-nesting` + `autoprefixer`), then
@@ -111,14 +105,22 @@ textarea, richtext, image, url, link, number, select, checkbox). Generates
 using WordPress's own field components — no ACF, no `get_field()`), and
 `render.php` (front-end template, reading straight from `$attributes`).
 No registration step — `inc/blocks.php` auto-loads every `blocks/*/block.json`
-it finds. Run `npm run blocks:build` after scaffolding, or the block won't
+it finds. Run `pnpm run blocks:build` after scaffolding, or the block won't
 render correctly until `build/index.js` exists.
 
-Not yet supported by the generator: repeater, gallery, relationship,
-post_object, file — add those by hand in `src/edit.js` if a block needs one.
+Not yet supported by `add_block.sh` directly: repeater, gallery,
+relationship, post_object, file. Repeater and single-post fields have a
+documented drop-in pattern instead — `blocks/_shared/RepeaterField.js` and
+`blocks/_shared/PostTypePicker.js` (see the `blocks/_shared/` entry under
+`CLAUDE.md`'s "File layout" for how to wire one into a generated `edit.js`
+by hand). Relationship (a whole grid of posts via `WP_Query`) still has no
+drop-in — build it by hand. The
+**LCP Block Builder** plugin (`LamcatUK/lcp-block-builder`, wp-admin GUI,
+local-only) covers repeater/gallery/post_type generation that `add_block.sh`
+doesn't, if it's active on this environment.
 
 If the block needs custom styles, add `src/blocks/{block-slug}.css`; it's
-picked up automatically on the next `npm run css`, no registration step.
+picked up automatically on the next `pnpm run css`, no registration step.
 Load order for these is alphabetical by filename, not registration order.
 
 `rm_block.sh` removes a block: the whole `blocks/{slug}` directory plus its

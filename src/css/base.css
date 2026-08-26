@@ -56,11 +56,22 @@ p {
 
 a {
 	color: var(--col-primary);
-	text-decoration-thickness: 1px;
+	text-decoration: none;
+}
 
-	&:hover {
-		text-decoration-thickness: 2px;
-	}
+/*
+ * Underline-on-hover only for plain content links (no class) — cards,
+ * buttons, nav items, and social/icon links all carry their own class and
+ * define their own hover treatment, so they're excluded here rather than
+ * needing a `text-decoration: none` override per component. Matches
+ * cb-hts2026's own approach: no blanket `a:hover` rule there either, only
+ * scoped ones per context (.cb-post__content a:hover, .cs-sidebar-value
+ * a:hover, .footer-links a:hover, etc.) — every one of those targets a
+ * bare, unclassed <a>, which is exactly what this selector captures in one
+ * rule instead of enumerating each context.
+ */
+a:not([class]):hover {
+	text-decoration: underline;
 }
 
 img,
@@ -69,6 +80,22 @@ video {
 	max-width: 100%;
 	height: auto;
 	display: block;
+}
+
+/*
+ * cb-hts2026 gets this from Bootstrap's .figure-caption (via Understrap's
+ * figcaption { @extend .figure-caption }) — this project has no Bootstrap
+ * to extend, so the computed values are ported directly. color is
+ * Bootstrap's own $gray-600 default, not one of this project's tokens
+ * (closest, --col-muted, is a different value, #6b7280 not #6c757d) —
+ * kept as a literal to match the source exactly rather than substitute a
+ * near-enough token.
+ */
+figcaption {
+	margin-top: 0.5em;
+	font-size: 0.875rem;
+	line-height: var(--lh-loose);
+	color: #6c757d;
 }
 
 ul,

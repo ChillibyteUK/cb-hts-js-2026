@@ -251,6 +251,33 @@ function cb_hts_js_2026_disallow_unwanted_core_blocks( $allowed_block_types ) {
 add_filter( 'allowed_block_types_all', 'cb_hts_js_2026_disallow_unwanted_core_blocks' );
 
 /**
+ * Register block styles core has no built-in equivalent for: "Ticked list"
+ * (core/list) and "Callout" (core/paragraph). Styling lives in
+ * src/css/typography.css (.wp-block-list.is-style-cb-ticked,
+ * .wp-block-paragraph.is-style-cb-callout).
+ *
+ * @return void
+ */
+function cb_hts_js_2026_register_block_styles() {
+	register_block_style(
+		'core/list',
+		array(
+			'name'  => 'cb-ticked',
+			'label' => __( 'Ticked list', 'cb-hts-js-2026' ),
+		)
+	);
+
+	register_block_style(
+		'core/paragraph',
+		array(
+			'name'  => 'cb-callout',
+			'label' => __( 'Callout', 'cb-hts-js-2026' ),
+		)
+	);
+}
+add_action( 'init', 'cb_hts_js_2026_register_block_styles' );
+
+/**
  * Render callback that wraps a core block's content in .container.
  *
  * @param array  $attributes Block attributes — unused, required by the render_callback signature.

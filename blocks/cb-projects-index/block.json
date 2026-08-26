@@ -1,0 +1,23 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "cb-hts-js-2026/cb-projects-index",
+	"title": "CB Projects Index",
+	"category": "cb-hts-js-2026",
+	"icon": "cover-image",
+	"attributes": {
+		"eyebrow": { "type": "string", "default": "" },
+		"headline": { "type": "string", "default": "" },
+		"intro": { "type": "string", "default": "" },
+		"showFilters": { "type": "boolean", "default": true },
+		"postsPerPage": { "type": "number", "default": 0 }
+	},
+	"supports": {
+		"anchor": true,
+		"className": true,
+		"align": true
+	},
+	"editorScript": "file:./build/index.js",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

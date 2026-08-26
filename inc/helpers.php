@@ -23,3 +23,25 @@ function cb_hts_js_2026_gform_submit_button( $button, $form ) {
 		. '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></button>';
 }
 add_filter( 'gform_submit_button', 'cb_hts_js_2026_gform_submit_button', 10, 2 );
+
+/**
+ * Resolve a project's display category name for card meta labels.
+ *
+ * Prefers the dedicated `project_cat` taxonomy, falling back to
+ * `application_cat`. Ported from cb-hts2026's inc/cb-utility.php.
+ *
+ * @param int $post_id Project post ID.
+ * @return string Term name, or an empty string when the project is uncategorised.
+ */
+function cb_hts_js_2026_project_category_name( $post_id ) {
+	foreach ( array( 'project_cat', 'application_cat' ) as $taxonomy ) {
+		$terms = get_the_terms( $post_id, $taxonomy );
+
+		if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
+			$term = reset( $terms );
+			return $term->name;
+		}
+	}
+
+	return '';
+}

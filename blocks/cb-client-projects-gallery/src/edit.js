@@ -36,17 +36,23 @@ export default function Edit( { attributes, setAttributes } ) {
 					'cb-hts-js-2026'
 				) }
 			/>
-			<TextControl
-				label={ __( 'Eyebrow', 'cb-hts-js-2026' ) }
-				value={ eyebrow }
-				onChange={ ( value ) => setAttributes( { eyebrow: value } ) }
-			/>
-			<TextControl
-				label={ __( 'Heading', 'cb-hts-js-2026' ) }
-				value={ heading }
-				onChange={ ( value ) => setAttributes( { heading: value } ) }
-				help={ __( 'Wrap emphasised text in a <span> to render it italic + orange.', 'cb-hts-js-2026' ) }
-			/>
+			<div style={ { display: 'flex', flexWrap: 'wrap', gap: '12px' } }>
+				<div style={ { flex: '50 1 0%' } }>
+					<TextControl
+						label={ __( 'Eyebrow', 'cb-hts-js-2026' ) }
+						value={ eyebrow }
+						onChange={ ( value ) => setAttributes( { eyebrow: value } ) }
+					/>
+				</div>
+				<div style={ { flex: '50 1 0%' } }>
+					<TextControl
+						label={ __( 'Heading', 'cb-hts-js-2026' ) }
+						value={ heading }
+						onChange={ ( value ) => setAttributes( { heading: value } ) }
+						help={ __( 'Wrap emphasised text in a <span> to render it italic + orange.', 'cb-hts-js-2026' ) }
+					/>
+				</div>
+			</div>
 			<TextareaControl
 				label={ __( 'Intro', 'cb-hts-js-2026' ) }
 				value={ intro }
