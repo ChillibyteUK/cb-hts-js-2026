@@ -15,10 +15,18 @@
  * to add a 6th step, so g-xl-6 compiles to nothing. Only g-5 is real;
  * matched here the same way as every other block's gutter override
  * (.footer-top, .apps-header, .config-inner) — scoped to this row rather
- * than building a full gutter-utility system.
+ * than building a full gutter-utility system. Gated to lg+ like
+ * .apps-header — the full 48px g-5 gap on a 12-column grid needs 11 gaps
+ * (528px) just for whitespace, which overflows any mobile viewport.
  */
 .specs .row {
-	gap: var(--space-5);
+	gap: var(--space-4);
+}
+
+@media (min-width: 992px) {
+	.specs .row {
+		gap: var(--space-5);
+	}
 }
 
 .specs-watermark {

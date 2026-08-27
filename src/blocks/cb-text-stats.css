@@ -5,9 +5,15 @@
 	color: var(--col-white);
 }
 
-/* Source's `g-5 g-xl-6` — g-xl-6 is the same Bootstrap $spacers no-op documented for CB Specs/CB Why Split/CB Contact; only g-5 is real. */
+/* Source's `g-5 g-xl-6` — g-xl-6 is the same Bootstrap $spacers no-op documented for CB Specs/CB Why Split/CB Contact; only g-5 is real. Gated to lg+ (same pattern as CB Applications Grid's .apps-header) — at the full 48px g-5 gap, this row's 12 fixed grid tracks need 11 gaps (528px) just for whitespace, which overflows any mobile viewport regardless of content. */
 .parent .row {
-	gap: var(--space-5);
+	gap: var(--space-4);
+}
+
+@media (min-width: 992px) {
+	.parent .row {
+		gap: var(--space-5);
+	}
 }
 
 .parent-h2 {

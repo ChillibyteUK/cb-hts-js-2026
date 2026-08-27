@@ -12,11 +12,11 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$eyebrow       = $attributes['eyebrow'] ?? '';
-$headline      = $attributes['headline'] ?? '';
-$intro         = $attributes['intro'] ?? '';
-$show_filters  = ! empty( $attributes['showFilters'] );
-$max_projects  = (int) ( $attributes['postsPerPage'] ?? 0 );
+$eyebrow      = $attributes['eyebrow'] ?? '';
+$headline     = $attributes['headline'] ?? '';
+$intro        = $attributes['intro'] ?? '';
+$show_filters = ! empty( $attributes['showFilters'] );
+$max_projects = (int) ( $attributes['postsPerPage'] ?? 0 );
 
 $headline_allowed = array(
 	'span' => array(),

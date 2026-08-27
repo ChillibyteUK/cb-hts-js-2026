@@ -31,8 +31,8 @@ $form_white = $bg_color && 'white' !== $bg_color;
 // Source hardcodes id="contact" (nav-anchor target); fall back to it only
 // when the editor's own HTML anchor support hasn't set one, so the two
 // don't collide into a duplicate id attribute.
-$anchor              = $attributes['anchor'] ?? '';
-$wrapper_attributes  = get_block_wrapper_attributes(
+$anchor             = $attributes['anchor'] ?? '';
+$wrapper_attributes = get_block_wrapper_attributes(
 	array(
 		'class' => 'contact',
 		'id'    => $anchor ? '' : 'contact',
@@ -62,7 +62,9 @@ $wrapper_attributes  = get_block_wrapper_attributes(
 				?>
 
 				<div class="contact-details">
-					<?php if ( $phone ) { ?>
+					<?php
+					if ( $phone ) {
+						?>
 						<div class="contact-detail">
 							<div class="contact-icon" aria-hidden="true">
 								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.59 4.9 2 2 0 0 1 3.59 2.73h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.36a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.02z"/></svg>
@@ -72,7 +74,7 @@ $wrapper_attributes  = get_block_wrapper_attributes(
 								<div class="contact-detail-value"><a href="tel:<?php echo esc_attr( parse_phone( $phone ) ); ?>"><?php echo esc_html( $phone ); ?></a></div>
 							</div>
 						</div>
-					<?php
+						<?php
 					}
 
 					if ( $email ) {
@@ -86,7 +88,7 @@ $wrapper_attributes  = get_block_wrapper_attributes(
 								<div class="contact-detail-value"><a href="mailto:<?php echo esc_attr( antispambot( $email ) ); ?>"><?php echo antispambot( esc_html( $email ) ); ?></a></div>
 							</div>
 						</div>
-					<?php
+						<?php
 					}
 
 					if ( $coverage ) {
@@ -100,7 +102,7 @@ $wrapper_attributes  = get_block_wrapper_attributes(
 								<div class="contact-detail-value"><?php echo nl2br( esc_html( $coverage ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- nl2br() output of an already-escaped string. ?></div>
 							</div>
 						</div>
-					<?php
+						<?php
 					}
 
 					if ( $note_title || $note_body ) {
@@ -119,7 +121,9 @@ $wrapper_attributes  = get_block_wrapper_attributes(
 							}
 							?>
 						</div>
-					<?php } ?>
+						<?php
+					}
+					?>
 				</div>
 			</div>
 

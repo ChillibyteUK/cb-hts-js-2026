@@ -554,9 +554,19 @@
  * Source markup is `row g-5 g-xl-6` — g-xl-6 is the same Bootstrap
  * $spacers-map no-op documented for CB Specs/CB Why Split (only steps 0-5
  * exist, g-5 = 3rem is the real gutter). Only the real g-5 is ported.
+ * Gated to lg+ like .apps-header — the full 48px g-5 gap on a 12-column
+ * grid needs 11 gaps (528px) just for whitespace, which overflows any
+ * mobile viewport (this was causing the contact form to overflow on
+ * narrow screens).
  */
 .contact .row {
-	gap: var(--space-5);
+	gap: var(--space-4);
+}
+
+@media (min-width: 992px) {
+	.contact .row {
+		gap: var(--space-5);
+	}
 }
 
 .contact-h2 {
@@ -2214,15 +2224,6 @@
 		opacity 0.3s ease;
 }
 
-@media (max-width: 992px) {
-	.proj-card--hero,
-	.proj-card--std,
-	.proj-card--wide {
-		grid-column: span 1;
-		grid-row: span 1;
-	}
-}
-
 .proj-card--hero {
 	grid-column: span 4;
 	grid-row: span 2;
@@ -2234,6 +2235,23 @@
 
 .proj-card--wide {
 	grid-column: span 4;
+}
+
+/*
+ * Must come after the unconditional variant rules above (same ordering as
+ * .apps-grid's mobile reset in cb-applications-grid.css) — a later
+ * unconditional rule of equal specificity always wins over an earlier
+ * media-scoped one, media query or not, so this reset has to sit last to
+ * actually collapse the mosaic on mobile instead of being silently
+ * overridden by .proj-card--hero/--std/--wide.
+ */
+@media (max-width: 992px) {
+	.proj-card--hero,
+	.proj-card--std,
+	.proj-card--wide {
+		grid-column: span 1;
+		grid-row: span 1;
+	}
 }
 
 .proj-card-overlay {
@@ -2284,6 +2302,21 @@
 
 .proj-card--wide .proj-card-title {
 	font-size: clamp(1.25rem, 2vw, 1.5rem);
+}
+
+/*
+ * Must come after .proj-card--hero .proj-card-title above (same source-order
+ * reasoning as the grid-column/grid-row reset further up this file) — once
+ * the mosaic is stacked to single-span cards, the hero card's larger clamp()
+ * floors at 26px (its vw term is negligible below 992px) against the other
+ * cards' fixed 22px .proj-card-title, reading as inconsistent. Reset to
+ * match once cards are no longer sized/positioned as a mosaic.
+ */
+@media (max-width: 992px) {
+	.proj-card--hero .proj-card-title {
+		font-size: var(--fs-h6);
+		letter-spacing: -0.01em;
+	}
 }
 
 .proj-card--linked:hover .proj-card-img {
@@ -2643,10 +2676,18 @@
  * to add a 6th step, so g-xl-6 compiles to nothing. Only g-5 is real;
  * matched here the same way as every other block's gutter override
  * (.footer-top, .apps-header, .config-inner) — scoped to this row rather
- * than building a full gutter-utility system.
+ * than building a full gutter-utility system. Gated to lg+ like
+ * .apps-header — the full 48px g-5 gap on a 12-column grid needs 11 gaps
+ * (528px) just for whitespace, which overflows any mobile viewport.
  */
 .specs .row {
-	gap: var(--space-5);
+	gap: var(--space-4);
+}
+
+@media (min-width: 992px) {
+	.specs .row {
+		gap: var(--space-5);
+	}
 }
 
 .specs-watermark {
@@ -2951,9 +2992,15 @@
 	color: var(--col-white);
 }
 
-/* Source's `g-5 g-xl-6` — g-xl-6 is the same Bootstrap $spacers no-op documented for CB Specs/CB Why Split/CB Contact; only g-5 is real. */
+/* Source's `g-5 g-xl-6` — g-xl-6 is the same Bootstrap $spacers no-op documented for CB Specs/CB Why Split/CB Contact; only g-5 is real. Gated to lg+ (same pattern as CB Applications Grid's .apps-header) — at the full 48px g-5 gap, this row's 12 fixed grid tracks need 11 gaps (528px) just for whitespace, which overflows any mobile viewport regardless of content. */
 .parent .row {
-	gap: var(--space-5);
+	gap: var(--space-4);
+}
+
+@media (min-width: 992px) {
+	.parent .row {
+		gap: var(--space-5);
+	}
 }
 
 .parent-h2 {
@@ -3138,9 +3185,18 @@
  * Source markup is `class="row g-5 g-xl-6"` — g-xl-6 is the same broken/
  * no-op class documented on .specs .row (Bootstrap's $spacers map stops at
  * 5, g-xl-6 compiles to nothing in the live source). Only g-5 is real.
+ * Gated to lg+ like .apps-header — the full 48px g-5 gap on a 12-column
+ * grid needs 11 gaps (528px) just for whitespace, which overflows any
+ * mobile viewport.
  */
 .why-split .row {
-	gap: var(--space-5);
+	gap: var(--space-4);
+}
+
+@media (min-width: 992px) {
+	.why-split .row {
+		gap: var(--space-5);
+	}
 }
 
 .why-split-watermark {

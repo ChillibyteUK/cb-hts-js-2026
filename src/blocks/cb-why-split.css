@@ -14,9 +14,18 @@
  * Source markup is `class="row g-5 g-xl-6"` — g-xl-6 is the same broken/
  * no-op class documented on .specs .row (Bootstrap's $spacers map stops at
  * 5, g-xl-6 compiles to nothing in the live source). Only g-5 is real.
+ * Gated to lg+ like .apps-header — the full 48px g-5 gap on a 12-column
+ * grid needs 11 gaps (528px) just for whitespace, which overflows any
+ * mobile viewport.
  */
 .why-split .row {
-	gap: var(--space-5);
+	gap: var(--space-4);
+}
+
+@media (min-width: 992px) {
+	.why-split .row {
+		gap: var(--space-5);
+	}
 }
 
 .why-split-watermark {

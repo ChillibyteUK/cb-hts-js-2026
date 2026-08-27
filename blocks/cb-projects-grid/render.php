@@ -74,7 +74,15 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'projects'
 					$terms = get_the_terms( $the_post_id, 'application_cat' );
 					$aterm = ! empty( $terms ) && ! is_wp_error( $terms ) ? reset( $terms ) : null;
 					?>
-					<<?php echo tag_escape( $el ); ?> class="<?php echo esc_attr( $classes ); ?>"<?php if ( $has_url ) { ?> href="<?php echo esc_url( get_permalink() ); ?>"<?php } ?>>
+					<<?php echo tag_escape( $el ); ?> class="<?php echo esc_attr( $classes ); ?>"
+					<?php
+					if ( $has_url ) {
+						?>
+						href="<?php echo esc_url( get_permalink() ); ?>"
+						<?php
+					}
+					?>
+					>
 						<?php
 						if ( has_post_thumbnail() ) {
 							echo get_the_post_thumbnail(
@@ -95,7 +103,9 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'projects'
 							<div class="proj-card-title"><?php echo esc_html( get_the_title() ); ?></div>
 						</div>
 					</<?php echo tag_escape( $el ); ?>>
-				<?php } ?>
+					<?php
+				}
+				?>
 				<?php wp_reset_postdata(); ?>
 			</div>
 		<?php } ?>

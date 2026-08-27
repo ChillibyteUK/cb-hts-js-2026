@@ -42,6 +42,13 @@
 	gap: var(--grid-gutter);
 }
 
+/* Grid items default to `min-width: auto`, so a text-heavy .col-* refuses to
+   shrink below its own content's min-content width — on a narrow viewport
+   this blows the whole row past the container instead of wrapping. */
+.row > * {
+	min-inline-size: 0;
+}
+
 /* Nested rows use subgrid where supported so tracks line up with the parent
    row — progressive enhancement only, falls back to its own 12-col grid. */
 @supports (grid-template-columns: subgrid) {

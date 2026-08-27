@@ -7,9 +7,19 @@
  * Source markup is `row g-5 g-xl-6` — g-xl-6 is the same Bootstrap
  * $spacers-map no-op documented for CB Specs/CB Why Split (only steps 0-5
  * exist, g-5 = 3rem is the real gutter). Only the real g-5 is ported.
+ * Gated to lg+ like .apps-header — the full 48px g-5 gap on a 12-column
+ * grid needs 11 gaps (528px) just for whitespace, which overflows any
+ * mobile viewport (this was causing the contact form to overflow on
+ * narrow screens).
  */
 .contact .row {
-	gap: var(--space-5);
+	gap: var(--space-4);
+}
+
+@media (min-width: 992px) {
+	.contact .row {
+		gap: var(--space-5);
+	}
 }
 
 .contact-h2 {
