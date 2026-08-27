@@ -39,7 +39,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'projects'
 <section <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() already escapes. ?>>
 	<div class="container">
 		<div class="projects-header row align-items-end">
-			<div class="col-lg-8">
+			<div class="col-12 col-lg-8">
 				<?php if ( $eyebrow ) { ?>
 					<div class="eyebrow"><?php echo esc_html( $eyebrow ); ?></div>
 				<?php } ?>

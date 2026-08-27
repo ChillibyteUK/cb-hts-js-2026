@@ -42,7 +42,7 @@ $wrapper_attributes  = get_block_wrapper_attributes(
 <section <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() already escapes. ?>>
 	<div class="container">
 		<div class="contact-inner row align-items-start">
-			<div class="col-lg-5">
+			<div class="col-12 col-lg-5">
 				<?php
 				if ( $eyebrow ) {
 					?>
@@ -123,7 +123,7 @@ $wrapper_attributes  = get_block_wrapper_attributes(
 				</div>
 			</div>
 
-			<div class="col-lg-7">
+			<div class="col-12 col-lg-7">
 				<div class="contact-form<?php echo $form_white ? ' contact-form--on-bg' : ''; ?>">
 					<?php
 					if ( $form_title ) {

@@ -57,7 +57,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'projects-
 <section <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() already escapes. ?>>
 	<div class="container">
 		<div class="projects-index-header row align-items-end">
-			<div class="col-lg-7">
+			<div class="col-12 col-lg-7">
 				<?php if ( $eyebrow ) { ?>
 					<div class="eyebrow"><?php echo esc_html( $eyebrow ); ?></div>
 				<?php } ?>
@@ -65,7 +65,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'projects-
 					<h2 class="projects-index-headline h2"><?php echo wp_kses( $headline, $headline_allowed ); ?></h2>
 				<?php } ?>
 			</div>
-			<div class="col-lg-4 offset-lg-1">
+			<div class="col-12 col-lg-4 offset-lg-1">
 				<?php if ( $intro ) { ?>
 					<div class="projects-index-intro"><?php echo wp_kses_post( $intro ); ?></div>
 				<?php } ?>
