@@ -40,7 +40,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 <section <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() already escapes. ?>>
 	<div class="container">
 		<div class="apps-header row align-items-end">
-			<div class="col-lg-5">
+			<div class="col-12 col-lg-5">
 				<?php
 				if ( $eyebrow ) {
 					?>
@@ -57,7 +57,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 			<?php
 			if ( $lede ) {
 				?>
-			<div class="col-lg-7">
+			<div class="col-12 col-lg-7">
 				<div class="apps-intro prose-md"><?php echo wp_kses_post( $lede ); ?></div>
 			</div>
 				<?php
