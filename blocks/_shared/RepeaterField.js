@@ -47,6 +47,11 @@ export default function RepeaterField( { label, value, onChange, fields, emptyRo
 	}
 
 	function removeRow( index ) {
+		// eslint-disable-next-line no-alert -- a plain confirm() is enough
+		// friction for an irreversible remove; no undo exists for this field.
+		if ( ! window.confirm( __( 'Remove this row?', 'cb-hts-js-2026' ) ) ) {
+			return;
+		}
 		onChange( rows.filter( ( _row, i ) => i !== index ) );
 	}
 
@@ -89,7 +94,8 @@ export default function RepeaterField( { label, value, onChange, fields, emptyRo
 					<span className="cb-hts-js-2026-repeater-field__row-actions-spacer" />
 				</div>
 			) }
-			{ rows.map( ( row, index ) => (
+			<div className="cb-hts-js-2026-repeater-field__rows">
+				{ rows.map( ( row, index ) => (
 				<div className="cb-hts-js-2026-repeater-field__row" key={ index }>
 					<span className="cb-hts-js-2026-repeater-field__number">{ index + 1 }</span>
 					{ fields.map( ( field ) => {
@@ -233,6 +239,7 @@ export default function RepeaterField( { label, value, onChange, fields, emptyRo
 					</div>
 				</div>
 			) ) }
+			</div>
 			<Button variant="primary" onClick={ addRow }>
 				{ __( 'Add row', 'cb-hts-js-2026' ) }
 			</Button>
