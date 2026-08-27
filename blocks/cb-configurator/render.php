@@ -36,7 +36,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 <section <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() already escapes. ?>>
 	<div class="container">
 		<div class="config-inner row align-items-center">
-			<div class="col-lg-6">
+			<div class="col-12 col-lg-6">
 				<?php
 				if ( $ctag ) {
 					?>
@@ -89,7 +89,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 			<?php
 			if ( $image_id ) {
 				?>
-			<div class="col-lg-6">
+			<div class="col-12 col-lg-6">
 				<div class="config-img">
 					<?php
 					echo wp_get_attachment_image(
