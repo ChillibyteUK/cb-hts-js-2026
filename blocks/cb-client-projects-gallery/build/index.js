@@ -1,1 +1,372 @@
-(()=>{"use strict";const e=window.wp.blocks,l=window.wp.i18n,s=window.wp.blockEditor,t=window.wp.components,a=window.wp.data,i=window.wp.coreData,o=window.ReactJSXRuntime,r=JSON.parse('{"UU":"cb-hts-js-2026/cb-client-projects-gallery"}');(0,e.registerBlockType)(r.UU,{edit:function({attributes:e,setAttributes:r}){const{layout:n,eyebrow:c,heading:d,intro:h,images:p}=e,b=(0,s.useBlockProps)({className:"container cb-hts-js-2026-editor-block"}),j=(0,a.useSelect)(e=>p.length?p.map(l=>e(i.store).getMedia(l)).filter(Boolean):[],[p]);return(0,o.jsxs)("div",{...b,children:[(0,o.jsx)("p",{className:"cb-hts-js-2026-editor-block__title",children:(0,l.__)("CB Client Projects Gallery","cb-hts-js-2026")}),(0,o.jsx)(t.SelectControl,{label:(0,l.__)("Layout","cb-hts-js-2026"),value:n,options:[{label:(0,l.__)("Mosaic","cb-hts-js-2026"),value:"mosaic"},{label:(0,l.__)("Feature tile","cb-hts-js-2026"),value:"feature"}],onChange:e=>r({layout:e}),help:(0,l.__)('"Mosaic" repeats a five-tile rhythm. "Feature" leads with one large tile followed by half-width tiles, and shows media-library captions on hover.',"cb-hts-js-2026")}),(0,o.jsxs)("div",{style:{display:"flex",flexWrap:"wrap",gap:"12px"},children:[(0,o.jsx)("div",{style:{flex:"50 1 0%"},children:(0,o.jsx)(t.TextControl,{label:(0,l.__)("Eyebrow","cb-hts-js-2026"),value:c,onChange:e=>r({eyebrow:e})})}),(0,o.jsx)("div",{style:{flex:"50 1 0%"},children:(0,o.jsx)(t.TextControl,{label:(0,l.__)("Heading","cb-hts-js-2026"),value:d,onChange:e=>r({heading:e}),help:(0,l.__)("Wrap emphasised text in a <span> to render it italic + orange.","cb-hts-js-2026")})})]}),(0,o.jsx)(t.TextareaControl,{label:(0,l.__)("Intro","cb-hts-js-2026"),value:h,onChange:e=>r({intro:e}),help:(0,l.__)("Blank lines start a new paragraph.","cb-hts-js-2026")}),(0,o.jsxs)("div",{className:"cb-hts-js-2026-editor-field",children:[(0,o.jsx)("label",{className:"cb-hts-js-2026-editor-field__label",children:(0,l.__)("Images","cb-hts-js-2026")}),j.length>0&&(0,o.jsx)("ul",{className:"cb-hts-js-2026-gallery-field__preview",style:{display:"flex",flexWrap:"wrap",gap:"8px",padding:0,margin:"0 0 8px",listStyle:"none"},children:j.map(e=>(0,o.jsxs)("li",{style:{position:"relative"},children:[(0,o.jsx)("img",{src:e.media_details?.sizes?.thumbnail?.source_url||e.source_url,alt:"",style:{width:"80px",height:"80px",objectFit:"cover",display:"block",background:"#fff",border:"1px solid #ccc"}}),(0,o.jsx)(t.Button,{size:"small",isDestructive:!0,label:(0,l.__)("Remove","cb-hts-js-2026"),onClick:()=>{return l=e.id,void r({images:p.filter(e=>e!==l)});var l},style:{position:"absolute",top:0,right:0,minWidth:"20px",height:"20px",padding:0,background:"rgba(0,0,0,.6)",color:"#fff"},children:"×"})]},e.id))}),(0,o.jsx)(s.MediaUploadCheck,{children:(0,o.jsx)(s.MediaUpload,{onSelect:e=>r({images:e.map(e=>e.id)}),allowedTypes:["image"],multiple:!0,gallery:!0,value:p,render:({open:e})=>(0,o.jsx)(t.Button,{variant:"secondary",onClick:e,children:p.length?(0,l.__)("Edit Gallery","cb-hts-js-2026"):(0,l.__)("Select Images","cb-hts-js-2026")})})})]})]})},save:()=>null})})();
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./blocks/cb-client-projects-gallery/src/edit.js"
+/*!*******************************************************!*\
+  !*** ./blocks/cb-client-projects-gallery/src/edit.js ***!
+  \*******************************************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Edit)
+/* harmony export */ });
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_core_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/core-data */ "@wordpress/core-data");
+/* harmony import */ var _wordpress_core_data__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_core_data__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
+
+
+
+
+
+
+function Edit({
+  attributes,
+  setAttributes
+}) {
+  const {
+    layout,
+    eyebrow,
+    heading,
+    intro,
+    images
+  } = attributes;
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
+    className: 'container cb-hts-js-2026-editor-block'
+  });
+  const media = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useSelect)(select => images.length ? images.map(id => select(_wordpress_core_data__WEBPACK_IMPORTED_MODULE_4__.store).getMedia(id)).filter(Boolean) : [], [images]);
+  function removeImage(id) {
+    setAttributes({
+      images: images.filter(imageId => imageId !== id)
+    });
+  }
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+    ...blockProps,
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+      className: "cb-hts-js-2026-editor-block__title",
+      children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('CB Client Projects Gallery', 'cb-hts-js-2026')
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Layout', 'cb-hts-js-2026'),
+      value: layout,
+      options: [{
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Mosaic', 'cb-hts-js-2026'),
+        value: 'mosaic'
+      }, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Feature tile', 'cb-hts-js-2026'),
+        value: 'feature'
+      }],
+      onChange: value => setAttributes({
+        layout: value
+      }),
+      help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('"Mosaic" repeats a five-tile rhythm. "Feature" leads with one large tile followed by half-width tiles, and shows media-library captions on hover.', 'cb-hts-js-2026')
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+      style: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '12px'
+      },
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        style: {
+          flex: '50 1 0%'
+        },
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Eyebrow', 'cb-hts-js-2026'),
+          value: eyebrow,
+          onChange: value => setAttributes({
+            eyebrow: value
+          })
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        style: {
+          flex: '50 1 0%'
+        },
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Heading', 'cb-hts-js-2026'),
+          value: heading,
+          onChange: value => setAttributes({
+            heading: value
+          }),
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Wrap emphasised text in a <span> to render it italic + orange.', 'cb-hts-js-2026')
+        })
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextareaControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Intro', 'cb-hts-js-2026'),
+      value: intro,
+      onChange: value => setAttributes({
+        intro: value
+      }),
+      help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Blank lines start a new paragraph.', 'cb-hts-js-2026')
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+      className: "cb-hts-js-2026-editor-field",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+        className: "cb-hts-js-2026-editor-field__label",
+        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Images', 'cb-hts-js-2026')
+      }), media.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("ul", {
+        className: "cb-hts-js-2026-gallery-field__preview",
+        style: {
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: '8px',
+          padding: 0,
+          margin: '0 0 8px',
+          listStyle: 'none'
+        },
+        children: media.map(item => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("li", {
+          style: {
+            position: 'relative'
+          },
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+            src: item.media_details?.sizes?.thumbnail?.source_url || item.source_url,
+            alt: "",
+            style: {
+              width: '80px',
+              height: '80px',
+              objectFit: 'cover',
+              display: 'block',
+              background: '#fff',
+              border: '1px solid #ccc'
+            }
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+            size: "small",
+            isDestructive: true,
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Remove', 'cb-hts-js-2026'),
+            onClick: () => removeImage(item.id),
+            style: {
+              position: 'absolute',
+              top: 0,
+              right: 0,
+              minWidth: '20px',
+              height: '20px',
+              padding: 0,
+              background: 'rgba(0,0,0,.6)',
+              color: '#fff'
+            },
+            children: "\xD7"
+          })]
+        }, item.id))
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
+          onSelect: selected => setAttributes({
+            images: selected.map(item => item.id)
+          }),
+          allowedTypes: ['image'],
+          multiple: true,
+          gallery: true,
+          value: images,
+          render: ({
+            open
+          }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+            variant: "secondary",
+            onClick: open,
+            children: images.length ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Edit Gallery', 'cb-hts-js-2026') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Select Images', 'cb-hts-js-2026')
+          })
+        })
+      })]
+    })]
+  });
+}
+
+/***/ },
+
+/***/ "react/jsx-runtime"
+/*!**********************************!*\
+  !*** external "ReactJSXRuntime" ***!
+  \**********************************/
+(module) {
+
+module.exports = window["ReactJSXRuntime"];
+
+/***/ },
+
+/***/ "@wordpress/block-editor"
+/*!*************************************!*\
+  !*** external ["wp","blockEditor"] ***!
+  \*************************************/
+(module) {
+
+module.exports = window["wp"]["blockEditor"];
+
+/***/ },
+
+/***/ "@wordpress/blocks"
+/*!********************************!*\
+  !*** external ["wp","blocks"] ***!
+  \********************************/
+(module) {
+
+module.exports = window["wp"]["blocks"];
+
+/***/ },
+
+/***/ "@wordpress/components"
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+(module) {
+
+module.exports = window["wp"]["components"];
+
+/***/ },
+
+/***/ "@wordpress/core-data"
+/*!**********************************!*\
+  !*** external ["wp","coreData"] ***!
+  \**********************************/
+(module) {
+
+module.exports = window["wp"]["coreData"];
+
+/***/ },
+
+/***/ "@wordpress/data"
+/*!******************************!*\
+  !*** external ["wp","data"] ***!
+  \******************************/
+(module) {
+
+module.exports = window["wp"]["data"];
+
+/***/ },
+
+/***/ "@wordpress/i18n"
+/*!******************************!*\
+  !*** external ["wp","i18n"] ***!
+  \******************************/
+(module) {
+
+module.exports = window["wp"]["i18n"];
+
+/***/ },
+
+/***/ "./blocks/cb-client-projects-gallery/block.json"
+/*!******************************************************!*\
+  !*** ./blocks/cb-client-projects-gallery/block.json ***!
+  \******************************************************/
+(module) {
+
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"cb-hts-js-2026/cb-client-projects-gallery","title":"CB Client Projects Gallery","category":"cb-hts-js-2026","icon":"format-gallery","description":"Lightbox image gallery — a repeating five-tile mosaic, or one large feature tile plus half-width tiles with hover captions.","attributes":{"layout":{"type":"string","default":"mosaic"},"eyebrow":{"type":"string","default":""},"heading":{"type":"string","default":""},"intro":{"type":"string","default":""},"images":{"type":"array","default":[]}},"supports":{"anchor":true,"className":true,"align":true},"editorScript":"file:./build/index.js","render":"file:./render.php"}');
+
+/***/ }
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	const __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		const cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		const module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		if (!(moduleId in __webpack_modules__)) {
+/******/ 			delete __webpack_module_cache__[moduleId];
+/******/ 			const e = new Error("Cannot find module '" + moduleId + "'");
+/******/ 			e.code = 'MODULE_NOT_FOUND';
+/******/ 			throw e;
+/******/ 		}
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			const getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter/value functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			if(Array.isArray(definition)) {
+/******/ 				var i = 0;
+/******/ 				while(i < definition.length) {
+/******/ 					var key = definition[i++];
+/******/ 					var binding = definition[i++];
+/******/ 					if(!__webpack_require__.o(exports, key)) {
+/******/ 						if(binding === 0) {
+/******/ 							Object.defineProperty(exports, key, { enumerable: true, value: definition[i++] });
+/******/ 						} else {
+/******/ 							Object.defineProperty(exports, key, { enumerable: true, get: binding });
+/******/ 						}
+/******/ 					} else if(binding === 0) { i++; }
+/******/ 				}
+/******/ 			} else {
+/******/ 				for(var key in definition) {
+/******/ 					if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 						Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 					}
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.hasOwn(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+let __webpack_exports__ = {};
+// This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
+(() => {
+/*!********************************************************!*\
+  !*** ./blocks/cb-client-projects-gallery/src/index.js ***!
+  \********************************************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit */ "./blocks/cb-client-projects-gallery/src/edit.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../block.json */ "./blocks/cb-client-projects-gallery/block.json");
+
+
+
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name, {
+  edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"],
+  save: () => null
+});
+})();
+
+/******/ })()
+;
+//# sourceMappingURL=index.js.map

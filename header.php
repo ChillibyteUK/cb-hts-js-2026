@@ -21,24 +21,13 @@ defined( 'ABSPATH' ) || exit;
 
 <!-- HEADER-NAV:START -->
 <?php
-$cb_hts_js_2026_utility_message = cb_hts_js_2026_get_setting( 'utility_message' );
-$cb_hts_js_2026_phone           = cb_hts_js_2026_get_setting( 'phone' );
-$cb_hts_js_2026_email           = cb_hts_js_2026_get_setting( 'email' );
+$cb_hts_js_2026_phone = cb_hts_js_2026_get_setting( 'phone' );
+$cb_hts_js_2026_email = cb_hts_js_2026_get_setting( 'email' );
 
-if ( $cb_hts_js_2026_utility_message || $cb_hts_js_2026_phone || $cb_hts_js_2026_email ) {
+if ( $cb_hts_js_2026_phone || $cb_hts_js_2026_email ) {
 	?>
 	<div class="utility-bar">
-		<div class="container d-flex align-items-center justify-content-between gap-2">
-			<div class="d-flex align-items-center gap-2">
-				<?php
-				if ( $cb_hts_js_2026_utility_message ) {
-					?>
-					<span class="utility-bar__pill">Live Build</span>
-					<span><?php echo esc_html( $cb_hts_js_2026_utility_message ); ?></span>
-					<?php
-				}
-				?>
-			</div>
+		<div class="container d-flex align-items-center justify-content-between w-100 gap-2">
 			<div class="d-flex align-items-center gap-4 fw-500">
 				<?php
 				if ( $cb_hts_js_2026_phone ) {
