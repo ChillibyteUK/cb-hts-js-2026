@@ -2,6 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps } from '@wordpress/block-editor';
 import { TextControl, TextareaControl } from '@wordpress/components';
 import RepeaterField from '../../_shared/RepeaterField';
+import EditorBlockShell from '../../_shared/EditorBlockShell';
 
 const FIELDS = [
 	{ name: 'title', label: __( 'Title', 'cb-hts-js-2026' ), type: 'text', help: __( 'Leave blank to use the file’s own title.', 'cb-hts-js-2026' ) },
@@ -11,13 +12,12 @@ const FIELDS = [
 
 const EMPTY_ROW = { title: '', meta: '', file: 0 };
 
-export default function Edit( { attributes, setAttributes } ) {
+export default function Edit( { attributes, setAttributes, clientId } ) {
 	const { eyebrow, headline, intro, items } = attributes;
 	const blockProps = useBlockProps( { className: 'container cb-hts-js-2026-editor-block' } );
 
 	return (
-		<div { ...blockProps }>
-			<p className="cb-hts-js-2026-editor-block__title">{ __( 'CB Downloads', 'cb-hts-js-2026' ) }</p>
+		<EditorBlockShell blockProps={ blockProps } clientId={ clientId } title={ __( 'CB Downloads', 'cb-hts-js-2026' ) } textDomain="cb-hts-js-2026">
 			<TextControl
 				label={ __( 'Eyebrow', 'cb-hts-js-2026' ) }
 				value={ eyebrow }
@@ -42,6 +42,6 @@ export default function Edit( { attributes, setAttributes } ) {
 				fields={ FIELDS }
 				emptyRow={ EMPTY_ROW }
 			/>
-		</div>
+		</EditorBlockShell>
 	);
 }

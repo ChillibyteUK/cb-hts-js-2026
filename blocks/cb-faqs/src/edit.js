@@ -2,6 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps } from '@wordpress/block-editor';
 import { TextareaControl } from '@wordpress/components';
 import RepeaterField from '../../_shared/RepeaterField';
+import EditorBlockShell from '../../_shared/EditorBlockShell';
 
 const FIELDS = [
 	{ name: 'question', label: __( 'Question', 'cb-hts-js-2026' ), type: 'textarea' },
@@ -10,13 +11,12 @@ const FIELDS = [
 
 const EMPTY_ROW = { question: '', answer: '' };
 
-export default function Edit( { attributes, setAttributes } ) {
+export default function Edit( { attributes, setAttributes, clientId } ) {
 	const { headline, intro, faqs } = attributes;
 	const blockProps = useBlockProps( { className: 'container cb-hts-js-2026-editor-block' } );
 
 	return (
-		<div { ...blockProps }>
-			<p className="cb-hts-js-2026-editor-block__title">{ __( 'CB FAQs', 'cb-hts-js-2026' ) }</p>
+		<EditorBlockShell blockProps={ blockProps } clientId={ clientId } title={ __( 'CB FAQs', 'cb-hts-js-2026' ) } textDomain="cb-hts-js-2026">
 			<TextareaControl
 				label={ __( 'Title', 'cb-hts-js-2026' ) }
 				value={ headline }
@@ -36,6 +36,6 @@ export default function Edit( { attributes, setAttributes } ) {
 				fields={ FIELDS }
 				emptyRow={ EMPTY_ROW }
 			/>
-		</div>
+		</EditorBlockShell>
 	);
 }

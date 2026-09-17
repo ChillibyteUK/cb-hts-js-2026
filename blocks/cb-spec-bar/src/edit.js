@@ -1,6 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps } from '@wordpress/block-editor';
 import RepeaterField from '../../_shared/RepeaterField';
+import EditorBlockShell from '../../_shared/EditorBlockShell';
 
 const specItemsFields = [
 	{ name: 'label', label: __( 'Label', 'cb-hts-js-2026' ), type: 'text' },
@@ -10,13 +11,12 @@ const specItemsFields = [
 
 const specItemsEmptyRow = { label: '', value: '', unit: '' };
 
-export default function Edit( { attributes, setAttributes } ) {
+export default function Edit( { attributes, setAttributes, clientId } ) {
 	const { specItems } = attributes;
 	const blockProps = useBlockProps( { className: 'container cb-hts-js-2026-editor-block' } );
 
 	return (
-		<div { ...blockProps }>
-			<p className="cb-hts-js-2026-editor-block__title">CB Spec Bar</p>
+		<EditorBlockShell blockProps={ blockProps } clientId={ clientId } title="CB Spec Bar" textDomain="cb-hts-js-2026">
 			<RepeaterField
 				label={ __( 'Spec Items', 'cb-hts-js-2026' ) }
 				value={ specItems }
@@ -24,6 +24,6 @@ export default function Edit( { attributes, setAttributes } ) {
 				fields={ specItemsFields }
 				emptyRow={ specItemsEmptyRow }
 			/>
-		</div>
+		</EditorBlockShell>
 	);
 }

@@ -79,13 +79,19 @@
  */
 .cb-hts-js-2026-editor-block > * {
 	margin: 0;
+	background: #fff;
+}
+
+.cb-hts-js-2026-editor-block__content > * {
+	margin: 0;
 	padding: 0.75rem 1rem;
 	background: #fff;
 }
 
 /* A block's own plain descriptive text (e.g. "Cards are pulled live from
    the Application post type...") reads as help text, not body copy. */
-.cb-hts-js-2026-editor-block > p {
+.cb-hts-js-2026-editor-block > p,
+.cb-hts-js-2026-editor-block__content > p {
 	font-size: 0.8125rem;
 	color: #757575;
 }
@@ -106,6 +112,10 @@
 }
 
 .cb-hts-js-2026-editor-block__title {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.75rem;
 	margin: 0;
 	padding: 1rem 1rem 0.75rem;
 	/* Subtle, not a full section header — just enough to help the eye find
@@ -116,6 +126,49 @@
 	text-transform: uppercase;
 	letter-spacing: 0.05em;
 	color: #555;
+}
+
+/*
+ * Show/hide toggle for a block's field controls (blocks/_shared/
+ * EditorBlockShell.js) — keeps a page with many blocks scannable instead of
+ * every block staying fully expanded at once. State persists per
+ * block-instance in localStorage.
+ */
+.cb-hts-js-2026-editor-block__toggle {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 1.75rem;
+	height: 1.75rem;
+	border: 1px solid #d0d5d9;
+	border-radius: 999px;
+	padding: 0;
+	background: #fff;
+	color: #555;
+	cursor: pointer;
+	font-size: 1rem;
+	font-weight: 600;
+	line-height: 1;
+	transition:
+		background-color 150ms ease,
+		border-color 150ms ease,
+		color 150ms ease;
+}
+
+.cb-hts-js-2026-editor-block__toggle:hover,
+.cb-hts-js-2026-editor-block__toggle:focus-visible {
+	border-color: #8c8f94;
+	background: #f0f0f1;
+	color: #1e1e1e;
+	outline: none;
+}
+
+.cb-hts-js-2026-editor-block__content {
+	display: contents;
+}
+
+.cb-hts-js-2026-editor-block__content[hidden] {
+	display: none;
 }
 
 /*

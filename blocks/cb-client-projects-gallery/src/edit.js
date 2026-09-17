@@ -3,8 +3,9 @@ import { useBlockProps, MediaUpload, MediaUploadCheck } from '@wordpress/block-e
 import { TextControl, TextareaControl, SelectControl, Button } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { store as coreStore } from '@wordpress/core-data';
+import EditorBlockShell from '../../_shared/EditorBlockShell';
 
-export default function Edit( { attributes, setAttributes } ) {
+export default function Edit( { attributes, setAttributes, clientId } ) {
 	const { layout, eyebrow, heading, intro, images } = attributes;
 	const blockProps = useBlockProps( { className: 'container cb-hts-js-2026-editor-block' } );
 
@@ -21,8 +22,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	}
 
 	return (
-		<div { ...blockProps }>
-			<p className="cb-hts-js-2026-editor-block__title">{ __( 'CB Client Projects Gallery', 'cb-hts-js-2026' ) }</p>
+		<EditorBlockShell blockProps={ blockProps } clientId={ clientId } title={ __( 'CB Client Projects Gallery', 'cb-hts-js-2026' ) } textDomain="cb-hts-js-2026">
 			<SelectControl
 				label={ __( 'Layout', 'cb-hts-js-2026' ) }
 				value={ layout }
@@ -98,6 +98,6 @@ export default function Edit( { attributes, setAttributes } ) {
 					/>
 				</MediaUploadCheck>
 			</div>
-		</div>
+		</EditorBlockShell>
 	);
 }

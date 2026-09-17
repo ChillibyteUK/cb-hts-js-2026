@@ -1,8 +1,9 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, RichText, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 import { TextControl, TextareaControl, ToggleControl, Button } from '@wordpress/components';
+import EditorBlockShell from '../../_shared/EditorBlockShell';
 
-export default function Edit( { attributes, setAttributes } ) {
+export default function Edit( { attributes, setAttributes, clientId } ) {
 	const {
 		tag,
 		h1,
@@ -24,8 +25,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	const blockProps = useBlockProps( { className: 'container cb-hts-js-2026-editor-block' } );
 
 	return (
-		<div { ...blockProps }>
-			<p className="cb-hts-js-2026-editor-block__title">{ __( 'CB Product / Project Hero', 'cb-hts-js-2026' ) }</p>
+		<EditorBlockShell blockProps={ blockProps } clientId={ clientId } title={ __( 'CB Product / Project Hero', 'cb-hts-js-2026' ) } textDomain="cb-hts-js-2026">
 			<TextControl
 				label={ __( 'Eyebrow', 'cb-hts-js-2026' ) }
 				value={ tag }
@@ -151,6 +151,6 @@ export default function Edit( { attributes, setAttributes } ) {
 					/>
 				</div>
 			</div>
-		</div>
+		</EditorBlockShell>
 	);
 }

@@ -1,14 +1,14 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, RichText, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 import { TextControl, TextareaControl, ToggleControl, Button } from '@wordpress/components';
+import EditorBlockShell from '../../_shared/EditorBlockShell';
 
-export default function Edit( { attributes, setAttributes } ) {
+export default function Edit( { attributes, setAttributes, clientId } ) {
 	const { metaItems, h1Line1Text, h1Line1Highlight, h1Line2Text, h1Line2Highlight, lede, bullets, ctaPrimaryText, ctaPrimaryUrl, ctaPrimaryTarget, ctaSecondaryText, ctaSecondaryUrl, ctaSecondaryTarget, imageId, imageUrl, imageAlt, badgeNumber, badgeSuffix, badgeLabel } = attributes;
 	const blockProps = useBlockProps( { className: 'container cb-hts-js-2026-editor-block' } );
 
 	return (
-		<div { ...blockProps }>
-			<p className="cb-hts-js-2026-editor-block__title">CB Home Hero</p>
+		<EditorBlockShell blockProps={ blockProps } clientId={ clientId } title="CB Home Hero" textDomain="cb-hts-js-2026">
 			<TextareaControl
 				label={ __( 'Meta items', 'cb-hts-js-2026' ) }
 				value={ metaItems }
@@ -162,6 +162,6 @@ export default function Edit( { attributes, setAttributes } ) {
 			/>
 				</div>
 			</div>
-		</div>
+		</EditorBlockShell>
 	);
 }

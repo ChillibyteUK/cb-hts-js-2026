@@ -2,6 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps } from '@wordpress/block-editor';
 import { TextControl, TextareaControl, SelectControl, ToggleControl } from '@wordpress/components';
 import RepeaterField from '../../_shared/RepeaterField';
+import EditorBlockShell from '../../_shared/EditorBlockShell';
 
 const STAT_FIELDS = [
 	{ name: 'value', label: __( 'Value', 'cb-hts-js-2026' ), type: 'text', help: __( 'Supports <sup> for suffixes.', 'cb-hts-js-2026' ) },
@@ -9,13 +10,12 @@ const STAT_FIELDS = [
 ];
 const EMPTY_STAT = { value: '', label: '' };
 
-export default function Edit( { attributes, setAttributes } ) {
+export default function Edit( { attributes, setAttributes, clientId } ) {
 	const { variant, eyebrow, headline, body, linkText, linkUrl, linkTarget, stats } = attributes;
 	const blockProps = useBlockProps( { className: 'container cb-hts-js-2026-editor-block' } );
 
 	return (
-		<div { ...blockProps }>
-			<p className="cb-hts-js-2026-editor-block__title">CB Text Stats</p>
+		<EditorBlockShell blockProps={ blockProps } clientId={ clientId } title="CB Text Stats" textDomain="cb-hts-js-2026">
 			<SelectControl
 				label={ __( 'Variant', 'cb-hts-js-2026' ) }
 				value={ variant }
@@ -65,6 +65,6 @@ export default function Edit( { attributes, setAttributes } ) {
 				fields={ STAT_FIELDS }
 				emptyRow={ EMPTY_STAT }
 			/>
-		</div>
+		</EditorBlockShell>
 	);
 }

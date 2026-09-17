@@ -2,6 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps } from '@wordpress/block-editor';
 import { TextControl, TextareaControl } from '@wordpress/components';
 import RepeaterField from '../../_shared/RepeaterField';
+import EditorBlockShell from '../../_shared/EditorBlockShell';
 
 const FIELDS = [
 	{ name: 'label', label: __( 'Label', 'cb-hts-js-2026' ), type: 'text' },
@@ -10,13 +11,12 @@ const FIELDS = [
 
 const EMPTY_ROW = { label: '', value: '' };
 
-export default function Edit( { attributes, setAttributes } ) {
+export default function Edit( { attributes, setAttributes, clientId } ) {
 	const { eyebrow, headline, intro, rows } = attributes;
 	const blockProps = useBlockProps( { className: 'container cb-hts-js-2026-editor-block' } );
 
 	return (
-		<div { ...blockProps }>
-			<p className="cb-hts-js-2026-editor-block__title">{ __( 'CB Specs', 'cb-hts-js-2026' ) }</p>
+		<EditorBlockShell blockProps={ blockProps } clientId={ clientId } title={ __( 'CB Specs', 'cb-hts-js-2026' ) } textDomain="cb-hts-js-2026">
 			<TextControl
 				label={ __( 'Eyebrow', 'cb-hts-js-2026' ) }
 				value={ eyebrow }
@@ -41,6 +41,6 @@ export default function Edit( { attributes, setAttributes } ) {
 				fields={ FIELDS }
 				emptyRow={ EMPTY_ROW }
 			/>
-		</div>
+		</EditorBlockShell>
 	);
 }

@@ -1,6 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps } from '@wordpress/block-editor';
 import { TextControl, TextareaControl } from '@wordpress/components';
+import EditorBlockShell from '../../_shared/EditorBlockShell';
 
 /**
  * Step number/icon/title are fixed (see render.php's STEP_DEFAULTS) — only
@@ -22,7 +23,7 @@ const STEP_TITLES = [
 	'Install & Handover',
 ];
 
-export default function Edit( { attributes, setAttributes } ) {
+export default function Edit( { attributes, setAttributes, clientId } ) {
 	const { eyebrow, headline, intro, steps } = attributes;
 	const blockProps = useBlockProps( { className: 'container cb-hts-js-2026-editor-block' } );
 
@@ -33,8 +34,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	}
 
 	return (
-		<div { ...blockProps }>
-			<p className="cb-hts-js-2026-editor-block__title">CB Steps</p>
+		<EditorBlockShell blockProps={ blockProps } clientId={ clientId } title="CB Steps" textDomain="cb-hts-js-2026">
 			<TextControl
 				label={ __( 'Eyebrow', 'cb-hts-js-2026' ) }
 				value={ eyebrow }
@@ -60,6 +60,6 @@ export default function Edit( { attributes, setAttributes } ) {
 					onChange={ ( value ) => updateStepBody( index, value ) }
 				/>
 			) ) }
-		</div>
+		</EditorBlockShell>
 	);
 }

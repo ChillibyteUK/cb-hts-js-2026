@@ -2,14 +2,14 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 import { TextControl, TextareaControl, Button } from '@wordpress/components';
 import PostTypePicker from '../../_shared/PostTypePicker';
+import EditorBlockShell from '../../_shared/EditorBlockShell';
 
-export default function Edit( { attributes, setAttributes } ) {
+export default function Edit( { attributes, setAttributes, clientId } ) {
 	const { productId, eyebrow, heading, summary, imageId, imageUrl, imageAlt } = attributes;
 	const blockProps = useBlockProps( { className: 'container cb-hts-js-2026-editor-block' } );
 
 	return (
-		<div { ...blockProps }>
-			<p className="cb-hts-js-2026-editor-block__title">{ __( 'CB Product Used', 'cb-hts-js-2026' ) }</p>
+		<EditorBlockShell blockProps={ blockProps } clientId={ clientId } title={ __( 'CB Product Used', 'cb-hts-js-2026' ) } textDomain="cb-hts-js-2026">
 			<PostTypePicker
 				label={ __( 'Product', 'cb-hts-js-2026' ) }
 				postType="product"
@@ -72,6 +72,6 @@ export default function Edit( { attributes, setAttributes } ) {
 				</MediaUploadCheck>
 				<p className="cb-hts-js-2026-editor-field__help">{ __( 'Defaults to the product featured image.', 'cb-hts-js-2026' ) }</p>
 			</div>
-		</div>
+		</EditorBlockShell>
 	);
 }

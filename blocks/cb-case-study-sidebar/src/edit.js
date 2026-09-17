@@ -2,6 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps } from '@wordpress/block-editor';
 import { TextControl, ToggleControl } from '@wordpress/components';
 import RepeaterField from '../../_shared/RepeaterField';
+import EditorBlockShell from '../../_shared/EditorBlockShell';
 
 const factsFields = [
 	{ name: 'label', label: __( 'Label', 'cb-hts-js-2026' ), type: 'text' },
@@ -11,13 +12,12 @@ const factsFields = [
 
 const factsEmptyRow = { label: '', value: '', link: '', linkText: '', linkTarget: false };
 
-export default function Edit( { attributes, setAttributes } ) {
+export default function Edit( { attributes, setAttributes, clientId } ) {
 	const { facts, ctaText, ctaUrl, ctaTarget } = attributes;
 	const blockProps = useBlockProps( { className: 'container cb-hts-js-2026-editor-block' } );
 
 	return (
-		<div { ...blockProps }>
-			<p className="cb-hts-js-2026-editor-block__title">CB Case Study Sidebar</p>
+		<EditorBlockShell blockProps={ blockProps } clientId={ clientId } title="CB Case Study Sidebar" textDomain="cb-hts-js-2026">
 			<RepeaterField
 				label={ __( 'Facts', 'cb-hts-js-2026' ) }
 				value={ facts }
@@ -42,6 +42,6 @@ export default function Edit( { attributes, setAttributes } ) {
 				checked={ ctaTarget }
 				onChange={ ( value ) => setAttributes( { ctaTarget: value } ) }
 			/>
-		</div>
+		</EditorBlockShell>
 	);
 }

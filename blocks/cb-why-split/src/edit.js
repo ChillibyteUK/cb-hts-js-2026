@@ -2,6 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps } from '@wordpress/block-editor';
 import { TextControl, TextareaControl } from '@wordpress/components';
 import RepeaterField from '../../_shared/RepeaterField';
+import EditorBlockShell from '../../_shared/EditorBlockShell';
 
 const STAT_FIELDS = [
 	{ name: 'value', label: __( 'Value', 'cb-hts-js-2026' ), type: 'text', help: __( 'Supports <sup> for suffixes and values like <14.', 'cb-hts-js-2026' ) },
@@ -15,13 +16,12 @@ const REASON_FIELDS = [
 ];
 const EMPTY_REASON = { title: '', body: '' };
 
-export default function Edit( { attributes, setAttributes } ) {
+export default function Edit( { attributes, setAttributes, clientId } ) {
 	const { eyebrow, headline, body, stats, reasons } = attributes;
 	const blockProps = useBlockProps( { className: 'container cb-hts-js-2026-editor-block' } );
 
 	return (
-		<div { ...blockProps }>
-			<p className="cb-hts-js-2026-editor-block__title">{ __( 'CB Why Split', 'cb-hts-js-2026' ) }</p>
+		<EditorBlockShell blockProps={ blockProps } clientId={ clientId } title={ __( 'CB Why Split', 'cb-hts-js-2026' ) } textDomain="cb-hts-js-2026">
 			<TextControl
 				label={ __( 'Eyebrow', 'cb-hts-js-2026' ) }
 				value={ eyebrow }
@@ -53,6 +53,6 @@ export default function Edit( { attributes, setAttributes } ) {
 				fields={ REASON_FIELDS }
 				emptyRow={ EMPTY_REASON }
 			/>
-		</div>
+		</EditorBlockShell>
 	);
 }
