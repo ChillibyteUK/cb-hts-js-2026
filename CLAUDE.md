@@ -237,6 +237,10 @@ src/
     dialog.js            Native <dialog> wiring — vanilla JS replacement for Bootstrap Modal
   build/
     tokens.config.js     Breakpoints + utility/grid definitions — source of truth for generate-utilities.js
+    read-tokens.js         Shared `:root` custom-property reader for both generate scripts below
+                           (all blocks, brace-depth aware, strips comments, follows @imports) —
+                           the naive first-`:root` regex it replaced misparsed comment mentions
+                           of tokens as declarations
     generate-utilities.js  Generates src/css/utilities.css and src/css/blocks.css
     generate-theme-json.js Generates theme.json from src/css/tokens.css
     postcss.config.js    postcss-import + postcss-nesting + autoprefixer
@@ -865,10 +869,24 @@ React component:
    whichever blocks need it and gets bundled into each of their own
    `build/index.js`. Takes `label`, `value` (the current rows array),
    `onChange`, a declarative `fields` array (`{ name, label, type: 'text' |
-   'textarea' | 'image', help }`), and `emptyRow` (the shape of a freshly
-   added row). Renders add/move-up/move-down/remove controls itself — no
-   native Gutenberg UI is reused here since none exists for this outside
-   `InnerBlocks`.
+   'textarea' | 'image' | 'file' | 'link' | 'richtext' | 'number' | 'radio'
+   | 'post', help, mimeTypes, linkTarget, options, className, showIf,
+   multiline, postType, flex, labelPerRow }`), and `emptyRow` (the shape of
+   a freshly added row). Renders add/move-up/move-down/remove controls
+   itself — no native Gutenberg UI is reused here since none exists for this
+   outside `InnerBlocks`. Rows carry a stable `id` (backfilled once via
+   `useMemo`/`useEffect` for rows saved before it existed, so legacy rows
+   get one on first editor open — which marks the post dirty once) and are
+   keyed by it, not by index, so RichText cursor/selection state survives
+   reorder; image previews resolve live via `useSelect(getMedia())` rather
+   than trusting the stored Url. `showIf: { field, value }` hides a field
+   conditionally, `flex` gives a row-layout field a non-equal width (with a
+   matching shared-header cell — needs the `__cell` rule in `src/css/
+   editor.css`), `labelPerRow` moves a field's label out of the shared
+   header into each row. New field types are added to the component, not
+   per block — `file` came from `CB Downloads`, `richtext`/`number`/`radio`/
+   `post` (PostTypePicker-backed) arrived with a later port from the sibling
+   `hub-gsct2026` theme and are inert in blocks that don't declare them.
 2. A repeater-shaped block declares one `array`-typed attribute (e.g.
    `items`) with `"default": []` in `block.json`, and its `edit.js` is just
    `<RepeaterField value={ items } onChange={ ( v ) => setAttributes( {
@@ -882,8 +900,9 @@ React component:
    plain `foreach`, filtering out fully-empty rows the way the old
    `have_rows()` loop's `continue` did.
 
-This is the same sub-field vocabulary (`text`/`textarea`/`image`) as the
-`repeater` field type in `inc/options.php`'s Site-Wide Settings page — same
+This is the same sub-field vocabulary (`text`/`textarea`/`image`, plus the
+block-editor-only extensions above) as the `repeater` field type in
+`inc/options.php`'s Site-Wide Settings page — same
 mental model, two separate concrete implementations, because one runs in the
 block editor's React tree and the other in a plain wp-admin form with no
 React involved at all. Don't try to unify them into one shared
@@ -899,6 +918,39 @@ first. Instead, register + conditionally enqueue by hand
 to `wp_enqueue_scripts`, gated on `has_block( 'cb-hts-js-2026/cb-marquee-stats' )`
 so it only loads on pages that actually use the block), with `array( 'gsap' )`
 as an explicit dependency so it prints after.
+
+### Cross-theme ports from `hub-gsct2026` (don't re-audit these)
+
+The sibling GSCT theme independently fixed three generic problems; all three
+were ported here after auditing every existing usage for breakage:
+
+- **Shift+Arrow block selection** (`blocks/_shared/EditorBlockShell.js`): a
+  native `addEventListener('keydown')` on the fields container that
+  `stopPropagation()`s Shift+Arrow before it reaches Gutenberg's WritingFlow
+  handler. A React `onKeyDown` cannot fix this — WritingFlow listens natively
+  and fires before React's synthetic dispatch. See the comment in the file.
+- **`RepeaterField` upgrade** (stable row ids, live image URLs,
+  `richtext`/`number`/`radio`/`post` types, `showIf`/`flex`/`labelPerRow`,
+  plus the matching `src/css/editor.css` rules): safe because no existing
+  block declares the new options and every `render.php` filters rows on
+  named keys, so the backfilled `id` is inert. New `wp-core-data` /
+  `wp-html-entities` script dependencies are auto-detected into each
+  block's `build/index.asset.php` by `wp-scripts`, no manual wiring.
+- **`src/build/read-tokens.js`**: shared `:root` parser for
+  `generate-theme-json.js`/`generate-utilities.js` (all blocks, brace-depth
+  aware, comment-stripping, follows `@import`s). Verified byte-identical
+  generated output at port time — and it fixed a live misparse the naive
+  regex had: a `--grid-min: 10rem` mention inside a comment was being
+  swallowed into `grid-min`'s value.
+- **Deliberately NOT ported: hub's `col-*`/`offset-*` grid rework.**
+  Hub's line-number offsets (`grid-column-start: N+1`) assume a
+  first/only-item usage (their sole offset is a single centered form column);
+  this theme's two offsets are both second-item (`CB Client Projects
+  Gallery`, `CB Projects Index`), where absolute line numbers would overlap
+  item 1. Margin offsets stay. Side finding, still open: the gallery header
+  port mistranscribed the source's `col-md-5` as `col-md-6` (source totals
+  6+5+1=12, ours totals 13 and overflows ~1 track at `md+`) — left as-is per
+  explicit decision, fix it when the gallery is next touched.
 
 ### Bugs found and fixed during this migration (don't rediscover these)
 
