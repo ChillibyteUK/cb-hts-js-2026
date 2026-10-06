@@ -107,6 +107,49 @@ $section_id   = $attributes['anchor'] ?? '';
 $section_id   = $section_id ? $section_id : wp_unique_id( 'cb-faqs-' );
 $accordion_id = wp_unique_id( 'faq-accordion-' );
 
+// On single posts the block blends into the article body: plain h3
+// questions with visible answers — no accordion chrome, no section
+// background or watermark. Everywhere else (pages, archives) keeps the
+// full accordion treatment.
+$is_plain = is_singular( 'post' );
+
+if ( $is_plain ) {
+	$wrapper_attributes = get_block_wrapper_attributes(
+		array(
+			'class' => 'faq-plain',
+			'id'    => $section_id,
+		)
+	);
+	?>
+	<div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() already escapes. ?>>
+		<?php
+		if ( $headline ) {
+			?>
+		<h2 class="faq-plain__headline"><?php echo wp_kses( $headline, $headline_allowed ); ?></h2>
+			<?php
+		}
+		if ( $intro ) {
+			?>
+		<p class="faq-plain__intro"><?php echo nl2br( wp_kses( $intro, $br_allowed ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_kses()'d, then nl2br() adds only <br>. ?></p>
+			<?php
+		}
+		foreach ( $faqs as $faq ) {
+			$question = $faq['question'] ?? '';
+			$answer   = $faq['answer'] ?? '';
+			if ( '' === trim( $question ) && '' === trim( $answer ) ) {
+				continue;
+			}
+			?>
+		<h3 class="faq-plain__question"><?php echo wp_kses( $question, $br_allowed ); ?></h3>
+		<div class="faq-plain__answer"><?php echo nl2br( wp_kses( $answer, $br_allowed ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_kses()'d, then nl2br() adds only <br>. ?></div>
+			<?php
+		}
+		?>
+	</div>
+	<?php
+	return;
+}
+
 $wrapper_attributes = get_block_wrapper_attributes(
 	array(
 		'class' => 'faq dark-lines',

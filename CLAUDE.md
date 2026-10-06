@@ -212,6 +212,19 @@ inc/
                          own CB Product Used block on save (first block with a selection wins; no block =
                          meta cleared) so WP_Query can filter on it — block attributes in post_content
                          aren't queryable. Powers CB Projects Grid's optional product filter.
+  blog.php               Insights helpers: custom breadcrumbs (Home / Insights / title, with BreadcrumbList
+                         schema — no Yoast), DOMDocument h2 TOC extractor (skips h2s inside <section>
+                         blocks like CB FAQs; dedupes slugs), 200wpm reading time floored at 1, and the
+                         shared `cb_hts_js_2026_render_post_card()` used by index.php and single.php's
+                         related section (snapshots/restores the FAQ schema queue around its throwaway
+                         the_content render so other posts' FAQs never leak into the page schema).
+  single.php/index.php   Insights templates: navy hero band(s), 9/3 article + sticky quick-links
+                         sidebar (toc.js), BlogPosting schema, prev/next, related cards; index hero is
+                         hardcoded (posts page is empty). Single-article h2s render at --fs-h3 and h3s
+                         at --fs-h6; CB FAQs
+                         renders plain there (h3 questions, no accordion/chrome, `is_singular('post')`
+                         branch in its render.php + `.faq-plain` rules in src/css/single.css) so its
+                         headline h2 joins the quick-links TOC.
 header.php / footer.php / index.php / page.php / single.php / 404.php
                         Deliberately minimal — most real page layouts are built from blocks, not these
 blocks/                 One directory per block (add_block.sh scaffolds here)
