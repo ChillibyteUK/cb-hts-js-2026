@@ -7,12 +7,16 @@
 	"icon": "cover-image",
 	"attributes": {
 		"eyebrow": { "type": "string", "default": "" },
-		"headline": { "type": "string", "default": "" }
+		"headline": { "type": "string", "default": "" },
+		"productId": { "type": "number", "default": 0 }
 	},
 	"supports": {
 		"anchor": true,
 		"className": true,
-		"align": true
+		"align": true,
+		"color": {
+			"background": true
+		}
 	},
 	"editorScript": "file:./build/index.js",
 	"render": "file:./render.php"

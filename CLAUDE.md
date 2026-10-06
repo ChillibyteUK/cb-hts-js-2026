@@ -207,6 +207,11 @@ inc/
   head-tags.php          Font preload (fonts/*.woff2 glob) + GA/GTM (logged-out only) + Google/Bing verification, reading from the options page
   block-usage.php        [block_usage_table] shortcode — QA utility, lists every block against the published pages/posts using it
   utilities.php          Reusable, project-agnostic functions (parse_phone, pluralise, estimate_reading_time_in_minutes, get_icon/get_icon_choices) — safe to lift verbatim into any project on this skeleton. Project-specific helpers go in inc/helpers.php instead, created only when needed, not scaffolded here.
+  product-meta.php       `product` CPT meta (tag, card_intro) via register_post_meta + classic meta box
+  project-meta.php       `project_used_id` meta on the `project` CPT, synced one-way from the project's
+                         own CB Product Used block on save (first block with a selection wins; no block =
+                         meta cleared) so WP_Query can filter on it — block attributes in post_content
+                         aren't queryable. Powers CB Projects Grid's optional product filter.
 header.php / footer.php / index.php / page.php / single.php / 404.php
                         Deliberately minimal — most real page layouts are built from blocks, not these
 blocks/                 One directory per block (add_block.sh scaffolds here)

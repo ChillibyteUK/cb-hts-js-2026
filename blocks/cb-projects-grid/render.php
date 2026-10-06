@@ -11,28 +11,44 @@
  * otherwise it renders as a non-interactive tile — same pattern as CB
  * Applications Grid.
  *
+ * Optional product filter: when the productId attribute is set, only
+ * projects featuring that product are shown (matched on the product_used_id
+ * post meta each project syncs from its own CB Product Used block on save).
+ *
  * @package cb-hts-js-2026
  */
 
 defined( 'ABSPATH' ) || exit;
 
-$eyebrow  = $attributes['eyebrow'] ?? '';
-$headline = $attributes['headline'] ?? '';
+$eyebrow    = $attributes['eyebrow'] ?? '';
+$headline   = $attributes['headline'] ?? '';
+$product_id = absint( $attributes['productId'] ?? 0 );
 
 $headline_allowed = array(
 	'span' => array(),
 	'br'   => array(),
 );
 
-$projects = new WP_Query(
-	array(
-		'post_type'      => 'project',
-		'posts_per_page' => 5,
-		'orderby'        => 'date',
-		'order'          => 'DESC',
-		'no_found_rows'  => true,
-	)
+$query_args = array(
+	'post_type'      => 'project',
+	'posts_per_page' => 5,
+	'orderby'        => 'date',
+	'order'          => 'DESC',
+	'no_found_rows'  => true,
 );
+
+if ( $product_id ) {
+	$query_args['meta_query'] = array(
+		array(
+			'key'     => 'product_used_id',
+			'value'   => $product_id,
+			'compare' => '=',
+			'type'    => 'NUMERIC',
+		),
+	);
+}
+
+$projects = new WP_Query( $query_args );
 
 $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'projects' ) );
 ?>
