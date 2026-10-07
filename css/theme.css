@@ -1274,6 +1274,7 @@ select {
 	list-style: none;
 	color: var(--col-navy-10);
 	font-size: var(--fs-body-sm);
+	color: var(--col-orange-bright);
 }
 
 .post-meta__item {

@@ -1,1 +1,606 @@
-(()=>{"use strict";const e=window.wp.blocks,t=window.wp.i18n,l=window.wp.blockEditor,s=window.wp.components,a=window.wp.compose,n=window.wp.data,o=window.wp.element,r=window.ReactJSXRuntime;function i({blockProps:e,clientId:s,classPrefix:c="cb-hts-js-2026",textDomain:d="cb-hts-js-2026",storageNamespace:h="block",title:b,children:j,defaultOpen:x=!0}){const[p,_]=(0,o.useState)(x),g=(0,a.useInstanceId)(i),u=(0,o.useRef)(),m=`${c}-editor-block-content-${g}`,w=(0,n.useSelect)(e=>{if(!s)return"";const{getBlockIndex:t,getBlockRootClientId:a}=e(l.store),n=[];let o=s;for(;o;){const e=a(o)||"";n.unshift(String(t(o,e))),o=e||null}return n.join(".")},[s]),f=(0,o.useMemo)(()=>s&&w&&"undefined"!=typeof window?[c,"editor-block-state",h,window.location.pathname,window.location.search,w].join(":"):"",[w,c,s,h]);return(0,o.useEffect)(()=>{if(!f||"undefined"==typeof window)return;const e=window.localStorage.getItem(f);"closed"===e?_(!1):"open"===e&&_(!0)},[f]),(0,o.useEffect)(()=>{f&&"undefined"!=typeof window&&window.localStorage.setItem(f,p?"open":"closed")},[p,f]),(0,o.useEffect)(()=>{const e=u.current;if(e)return e.addEventListener("keydown",t),()=>{e.removeEventListener("keydown",t)};function t(e){e.shiftKey&&["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].includes(e.key)&&e.stopPropagation()}},[]),(0,r.jsxs)("div",{...e,children:[(0,r.jsxs)("div",{className:`${c}-editor-block__title`,children:[(0,r.jsx)("span",{children:b}),(0,r.jsx)("button",{type:"button",className:`${c}-editor-block__toggle`,onClick:()=>_(e=>!e),"aria-expanded":p,"aria-controls":m,"aria-label":p?(0,t.__)("Hide block fields",d):(0,t.__)("Show block fields",d),children:(0,r.jsx)("span",{"aria-hidden":"true",children:p?"−":"+"})})]}),(0,r.jsx)("div",{id:m,ref:u,className:`${c}-editor-block__content`,hidden:!p,children:j})]})}const c=JSON.parse('{"UU":"cb-hts-js-2026/cb-product-hero"}');(0,e.registerBlockType)(c.UU,{edit:function({attributes:e,setAttributes:a,clientId:n}){const{tag:o,h1:c,lede:d,bullets:h,ctaPrimaryText:b,ctaPrimaryUrl:j,ctaPrimaryTarget:x,ctaSecondaryText:p,ctaSecondaryUrl:_,ctaSecondaryTarget:g,imageId:u,imageUrl:m,imageAlt:w,badgeNumber:f,badgeSuffix:y,badgeLabel:C}=e,v=(0,l.useBlockProps)({className:"container cb-hts-js-2026-editor-block"});return(0,r.jsxs)(i,{blockProps:v,clientId:n,title:(0,t.__)("CB Product / Project Hero","cb-hts-js-2026"),textDomain:"cb-hts-js-2026",children:[(0,r.jsx)(s.TextControl,{label:(0,t.__)("Eyebrow","cb-hts-js-2026"),value:o,onChange:e=>a({tag:e})}),(0,r.jsx)(s.TextControl,{label:(0,t.__)("H1","cb-hts-js-2026"),value:c,onChange:e=>a({h1:e}),help:(0,t.__)("Wrap emphasised text in a <span> to render it italic + orange.","cb-hts-js-2026")}),(0,r.jsxs)("div",{className:"cb-hts-js-2026-editor-field",children:[(0,r.jsx)("label",{className:"cb-hts-js-2026-editor-field__label",children:(0,t.__)("Lede","cb-hts-js-2026")}),(0,r.jsx)(l.RichText,{tagName:"div",multiline:"p",className:"cb-hts-js-2026-editor-field__control","aria-label":(0,t.__)("Lede","cb-hts-js-2026"),placeholder:(0,t.__)("Lede","cb-hts-js-2026"),value:d,onChange:e=>a({lede:e}),allowedFormats:["core/bold","core/italic","core/link"]}),(0,r.jsx)("p",{className:"cb-hts-js-2026-editor-field__help",children:(0,t.__)("First paragraph renders larger as a subtitle.","cb-hts-js-2026")})]}),(0,r.jsx)(s.TextareaControl,{label:(0,t.__)("Bullets","cb-hts-js-2026"),value:h,onChange:e=>a({bullets:e}),help:(0,t.__)("One bullet per line. <strong>/<em> allowed for inline emphasis.","cb-hts-js-2026")}),(0,r.jsxs)("div",{style:{display:"flex",flexWrap:"wrap",gap:"12px"},children:[(0,r.jsxs)("div",{style:{flex:"50 1 0%"},children:[(0,r.jsx)(s.TextControl,{label:(0,t.__)("Cta primary Text","cb-hts-js-2026"),value:b,onChange:e=>a({ctaPrimaryText:e})}),(0,r.jsx)(s.TextControl,{type:"url",label:(0,t.__)("Cta primary URL","cb-hts-js-2026"),value:j,onChange:e=>a({ctaPrimaryUrl:e})}),(0,r.jsx)(s.ToggleControl,{label:(0,t.__)("Open Cta primary in a new tab","cb-hts-js-2026"),checked:x,onChange:e=>a({ctaPrimaryTarget:e})})]}),(0,r.jsxs)("div",{style:{flex:"50 1 0%"},children:[(0,r.jsx)(s.TextControl,{label:(0,t.__)("Cta secondary Text","cb-hts-js-2026"),value:p,onChange:e=>a({ctaSecondaryText:e})}),(0,r.jsx)(s.TextControl,{type:"url",label:(0,t.__)("Cta secondary URL","cb-hts-js-2026"),value:_,onChange:e=>a({ctaSecondaryUrl:e})}),(0,r.jsx)(s.ToggleControl,{label:(0,t.__)("Open Cta secondary in a new tab","cb-hts-js-2026"),checked:g,onChange:e=>a({ctaSecondaryTarget:e})})]})]}),(0,r.jsxs)("div",{className:"cb-hts-js-2026-editor-field",children:[(0,r.jsx)("label",{className:"cb-hts-js-2026-editor-field__label",children:(0,t.__)("Image","cb-hts-js-2026")}),(0,r.jsx)(l.MediaUploadCheck,{children:(0,r.jsx)(l.MediaUpload,{onSelect:e=>a({imageId:e.id,imageUrl:e.url,imageAlt:e.alt||""}),allowedTypes:["image"],value:u,render:({open:e})=>(0,r.jsxs)("div",{className:"cb-hts-js-2026-editor-field__control",children:[m&&(0,r.jsx)("img",{src:m,alt:w,style:{maxWidth:"200px",display:"block",marginBottom:"8px"}}),(0,r.jsx)(s.Button,{variant:"secondary",onClick:e,children:m?(0,t.__)("Replace Image","cb-hts-js-2026"):(0,t.__)("Select Image","cb-hts-js-2026")})]})})})]}),(0,r.jsxs)("div",{style:{display:"flex",flexWrap:"wrap",gap:"12px"},children:[(0,r.jsx)("div",{style:{flex:"33 1 0%"},children:(0,r.jsx)(s.TextControl,{label:(0,t.__)("Badge number","cb-hts-js-2026"),value:f,onChange:e=>a({badgeNumber:e}),help:(0,t.__)('e.g. "500"',"cb-hts-js-2026")})}),(0,r.jsx)("div",{style:{flex:"33 1 0%"},children:(0,r.jsx)(s.TextControl,{label:(0,t.__)("Badge suffix","cb-hts-js-2026"),value:y,onChange:e=>a({badgeSuffix:e}),help:(0,t.__)('Rendered in superscript. e.g. "+"',"cb-hts-js-2026")})}),(0,r.jsx)("div",{style:{flex:"33 1 0%"},children:(0,r.jsx)(s.TextareaControl,{label:(0,t.__)("Badge label","cb-hts-js-2026"),value:C,onChange:e=>a({badgeLabel:e}),help:(0,t.__)("Newlines become line breaks.","cb-hts-js-2026")})})]})]})},save:()=>null})})();
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./blocks/_shared/EditorBlockShell.js"
+/*!********************************************!*\
+  !*** ./blocks/_shared/EditorBlockShell.js ***!
+  \********************************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ EditorBlockShell)
+/* harmony export */ });
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
+
+
+
+
+
+
+/**
+ * Wraps a block's edit.js output in a collapsible section with a title bar
+ * and open/closed toggle, persisting the toggle state per block-instance
+ * (keyed by the block's position path within the post plus the current
+ * URL) in localStorage — so a page with many blocks stays scannable in the
+ * editor instead of every block's full field set staying expanded at once.
+ *
+ * @param {Object}   props
+ * @param {Object}   props.blockProps       Result of useBlockProps().
+ * @param {string}   props.clientId         The block's clientId, for deriving its position path.
+ * @param {string}   [props.classPrefix]    Class/prefix root, matches editor.css.
+ * @param {string}   [props.textDomain]     i18n text domain for the toggle's aria-label.
+ * @param {string}   [props.storageNamespace] Extra localStorage key segment, in case two shells need independent state on the same path.
+ * @param {string}   props.title            Block name shown in the title bar.
+ * @param {boolean}  [props.defaultOpen]    Initial state before localStorage is read.
+ * @param {*}        props.children         The block's own field controls.
+ */
+
+function EditorBlockShell({
+  blockProps,
+  clientId,
+  classPrefix = 'cb-hts-js-2026',
+  textDomain = 'cb-hts-js-2026',
+  storageNamespace = 'block',
+  title,
+  children,
+  defaultOpen = true
+}) {
+  const [isOpen, setIsOpen] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)(defaultOpen);
+  const instanceId = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__.useInstanceId)(EditorBlockShell);
+  const contentRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useRef)();
+  const contentId = `${classPrefix}-editor-block-content-${instanceId}`;
+  const blockPath = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useSelect)(select => {
+    if (!clientId) {
+      return '';
+    }
+    const {
+      getBlockIndex,
+      getBlockRootClientId
+    } = select(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.store);
+    const path = [];
+    let currentId = clientId;
+    while (currentId) {
+      const parentId = getBlockRootClientId(currentId) || '';
+      path.unshift(String(getBlockIndex(currentId, parentId)));
+      currentId = parentId || null;
+    }
+    return path.join('.');
+  }, [clientId]);
+  const storageKey = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useMemo)(() => {
+    if (!clientId || !blockPath || typeof window === 'undefined') {
+      return '';
+    }
+    return [classPrefix, 'editor-block-state', storageNamespace, window.location.pathname, window.location.search, blockPath].join(':');
+  }, [blockPath, classPrefix, clientId, storageNamespace]);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useEffect)(() => {
+    if (!storageKey || typeof window === 'undefined') {
+      return;
+    }
+    const storedValue = window.localStorage.getItem(storageKey);
+    if (storedValue === 'closed') {
+      setIsOpen(false);
+    } else if (storedValue === 'open') {
+      setIsOpen(true);
+    }
+  }, [storageKey]);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useEffect)(() => {
+    if (!storageKey || typeof window === 'undefined') {
+      return;
+    }
+    window.localStorage.setItem(storageKey, isOpen ? 'open' : 'closed');
+  }, [isOpen, storageKey]);
+
+  // Every field in a block's own fields-form UI (TextControl, RichText,
+  // the repeater's own inputs) renders inside the block's own canvas
+  // output, which sits inside Gutenberg's WritingFlow component — the same
+  // wrapper that manages block-to-block multi-selection. Pressing
+  // Shift+Arrow with the cursor mid-text (not at a boundary — ruled out as
+  // WordPress's own intentional "extend past the edge" behaviour) handed
+  // focus to WritingFlow's own handler instead of the input doing its own
+  // text selection.
+  //
+  // A React onKeyDown prop + event.stopPropagation() here does NOT fix
+  // it: per Gutenberg's own source
+  // (packages/block-editor/src/components/writing-flow/use-arrow-nav.js),
+  // WritingFlow intercepts with a plain native `node.addEventListener(
+  // 'keydown', onKeyDown )` on its own wrapper element — not a React
+  // synthetic handler. That native listener fires during real DOM bubble
+  // propagation, which reaches it before React's own internal delegated
+  // dispatch (which is what actually invokes a React onKeyDown prop) ever
+  // gets to run — so stopping propagation inside React's synthetic system
+  // is always too late. Only a real addEventListener on a descendant node
+  // (this one) intercepts during native bubbling before it reaches
+  // WritingFlow's own ancestor listener.
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useEffect)(() => {
+    const node = contentRef.current;
+    if (!node) {
+      return;
+    }
+    function stopShiftArrowFromReachingWritingFlow(event) {
+      if (event.shiftKey && ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.key)) {
+        event.stopPropagation();
+      }
+    }
+    node.addEventListener('keydown', stopShiftArrowFromReachingWritingFlow);
+    return () => {
+      node.removeEventListener('keydown', stopShiftArrowFromReachingWritingFlow);
+    };
+  }, []);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+    ...blockProps,
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+      className: `${classPrefix}-editor-block__title`,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+        children: title
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+        type: "button",
+        className: `${classPrefix}-editor-block__toggle`,
+        onClick: () => setIsOpen(open => !open),
+        "aria-expanded": isOpen,
+        "aria-controls": contentId,
+        "aria-label": isOpen ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Hide block fields', textDomain) : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Show block fields', textDomain),
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+          "aria-hidden": "true",
+          children: isOpen ? '−' : '+'
+        })
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      id: contentId,
+      ref: contentRef,
+      className: `${classPrefix}-editor-block__content`,
+      hidden: !isOpen,
+      children: children
+    })]
+  });
+}
+
+/***/ },
+
+/***/ "./blocks/cb-product-hero/src/edit.js"
+/*!********************************************!*\
+  !*** ./blocks/cb-product-hero/src/edit.js ***!
+  \********************************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Edit)
+/* harmony export */ });
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _shared_EditorBlockShell__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../_shared/EditorBlockShell */ "./blocks/_shared/EditorBlockShell.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
+
+
+
+
+
+function Edit({
+  attributes,
+  setAttributes,
+  clientId
+}) {
+  const {
+    tag,
+    h1,
+    lede,
+    bullets,
+    ctaPrimaryText,
+    ctaPrimaryUrl,
+    ctaPrimaryTarget,
+    ctaSecondaryText,
+    ctaSecondaryUrl,
+    ctaSecondaryTarget,
+    imageId,
+    imageUrl,
+    imageAlt,
+    badgeNumber,
+    badgeSuffix,
+    badgeLabel
+  } = attributes;
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
+    className: 'container cb-hts-js-2026-editor-block'
+  });
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_shared_EditorBlockShell__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    blockProps: blockProps,
+    clientId: clientId,
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('CB Product / Project Hero', 'cb-hts-js-2026'),
+    textDomain: "cb-hts-js-2026",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Eyebrow', 'cb-hts-js-2026'),
+      value: tag,
+      onChange: value => setAttributes({
+        tag: value
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('H1', 'cb-hts-js-2026'),
+      value: h1,
+      onChange: value => setAttributes({
+        h1: value
+      }),
+      help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Wrap emphasised text in a <span> to render it italic + orange.', 'cb-hts-js-2026')
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      className: "cb-hts-js-2026-editor-field",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+        className: "cb-hts-js-2026-editor-field__label",
+        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Lede', 'cb-hts-js-2026')
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+        tagName: "div",
+        multiline: "p",
+        className: "cb-hts-js-2026-editor-field__control",
+        "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Lede', 'cb-hts-js-2026'),
+        placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Lede', 'cb-hts-js-2026'),
+        value: lede,
+        onChange: value => setAttributes({
+          lede: value
+        }),
+        allowedFormats: ['core/bold', 'core/italic', 'core/link']
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+        className: "cb-hts-js-2026-editor-field__help",
+        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('First paragraph renders larger as a subtitle.', 'cb-hts-js-2026')
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextareaControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Bullets', 'cb-hts-js-2026'),
+      value: bullets,
+      onChange: value => setAttributes({
+        bullets: value
+      }),
+      help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('One bullet per line. <strong>/<em> allowed for inline emphasis.', 'cb-hts-js-2026')
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      style: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '12px'
+      },
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+        style: {
+          flex: '50 1 0%'
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Cta primary Text', 'cb-hts-js-2026'),
+          value: ctaPrimaryText,
+          onChange: value => setAttributes({
+            ctaPrimaryText: value
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+          type: "url",
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Cta primary URL', 'cb-hts-js-2026'),
+          value: ctaPrimaryUrl,
+          onChange: value => setAttributes({
+            ctaPrimaryUrl: value
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Open Cta primary in a new tab', 'cb-hts-js-2026'),
+          checked: ctaPrimaryTarget,
+          onChange: value => setAttributes({
+            ctaPrimaryTarget: value
+          })
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+        style: {
+          flex: '50 1 0%'
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Cta secondary Text', 'cb-hts-js-2026'),
+          value: ctaSecondaryText,
+          onChange: value => setAttributes({
+            ctaSecondaryText: value
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+          type: "url",
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Cta secondary URL', 'cb-hts-js-2026'),
+          value: ctaSecondaryUrl,
+          onChange: value => setAttributes({
+            ctaSecondaryUrl: value
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Open Cta secondary in a new tab', 'cb-hts-js-2026'),
+          checked: ctaSecondaryTarget,
+          onChange: value => setAttributes({
+            ctaSecondaryTarget: value
+          })
+        })]
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      className: "cb-hts-js-2026-editor-field",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+        className: "cb-hts-js-2026-editor-field__label",
+        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Image', 'cb-hts-js-2026')
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
+          onSelect: media => setAttributes({
+            imageId: media.id,
+            imageUrl: media.url,
+            imageAlt: media.alt || ''
+          }),
+          allowedTypes: ['image'],
+          value: imageId,
+          render: ({
+            open
+          }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "cb-hts-js-2026-editor-field__control",
+            children: [imageUrl && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+              src: imageUrl,
+              alt: imageAlt,
+              style: {
+                maxWidth: '200px',
+                display: 'block',
+                marginBottom: '8px'
+              }
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+              variant: "secondary",
+              onClick: open,
+              children: imageUrl ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Replace Image', 'cb-hts-js-2026') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Select Image', 'cb-hts-js-2026')
+            })]
+          })
+        })
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      style: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '12px'
+      },
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        style: {
+          flex: '33 1 0%'
+        },
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Badge number', 'cb-hts-js-2026'),
+          value: badgeNumber,
+          onChange: value => setAttributes({
+            badgeNumber: value
+          }),
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('e.g. "500"', 'cb-hts-js-2026')
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        style: {
+          flex: '33 1 0%'
+        },
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Badge suffix', 'cb-hts-js-2026'),
+          value: badgeSuffix,
+          onChange: value => setAttributes({
+            badgeSuffix: value
+          }),
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Rendered in superscript. e.g. "+"', 'cb-hts-js-2026')
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        style: {
+          flex: '33 1 0%'
+        },
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextareaControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Badge label', 'cb-hts-js-2026'),
+          value: badgeLabel,
+          onChange: value => setAttributes({
+            badgeLabel: value
+          }),
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Newlines become line breaks.', 'cb-hts-js-2026')
+        })
+      })]
+    })]
+  });
+}
+
+/***/ },
+
+/***/ "react/jsx-runtime"
+/*!**********************************!*\
+  !*** external "ReactJSXRuntime" ***!
+  \**********************************/
+(module) {
+
+module.exports = window["ReactJSXRuntime"];
+
+/***/ },
+
+/***/ "@wordpress/block-editor"
+/*!*************************************!*\
+  !*** external ["wp","blockEditor"] ***!
+  \*************************************/
+(module) {
+
+module.exports = window["wp"]["blockEditor"];
+
+/***/ },
+
+/***/ "@wordpress/blocks"
+/*!********************************!*\
+  !*** external ["wp","blocks"] ***!
+  \********************************/
+(module) {
+
+module.exports = window["wp"]["blocks"];
+
+/***/ },
+
+/***/ "@wordpress/components"
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+(module) {
+
+module.exports = window["wp"]["components"];
+
+/***/ },
+
+/***/ "@wordpress/compose"
+/*!*********************************!*\
+  !*** external ["wp","compose"] ***!
+  \*********************************/
+(module) {
+
+module.exports = window["wp"]["compose"];
+
+/***/ },
+
+/***/ "@wordpress/data"
+/*!******************************!*\
+  !*** external ["wp","data"] ***!
+  \******************************/
+(module) {
+
+module.exports = window["wp"]["data"];
+
+/***/ },
+
+/***/ "@wordpress/element"
+/*!*********************************!*\
+  !*** external ["wp","element"] ***!
+  \*********************************/
+(module) {
+
+module.exports = window["wp"]["element"];
+
+/***/ },
+
+/***/ "@wordpress/i18n"
+/*!******************************!*\
+  !*** external ["wp","i18n"] ***!
+  \******************************/
+(module) {
+
+module.exports = window["wp"]["i18n"];
+
+/***/ },
+
+/***/ "./blocks/cb-product-hero/block.json"
+/*!*******************************************!*\
+  !*** ./blocks/cb-product-hero/block.json ***!
+  \*******************************************/
+(module) {
+
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"cb-hts-js-2026/cb-product-hero","title":"CB Product / Project Hero","category":"cb-hts-js-2026","icon":"cover-image","description":"Split hero — copy on the left, image with stat badge on the right. Reuses CB Home Hero\'s layout classes; for Product/Project single pages rather than the homepage.","attributes":{"tag":{"type":"string","default":""},"h1":{"type":"string","default":""},"lede":{"type":"string","default":""},"bullets":{"type":"string","default":""},"ctaPrimaryText":{"type":"string","default":""},"ctaPrimaryUrl":{"type":"string","default":""},"ctaPrimaryTarget":{"type":"boolean","default":false},"ctaSecondaryText":{"type":"string","default":""},"ctaSecondaryUrl":{"type":"string","default":""},"ctaSecondaryTarget":{"type":"boolean","default":false},"imageId":{"type":"number","default":0},"imageUrl":{"type":"string","default":""},"imageAlt":{"type":"string","default":""},"badgeNumber":{"type":"string","default":""},"badgeSuffix":{"type":"string","default":""},"badgeLabel":{"type":"string","default":""}},"supports":{"anchor":true,"className":true,"align":true},"editorScript":"file:./build/index.js","render":"file:./render.php"}');
+
+/***/ }
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	const __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		const cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		const module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		if (!(moduleId in __webpack_modules__)) {
+/******/ 			delete __webpack_module_cache__[moduleId];
+/******/ 			const e = new Error("Cannot find module '" + moduleId + "'");
+/******/ 			e.code = 'MODULE_NOT_FOUND';
+/******/ 			throw e;
+/******/ 		}
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			const getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter/value functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			if(Array.isArray(definition)) {
+/******/ 				var i = 0;
+/******/ 				while(i < definition.length) {
+/******/ 					var key = definition[i++];
+/******/ 					var binding = definition[i++];
+/******/ 					if(!__webpack_require__.o(exports, key)) {
+/******/ 						if(binding === 0) {
+/******/ 							Object.defineProperty(exports, key, { enumerable: true, value: definition[i++] });
+/******/ 						} else {
+/******/ 							Object.defineProperty(exports, key, { enumerable: true, get: binding });
+/******/ 						}
+/******/ 					} else if(binding === 0) { i++; }
+/******/ 				}
+/******/ 			} else {
+/******/ 				for(var key in definition) {
+/******/ 					if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 						Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 					}
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.hasOwn(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+let __webpack_exports__ = {};
+// This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
+(() => {
+/*!*********************************************!*\
+  !*** ./blocks/cb-product-hero/src/index.js ***!
+  \*********************************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit */ "./blocks/cb-product-hero/src/edit.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../block.json */ "./blocks/cb-product-hero/block.json");
+
+
+
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name, {
+  edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"],
+  save: () => null
+});
+})();
+
+/******/ })()
+;
+//# sourceMappingURL=index.js.map
