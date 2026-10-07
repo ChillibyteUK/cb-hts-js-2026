@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps, URLInput } from '@wordpress/block-editor';
 import { TextControl, TextareaControl, SelectControl, ToggleControl } from '@wordpress/components';
 import RepeaterField from '../../_shared/RepeaterField';
 import EditorBlockShell from '../../_shared/EditorBlockShell';
@@ -47,12 +47,13 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 				value={ linkText }
 				onChange={ ( value ) => setAttributes( { linkText: value } ) }
 			/>
-			<TextControl
-				type="url"
-				label={ __( 'Link URL', 'cb-hts-js-2026' ) }
-				value={ linkUrl }
-				onChange={ ( value ) => setAttributes( { linkUrl: value } ) }
-			/>
+			<div className="cb-hts-js-2026-editor-field">
+				<label className="cb-hts-js-2026-editor-field__label">{ __( 'Link URL', 'cb-hts-js-2026' ) }</label>
+				<URLInput
+					value={ linkUrl || '' }
+					onChange={ ( value ) => setAttributes( { linkUrl: value } ) }
+				/>
+			</div>
 			<ToggleControl
 				label={ __( 'Open Link in a new tab', 'cb-hts-js-2026' ) }
 				checked={ linkTarget }

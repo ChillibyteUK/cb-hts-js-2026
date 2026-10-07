@@ -2,6 +2,57 @@
 	position: relative;
 	padding-block: clamp(4rem, 8vw, 7.5rem);
 	background: var(--col-paper);
+	overflow: hidden;
+	--intro-watermark-opacity: 0.02;
+	--intro-watermark-scale: 0.96;
+	--intro-watermark-shift: 1.5rem;
+}
+
+/* Absolute, not sticky: a sticky word keeps travelling while its section
+   scrolls out and paints over the next block (seen live on /why-hts/,
+   where WHAT bled into the section below). Pinned to the section top it
+   scrolls away with its own section instead — and overflow: hidden above
+   clips it at the section bounds either way. Settle-on-view animation is
+   unchanged. */
+.intro-watermark {
+	position: absolute;
+	inset-block-start: 0;
+	inset-inline: 0;
+	height: 0;
+	z-index: 0;
+	pointer-events: none;
+	will-change: transform;
+}
+
+/* The word is a real element (not a ::before) so the shared parallax
+   module can measure it and clamp its travel inside the section. */
+.intro-watermark > span {
+	display: block;
+	position: absolute;
+	inset-block-start: clamp(2rem, 7vw, 5rem);
+	inset-inline-end: clamp(0rem, 2vw, 2rem);
+	font-size: clamp(6rem, 19vw, 17.5rem);
+	font-weight: var(--fw-800);
+	letter-spacing: -0.04em;
+	line-height: 1;
+	text-transform: uppercase;
+	color: rgba(0, 60, 130, var(--intro-watermark-opacity));
+	transform: translate3d(0, var(--intro-watermark-shift), 0) scale(var(--intro-watermark-scale));
+	transform-origin: top right;
+	transition:
+		color 0.8s ease,
+		transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.intro.is-in-view {
+	--intro-watermark-opacity: 0.04;
+	--intro-watermark-scale: 1;
+	--intro-watermark-shift: 0rem;
+}
+
+.intro .container {
+	position: relative;
+	z-index: 1;
 }
 
 .intro-inner {

@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useBlockProps, RichText, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
+import { useBlockProps, RichText, MediaUpload, MediaUploadCheck, URLInput } from '@wordpress/block-editor';
 import { TextControl, TextareaControl, ToggleControl, Button } from '@wordpress/components';
 import EditorBlockShell from '../../_shared/EditorBlockShell';
 
@@ -47,7 +47,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 					placeholder={ __( 'Lede', 'cb-hts-js-2026' ) }
 					value={ lede }
 					onChange={ ( value ) => setAttributes( { lede: value } ) }
-					allowedFormats={ [ 'core/bold', 'core/italic', 'core/link' ] }
+					allowedFormats={ [ 'core/bold', 'core/italic', 'core/link', 'cb-hts-js-2026/small-text' ] }
 				/>
 				<p className="cb-hts-js-2026-editor-field__help">{ __( 'First paragraph renders larger as a subtitle.', 'cb-hts-js-2026' ) }</p>
 			</div>
@@ -64,12 +64,13 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 						value={ ctaPrimaryText }
 						onChange={ ( value ) => setAttributes( { ctaPrimaryText: value } ) }
 					/>
-					<TextControl
-						type="url"
-						label={ __( 'Cta primary URL', 'cb-hts-js-2026' ) }
-						value={ ctaPrimaryUrl }
-						onChange={ ( value ) => setAttributes( { ctaPrimaryUrl: value } ) }
-					/>
+					<div className="cb-hts-js-2026-editor-field">
+						<label className="cb-hts-js-2026-editor-field__label">{ __( 'Cta primary URL', 'cb-hts-js-2026' ) }</label>
+						<URLInput
+							value={ ctaPrimaryUrl || '' }
+							onChange={ ( value ) => setAttributes( { ctaPrimaryUrl: value } ) }
+						/>
+					</div>
 					<ToggleControl
 						label={ __( 'Open Cta primary in a new tab', 'cb-hts-js-2026' ) }
 						checked={ ctaPrimaryTarget }
@@ -82,12 +83,13 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 						value={ ctaSecondaryText }
 						onChange={ ( value ) => setAttributes( { ctaSecondaryText: value } ) }
 					/>
-					<TextControl
-						type="url"
-						label={ __( 'Cta secondary URL', 'cb-hts-js-2026' ) }
-						value={ ctaSecondaryUrl }
-						onChange={ ( value ) => setAttributes( { ctaSecondaryUrl: value } ) }
-					/>
+					<div className="cb-hts-js-2026-editor-field">
+						<label className="cb-hts-js-2026-editor-field__label">{ __( 'Cta secondary URL', 'cb-hts-js-2026' ) }</label>
+						<URLInput
+							value={ ctaSecondaryUrl || '' }
+							onChange={ ( value ) => setAttributes( { ctaSecondaryUrl: value } ) }
+						/>
+					</div>
 					<ToggleControl
 						label={ __( 'Open Cta secondary in a new tab', 'cb-hts-js-2026' ) }
 						checked={ ctaSecondaryTarget }

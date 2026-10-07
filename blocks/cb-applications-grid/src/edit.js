@@ -30,7 +30,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 					placeholder={ __( 'Text content', 'cb-hts-js-2026' ) }
 					value={ lede }
 					onChange={ ( value ) => setAttributes( { lede: value } ) }
-					allowedFormats={ [ 'core/bold', 'core/italic', 'core/link' ] }
+					allowedFormats={ [ 'core/bold', 'core/italic', 'core/link', 'cb-hts-js-2026/small-text' ] }
 				/>
 			</div>
 			<p>

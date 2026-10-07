@@ -44,7 +44,8 @@ $wrapper_attributes = get_block_wrapper_attributes(
 		<div class="eyebrow"><?php echo esc_html( $eyebrow ); ?></div>
 			<?php
 		}
-		?>
+		if ( $heading || $intro ) {
+			?>
 		<div class="row pb-5">
 			<div class="col-12 col-md-6">
 				<?php
@@ -65,7 +66,9 @@ $wrapper_attributes = get_block_wrapper_attributes(
 				?>
 			</div>
 		</div>
-
+			<?php
+		}
+		?>
 		<div class="client-gallery-grid<?php echo $is_feature ? ' client-gallery-grid--feature' : ''; ?>">
 			<?php
 			if ( $is_feature ) {

@@ -10,7 +10,8 @@
 		"headline": { "type": "string", "default": "" },
 		"body": { "type": "string", "default": "" },
 		"signature": { "type": "string", "default": "" },
-		"highlights": { "type": "string", "default": "" }
+		"highlights": { "type": "string", "default": "" },
+		"watermark": { "type": "string", "default": "" }
 	},
 	"supports": {
 		"anchor": true,

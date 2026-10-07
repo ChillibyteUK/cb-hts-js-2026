@@ -4,6 +4,7 @@ import { initDialogs } from './dialog';
 import { initAccordions } from './accordion';
 import { initLenis } from './lenis-init';
 import { initToc } from './toc';
+import { initWatermarks } from './watermark';
 
 document.addEventListener('DOMContentLoaded', () => {
 	initNavToggle();
@@ -12,4 +13,5 @@ document.addEventListener('DOMContentLoaded', () => {
 	initAccordions();
 	initLenis();
 	initToc();
+	initWatermarks();
 });

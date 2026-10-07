@@ -171,6 +171,16 @@
 }
 
 /*
+ * Per-paragraph "Small text" RichText format (blocks/_editor-formats) — a
+ * span applied from the toolbar, so it inherits whatever size its context
+ * sets and steps down from there. Lives here (not per-block) so editor and
+ * frontend render identically with one rule.
+ */
+.text-small {
+	font-size: var(--fs-body-xs);
+}
+
+/*
  * "Ticked list" core/list block style — ported from cb-hts2026's
  * _case_study_narrative.scss. Registered in inc/blocks.php
  * (cb_hts_js_2026_register_block_styles()).

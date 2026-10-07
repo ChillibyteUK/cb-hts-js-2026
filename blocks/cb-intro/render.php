@@ -12,6 +12,7 @@ $headline   = $attributes['headline'] ?? '';
 $body       = $attributes['body'] ?? '';
 $signature  = $attributes['signature'] ?? '';
 $highlights = $attributes['highlights'] ?? '';
+$watermark  = trim( $attributes['watermark'] ?? '' );
 
 $headline_allowed  = array(
 	'span' => array(),
@@ -23,7 +24,20 @@ $signature_allowed = array(
 	'br'     => array(),
 );
 
-$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'intro' ) );
+$wrapper_args = array( 'class' => 'intro' );
+
+$section_id = $attributes['anchor'] ?? '';
+$section_id = $section_id ? $section_id : wp_unique_id( 'cb-intro-' );
+
+if ( $watermark ) {
+	$wrapper_args['id'] = $section_id;
+	// data-watermark opts into the shared clamped-parallax module
+	// (src/js/watermark.js): the word travels like the old sticky
+	// positioning did, but can never leave the section's box.
+	$wrapper_args['data-watermark'] = '';
+}
+
+$wrapper_attributes = get_block_wrapper_attributes( $wrapper_args );
 
 $pillar_lines = array();
 if ( $highlights ) {
@@ -31,6 +45,13 @@ if ( $highlights ) {
 }
 ?>
 <section <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() already escapes. ?>>
+	<?php
+	if ( $watermark ) {
+		?>
+	<div class="intro-watermark" aria-hidden="true"><span><?php echo esc_html( $watermark ); ?></span></div>
+		<?php
+	}
+	?>
 	<div class="container">
 		<div class="intro-inner">
 			<div class="intro-col-head">

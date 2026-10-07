@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useBlockProps, RichText, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
+import { useBlockProps, RichText, MediaUpload, MediaUploadCheck, URLInput } from '@wordpress/block-editor';
 import { TextControl, TextareaControl, ToggleControl, Button } from '@wordpress/components';
 import EditorBlockShell from '../../_shared/EditorBlockShell';
 
@@ -31,7 +31,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 					placeholder={ __( 'Intro', 'cb-hts-js-2026' ) }
 					value={ intro }
 					onChange={ ( value ) => setAttributes( { intro: value } ) }
-					allowedFormats={ [ 'core/bold', 'core/italic', 'core/link' ] }
+					allowedFormats={ [ 'core/bold', 'core/italic', 'core/link', 'cb-hts-js-2026/small-text' ] }
 				/>
 			</div>
 			<TextareaControl
@@ -46,12 +46,13 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 				onChange={ ( value ) => setAttributes( { ctaText: value } ) }
 				help={ __( 'Defaults to "Launch the configurator" if left blank.', 'cb-hts-js-2026' ) }
 			/>
-			<TextControl
-				type="url"
-				label={ __( 'CTA URL', 'cb-hts-js-2026' ) }
-				value={ ctaUrl }
-				onChange={ ( value ) => setAttributes( { ctaUrl: value } ) }
-			/>
+			<div className="cb-hts-js-2026-editor-field">
+				<label className="cb-hts-js-2026-editor-field__label">{ __( 'CTA URL', 'cb-hts-js-2026' ) }</label>
+				<URLInput
+					value={ ctaUrl || '' }
+					onChange={ ( value ) => setAttributes( { ctaUrl: value } ) }
+				/>
+			</div>
 			<ToggleControl
 				label={ __( 'Open CTA in a new tab', 'cb-hts-js-2026' ) }
 				checked={ ctaTarget }

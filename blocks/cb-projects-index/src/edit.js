@@ -30,7 +30,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 					placeholder={ __( 'Intro', 'cb-hts-js-2026' ) }
 					value={ intro }
 					onChange={ ( value ) => setAttributes( { intro: value } ) }
-					allowedFormats={ [ 'core/bold', 'core/italic', 'core/link' ] }
+					allowedFormats={ [ 'core/bold', 'core/italic', 'core/link', 'cb-hts-js-2026/small-text' ] }
 				/>
 				<p className="cb-hts-js-2026-editor-field__help">{ __( 'Optional short standfirst, shown beside the headline.', 'cb-hts-js-2026' ) }</p>
 			</div>

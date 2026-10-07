@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useBlockProps, RichText, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
+import { useBlockProps, RichText, MediaUpload, MediaUploadCheck, URLInput } from '@wordpress/block-editor';
 import { TextControl, TextareaControl, ToggleControl, Button } from '@wordpress/components';
 import EditorBlockShell from '../../_shared/EditorBlockShell';
 
@@ -71,11 +71,11 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 					className="cb-hts-js-2026-editor-field__control"
 					aria-label={ __( 'Content', 'cb-hts-js-2026' ) }
 					placeholder={ __( 'Content', 'cb-hts-js-2026' ) }
-					value={ content }
-					onChange={ ( value ) => setAttributes( { content: value } ) }
-					allowedFormats={ [ 'core/bold', 'core/italic', 'core/link' ] }
-				/>
-			</div>
+				value={ content }
+				onChange={ ( value ) => setAttributes( { content: value } ) }
+				allowedFormats={ [ 'core/bold', 'core/italic', 'core/link', 'cb-hts-js-2026/small-text' ] }
+			/>
+		</div>
 			<div style={ { display: 'flex', flexWrap: 'wrap', gap: '12px' } }>
 				<div style={ { flex: '50 1 0%' } }>
 					<TextControl
@@ -83,12 +83,13 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 						value={ buttonText }
 						onChange={ ( value ) => setAttributes( { buttonText: value } ) }
 					/>
-					<TextControl
-						type="url"
-						label={ __( 'Button URL', 'cb-hts-js-2026' ) }
-						value={ buttonUrl }
-						onChange={ ( value ) => setAttributes( { buttonUrl: value } ) }
-					/>
+					<div className="cb-hts-js-2026-editor-field">
+						<label className="cb-hts-js-2026-editor-field__label">{ __( 'Button URL', 'cb-hts-js-2026' ) }</label>
+						<URLInput
+							value={ buttonUrl || '' }
+							onChange={ ( value ) => setAttributes( { buttonUrl: value } ) }
+						/>
+					</div>
 					<ToggleControl
 						label={ __( 'Open button in a new tab', 'cb-hts-js-2026' ) }
 						checked={ buttonTarget }
@@ -101,12 +102,13 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 						value={ buttonSecondaryText }
 						onChange={ ( value ) => setAttributes( { buttonSecondaryText: value } ) }
 					/>
-					<TextControl
-						type="url"
-						label={ __( 'Secondary Button URL', 'cb-hts-js-2026' ) }
-						value={ buttonSecondaryUrl }
-						onChange={ ( value ) => setAttributes( { buttonSecondaryUrl: value } ) }
-					/>
+					<div className="cb-hts-js-2026-editor-field">
+						<label className="cb-hts-js-2026-editor-field__label">{ __( 'Secondary Button URL', 'cb-hts-js-2026' ) }</label>
+						<URLInput
+							value={ buttonSecondaryUrl || '' }
+							onChange={ ( value ) => setAttributes( { buttonSecondaryUrl: value } ) }
+						/>
+					</div>
 					<ToggleControl
 						label={ __( 'Open secondary button in a new tab', 'cb-hts-js-2026' ) }
 						checked={ buttonSecondaryTarget }

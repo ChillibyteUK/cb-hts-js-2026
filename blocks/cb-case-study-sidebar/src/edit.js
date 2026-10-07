@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps, URLInput } from '@wordpress/block-editor';
 import { TextControl, ToggleControl } from '@wordpress/components';
 import RepeaterField from '../../_shared/RepeaterField';
 import EditorBlockShell from '../../_shared/EditorBlockShell';
@@ -31,12 +31,13 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 				value={ ctaText }
 				onChange={ ( value ) => setAttributes( { ctaText: value } ) }
 			/>
-			<TextControl
-				type="url"
-				label={ __( 'CTA URL', 'cb-hts-js-2026' ) }
-				value={ ctaUrl }
-				onChange={ ( value ) => setAttributes( { ctaUrl: value } ) }
-			/>
+			<div className="cb-hts-js-2026-editor-field">
+				<label className="cb-hts-js-2026-editor-field__label">{ __( 'CTA URL', 'cb-hts-js-2026' ) }</label>
+				<URLInput
+					value={ ctaUrl || '' }
+					onChange={ ( value ) => setAttributes( { ctaUrl: value } ) }
+				/>
+			</div>
 			<ToggleControl
 				label={ __( 'Open CTA in a new tab', 'cb-hts-js-2026' ) }
 				checked={ ctaTarget }

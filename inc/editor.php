@@ -28,6 +28,33 @@ function cb_hts_js_2026_add_editor_styles() {
 add_action( 'after_setup_theme', 'cb_hts_js_2026_add_editor_styles' );
 
 /**
+ * Enqueue the custom RichText formats (blocks/_editor-formats) — the
+ * per-paragraph toolbar buttons (e.g. Small text) for block RichText
+ * fields. Explicit enqueue because there is no block.json, so
+ * inc/blocks.php's glob never picks it up.
+ *
+ * @return void
+ */
+function cb_hts_js_2026_enqueue_editor_formats() {
+	$asset_file = CB_HTS_JS_2026_DIR . '/blocks/_editor-formats/build/index.asset.php';
+
+	if ( ! file_exists( $asset_file ) ) {
+		return;
+	}
+
+	$asset = require $asset_file;
+
+	wp_enqueue_script(
+		'cb-hts-js-2026-editor-formats',
+		get_template_directory_uri() . '/blocks/_editor-formats/build/index.js',
+		$asset['dependencies'],
+		$asset['version'],
+		true
+	);
+}
+add_action( 'enqueue_block_editor_assets', 'cb_hts_js_2026_enqueue_editor_formats' );
+
+/**
  * Disable the block editor's fullscreen mode by default.
  *
  * @return void

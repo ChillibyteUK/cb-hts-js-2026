@@ -4,7 +4,7 @@ import { TextControl, TextareaControl } from '@wordpress/components';
 import EditorBlockShell from '../../_shared/EditorBlockShell';
 
 export default function Edit( { attributes, setAttributes, clientId } ) {
-	const { eyebrow, headline, body, signature, highlights } = attributes;
+	const { eyebrow, headline, body, signature, highlights, watermark } = attributes;
 	const blockProps = useBlockProps( { className: 'container cb-hts-js-2026-editor-block' } );
 
 	return (
@@ -30,7 +30,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 					placeholder={ __( 'Body', 'cb-hts-js-2026' ) }
 					value={ body }
 					onChange={ ( value ) => setAttributes( { body: value } ) }
-					allowedFormats={ [ 'core/bold', 'core/italic', 'core/link' ] }
+					allowedFormats={ [ 'core/bold', 'core/italic', 'core/link', 'cb-hts-js-2026/small-text' ] }
 				/>
 				<p className="cb-hts-js-2026-editor-field__help">{ __( 'First paragraph renders larger as a lede.', 'cb-hts-js-2026' ) }</p>
 			</div>
@@ -52,6 +52,12 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 					/>
 				</div>
 			</div>
+			<TextControl
+				label={ __( 'Watermark', 'cb-hts-js-2026' ) }
+				value={ watermark }
+				onChange={ ( value ) => setAttributes( { watermark: value } ) }
+				help={ __( 'Optional giant background word, e.g. INTRO. Leave empty for none.', 'cb-hts-js-2026' ) }
+			/>
 		</EditorBlockShell>
 	);
 }

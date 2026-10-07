@@ -456,6 +456,16 @@ ol {
 }
 
 /*
+ * Per-paragraph "Small text" RichText format (blocks/_editor-formats) — a
+ * span applied from the toolbar, so it inherits whatever size its context
+ * sets and steps down from there. Lives here (not per-block) so editor and
+ * frontend render identically with one rule.
+ */
+.text-small {
+	font-size: var(--fs-body-xs);
+}
+
+/*
  * "Ticked list" core/list block style — ported from cb-hts2026's
  * _case_study_narrative.scss. Registered in inc/blocks.php
  * (cb_hts_js_2026_register_block_styles()).
@@ -3965,6 +3975,57 @@ select {
 	position: relative;
 	padding-block: clamp(4rem, 8vw, 7.5rem);
 	background: var(--col-paper);
+	overflow: hidden;
+	--intro-watermark-opacity: 0.02;
+	--intro-watermark-scale: 0.96;
+	--intro-watermark-shift: 1.5rem;
+}
+
+/* Absolute, not sticky: a sticky word keeps travelling while its section
+   scrolls out and paints over the next block (seen live on /why-hts/,
+   where WHAT bled into the section below). Pinned to the section top it
+   scrolls away with its own section instead — and overflow: hidden above
+   clips it at the section bounds either way. Settle-on-view animation is
+   unchanged. */
+.intro-watermark {
+	position: absolute;
+	inset-block-start: 0;
+	inset-inline: 0;
+	height: 0;
+	z-index: 0;
+	pointer-events: none;
+	will-change: transform;
+}
+
+/* The word is a real element (not a ::before) so the shared parallax
+   module can measure it and clamp its travel inside the section. */
+.intro-watermark > span {
+	display: block;
+	position: absolute;
+	inset-block-start: clamp(2rem, 7vw, 5rem);
+	inset-inline-end: clamp(0rem, 2vw, 2rem);
+	font-size: clamp(6rem, 19vw, 17.5rem);
+	font-weight: var(--fw-800);
+	letter-spacing: -0.04em;
+	line-height: 1;
+	text-transform: uppercase;
+	color: rgba(0, 60, 130, var(--intro-watermark-opacity));
+	transform: translate3d(0, var(--intro-watermark-shift), 0) scale(var(--intro-watermark-scale));
+	transform-origin: top right;
+	transition:
+		color 0.8s ease,
+		transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.intro.is-in-view {
+	--intro-watermark-opacity: 0.04;
+	--intro-watermark-scale: 1;
+	--intro-watermark-shift: 0rem;
+}
+
+.intro .container {
+	position: relative;
+	z-index: 1;
 }
 
 .intro-inner {
@@ -5301,6 +5362,175 @@ select {
 	}
 
 	.specs-watermark::before {
+		transition: none;
+	}
+}
+
+/* --- src/blocks/cb-split-steps.css --- */
+.split-steps {
+	position: relative;
+	overflow: clip;
+	padding-block: clamp(5rem, 10vw, 8.75rem);
+	background: var(--col-section-bg);
+	border-top: 1px solid var(--col-rule);
+	color: var(--col-ink);
+	--split-steps-watermark-opacity: 0.02;
+	--split-steps-watermark-scale: 0.96;
+	--split-steps-watermark-shift: 1.5rem;
+}
+
+/*
+ * Same row-gap override as CB Why Split (its source markup's g-xl-6 is a
+ * Bootstrap no-op — see that file; only g-5 is real, gated to lg+ so the
+ * full 48px gap can't overflow a mobile viewport).
+ */
+.split-steps .row {
+	gap: var(--space-4);
+}
+
+@media (min-width: 992px) {
+	.split-steps .row {
+		gap: var(--space-5);
+	}
+}
+
+/* Dynamic watermark via the shared clamped-parallax module (section
+   data-watermark hook + measurable word span, no inline script) — the
+   newer pattern from CB Intro, not Why Split's sticky + script. */
+.split-steps-watermark {
+	position: absolute;
+	inset-block-start: 0;
+	inset-inline: 0;
+	height: 0;
+	z-index: 0;
+	pointer-events: none;
+	will-change: transform;
+}
+
+.split-steps-watermark > span {
+	display: block;
+	position: absolute;
+	inset-block-start: clamp(2rem, 7vw, 5rem);
+	inset-inline-end: clamp(0rem, 2vw, 2rem);
+	font-size: clamp(6rem, 19vw, 17.5rem);
+	font-weight: var(--fw-800);
+	letter-spacing: -0.04em;
+	line-height: 1;
+	text-transform: uppercase;
+	color: rgba(0, 60, 130, var(--split-steps-watermark-opacity));
+	transform: translate3d(0, var(--split-steps-watermark-shift), 0) scale(var(--split-steps-watermark-scale));
+	transform-origin: top right;
+	transition:
+		color 0.8s ease,
+		transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.split-steps.is-in-view {
+	--split-steps-watermark-opacity: 0.04;
+	--split-steps-watermark-scale: 1;
+	--split-steps-watermark-shift: 0rem;
+}
+
+.split-steps .container,
+.split-steps .row {
+	position: relative;
+	z-index: 1;
+}
+
+.split-steps-headline {
+	margin-block-end: 1.5rem;
+	color: var(--col-navy);
+}
+
+.split-steps-headline  > span {
+		color: var(--col-orange);
+		font-style: italic;
+	}
+
+.split-steps-copy,
+.split-steps-step-body {
+	color: var(--col-body);
+}
+
+.split-steps-copy {
+	max-inline-size: 28rem;
+	margin-block-end: 2.25rem;
+	font-size: var(--fs-body-lg);
+	line-height: var(--lh-relaxed);
+}
+
+.split-steps-steps {
+	border-block-start: 1px solid var(--col-navy-25);
+}
+
+.split-steps-step {
+	display: grid;
+	grid-template-columns: 4rem 1fr;
+	gap: 1.5rem;
+	padding-block: 1.75rem;
+	border-block-end: 1px solid var(--col-navy-25);
+	transition: transform 0.25s ease;
+}
+
+@media (max-width: 540px) {
+	.split-steps-step {
+		grid-template-columns: 1fr;
+		gap: 0.75rem;
+	}
+}
+
+.split-steps-step-num {
+	padding-block-start: 0.2rem;
+	font-size: var(--fs-body-sm);
+	font-weight: var(--fw-700);
+	letter-spacing: 0.04em;
+	color: var(--col-orange);
+}
+
+.split-steps-step-title {
+	margin-block-end: 0.5rem;
+	color: var(--col-navy);
+}
+
+.split-steps-step-body {
+	font-size: var(--fs-body-sm);
+	line-height: var(--lh-relaxed);
+}
+
+.split-steps-step-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin-top: var(--space-2);
+	font-size: var(--fs-body-sm);
+	font-weight: var(--fw-600);
+	color: var(--col-navy);
+}
+
+.split-steps-step-link svg {
+	width: 1em;
+	height: 1em;
+	flex: none;
+}
+
+.split-steps-step-link:hover {
+	color: var(--col-orange);
+}
+
+.split-steps-left {
+	position: sticky;
+	top: var(--nav-height);
+	height: fit-content;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.split-steps {
+		--split-steps-watermark-opacity: 0.04;
+		--split-steps-watermark-scale: 1;
+		--split-steps-watermark-shift: 0rem;
+	}
+
+	.split-steps-watermark > span {
 		transition: none;
 	}
 }
