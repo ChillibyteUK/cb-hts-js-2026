@@ -4,6 +4,7 @@ import { TextControl, TextareaControl, SelectControl, Button } from '@wordpress/
 import { useSelect } from '@wordpress/data';
 import { store as coreStore } from '@wordpress/core-data';
 import EditorBlockShell from '../../_shared/EditorBlockShell';
+import SideloadImage from '../../_shared/SideloadImage';
 
 export default function Edit( { attributes, setAttributes, clientId } ) {
 	const { layout, eyebrow, heading, intro, images } = attributes;
@@ -97,6 +98,9 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 						) }
 					/>
 				</MediaUploadCheck>
+				<SideloadImage
+					onSelect={ ( media ) => setAttributes( { images: [ ...images, media.id ] } ) }
+				/>
 			</div>
 		</EditorBlockShell>
 	);

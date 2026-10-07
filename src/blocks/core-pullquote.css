@@ -1,0 +1,36 @@
+/*
+ * Core Pullquote — page-width constrained, HTS type treatment. Specificity
+ * is element-qualified on purpose (figure.wp-block-pullquote, not just the
+ * class): core's own pullquote stylesheet enqueues after the theme's, so
+ * bare-class rules would lose the cascade.
+ */
+figure.wp-block-pullquote {
+	max-width: var(--container-max-width);
+	margin-inline: auto;
+	margin-block: 0;
+	padding-inline: var(--container-padding);
+	padding-block: var(--space-6);
+	text-align: center;
+	border: 0;
+}
+
+figure.wp-block-pullquote blockquote {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+figure.wp-block-pullquote blockquote p {
+	color: var(--col-navy);
+	font-size: var(--fs-h4);
+	font-weight: var(--fw-500);
+	line-height: var(--lh-title);
+	text-wrap: pretty;
+}
+
+figure.wp-block-pullquote cite {
+	display: block;
+	margin-top: var(--space-3);
+	color: var(--col-muted);
+	font-size: var(--fs-body-md);
+}

@@ -2,6 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps, RichText, MediaUpload, MediaUploadCheck, URLInput } from '@wordpress/block-editor';
 import { TextControl, TextareaControl, ToggleControl, Button } from '@wordpress/components';
 import EditorBlockShell from '../../_shared/EditorBlockShell';
+import SideloadImage from '../../_shared/SideloadImage';
 
 export default function Edit( { attributes, setAttributes, clientId } ) {
 	const { metaItems, h1Line1Text, h1Line1Highlight, h1Line2Text, h1Line2Highlight, lede, bullets, ctaPrimaryText, ctaPrimaryUrl, ctaPrimaryTarget, ctaSecondaryText, ctaSecondaryUrl, ctaSecondaryTarget, imageId, imageUrl, imageAlt, badgeNumber, badgeSuffix, badgeLabel } = attributes;
@@ -137,6 +138,15 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 						) }
 					/>
 				</MediaUploadCheck>
+				<SideloadImage
+					onSelect={ ( media ) =>
+						setAttributes( {
+							imageId: media.id,
+							imageUrl: media.url,
+							imageAlt: media.alt || '',
+						} )
+					}
+			 />
 			</div>
 			<div style={ { display: 'flex', flexWrap: 'wrap', gap: '12px' } }>
 				<div style={ { flex: '33 1 0%' } }>

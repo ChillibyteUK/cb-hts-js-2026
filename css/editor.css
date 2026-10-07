@@ -248,6 +248,21 @@
 }
 
 /*
+ * Shared URL-sideload companion (blocks/_shared/SideloadImage.js) — sits
+ * under a picker's Select/Replace button, so it needs breathing room, and
+ * its errors read in the native admin notice colour.
+ */
+.cb-hts-js-2026-sideload {
+	margin-top: 0.75rem;
+}
+
+.cb-hts-js-2026-sideload__error {
+	margin: 0.5rem 0 0;
+	font-size: 0.8125rem;
+	color: #cc1818;
+}
+
+/*
  * Matches native BaseControl help text (font-size/color) so RichText and
  * MediaUpload fields — which don't get the `help` prop TextControl/etc. use —
  * read consistently with the rest of a block's fields.

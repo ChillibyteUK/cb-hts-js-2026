@@ -5,6 +5,7 @@ import { useEffect, useMemo } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
 import { store as coreStore } from '@wordpress/core-data';
 import PostTypePicker from './PostTypePicker';
+import SideloadImage from './SideloadImage';
 
 /**
  * Makes a legacy plain-text value safe to hand to RichText. RichText's
@@ -95,6 +96,14 @@ function RepeaterImageField( { field, row, index, updateRow, isColumn } ) {
 								? __( 'Replace', 'cb-hts-js-2026' )
 								: __( 'Select', 'cb-hts-js-2026' ) }
 						</Button>
+						<SideloadImage
+							onSelect={ ( media ) =>
+								updateRow( index, {
+									[ field.name ]: media.id,
+									[ `${ field.name }Url` ]: media.url,
+								} )
+							}
+						/>
 					</div>
 				) }
 			/>

@@ -2,6 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps, RichText, MediaUpload, MediaUploadCheck, URLInput } from '@wordpress/block-editor';
 import { TextControl, TextareaControl, ToggleControl, Button } from '@wordpress/components';
 import EditorBlockShell from '../../_shared/EditorBlockShell';
+import SideloadImage from '../../_shared/SideloadImage';
 
 export default function Edit( { attributes, setAttributes, clientId } ) {
 	const { tag, headline, intro, features, ctaText, ctaUrl, ctaTarget, imageId, imageUrl, imageAlt } = attributes;
@@ -87,6 +88,15 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 						) }
 					/>
 				</MediaUploadCheck>
+				<SideloadImage
+					onSelect={ ( media ) =>
+						setAttributes( {
+							imageId: media.id,
+							imageUrl: media.url,
+							imageAlt: media.alt || '',
+						} )
+					}
+			 />
 			</div>
 		</EditorBlockShell>
 	);
