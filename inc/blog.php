@@ -236,6 +236,50 @@ function cb_hts_js_2026_reading_time( $html ) {
 }
 
 /**
+ * Split a post's first paragraph off its content: the paragraph becomes the
+ * hero lede (full text, no trim) and is removed from the body so it doesn't
+ * render twice. Only a top-level paragraph qualifies — anything nested or
+ * absent falls back to the excerpt for the lede and leaves the body alone.
+ *
+ * @param WP_Post $post Post object.
+ * @return array{lede: string, content: string}
+ */
+function cb_hts_js_2026_lede_and_body( $post ) {
+	if ( ! $post instanceof WP_Post ) {
+		return array(
+			'lede'    => '',
+			'content' => '',
+		);
+	}
+
+	$blocks = parse_blocks( $post->post_content );
+
+	foreach ( $blocks as $index => $block ) {
+		if ( 'core/paragraph' !== ( $block['blockName'] ?? '' ) ) {
+			continue;
+		}
+
+		$text = trim( wp_strip_all_tags( render_block( $block ) ) );
+
+		if ( '' === $text ) {
+			continue;
+		}
+
+		unset( $blocks[ $index ] );
+
+		return array(
+			'lede'    => $text,
+			'content' => serialize_blocks( array_values( $blocks ) ),
+		);
+	}
+
+	return array(
+		'lede'    => get_the_excerpt( $post ),
+		'content' => $post->post_content,
+	);
+}
+
+/**
  * Render one post card (image, title, date/reading-time meta, excerpt) —
  * shared by index.php's card grid and single.php's related posts, so the
  * two don't drift out of sync with each other.

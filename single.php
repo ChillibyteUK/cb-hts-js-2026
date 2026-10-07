@@ -1,7 +1,8 @@
 <?php
 /**
- * Single post template — navy hero band (breadcrumbs, title, meta row),
- * then a 9/3 article + quick-links sidebar layout on desktop. The sidebar
+ * Single post template — paper split hero reusing the CB Home Hero
+ * pattern (meta strip, H1, first-paragraph lede, full-height image), then
+ * a 9/3 article + quick-links sidebar layout on desktop. The sidebar
  * tracks which H2 section is currently in view (src/js/toc.js) via
  * IntersectionObserver, marking the corresponding link active.
  *
@@ -13,39 +14,99 @@ get_header();
 while ( have_posts() ) {
 	the_post();
 
-	$toc     = cb_hts_js_2026_extract_toc( apply_filters( 'the_content', get_the_content() ), 'h2' );
+	$split   = cb_hts_js_2026_lede_and_body( get_post() );
+	$lede    = $split['lede'];
+	$toc     = cb_hts_js_2026_extract_toc( apply_filters( 'the_content', $split['content'] ), 'h2' );
 	$minutes = cb_hts_js_2026_reading_time( $toc['content'] );
+
+	$has_visual = has_post_thumbnail();
 	?>
-	<section class="post-hero">
+	<?php cb_hts_js_2026_render_breadcrumbs( cb_hts_js_2026_get_breadcrumbs(), 'cb-breadcrumbs single-breadcrumbs' ); ?>
+	<section class="hero hero-post" id="post-hero">
 		<div class="container">
-			<?php cb_hts_js_2026_render_breadcrumbs( cb_hts_js_2026_get_breadcrumbs(), 'cb-breadcrumbs post-hero-breadcrumbs', false ); ?>
-			<h1 class="post-hero__title"><?php the_title(); ?></h1>
-			<ul class="post-meta">
-				<li class="post-meta__item">
-					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-					<?php echo esc_html( get_the_date() ); ?>
-				</li>
-				<li class="post-meta__item">
-					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-					<?php esc_html_e( 'HTS Industries', 'cb-hts-js-2026' ); ?>
-				</li>
-				<li class="post-meta__item">
-					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-					<?php echo esc_html( $minutes ) . ' '; esc_html_e( 'min read', 'cb-hts-js-2026' ); ?>
-				</li>
-			</ul>
+			<div class="hero-split<?php echo $has_visual ? '' : ' hero-split--single'; ?>">
+				<div class="hero-content">
+					<h1 class="hero-h1"><?php the_title(); ?></h1>
+					<ul class="hero-meta">
+						<li class="post-meta__item">
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>
+							<?= esc_html( get_the_date() ); ?></li>
+						<li class="post-meta__item">
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+							HTS Industries				</li>
+						<li class="post-meta__item">
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+							<?= esc_html( $minutes ) . ' min read'; ?></li>
+					</ul>
+					<?php
+					if ( $lede ) {
+						?>
+						<div class="hero-lede"><?php echo esc_html( $lede ); ?></div>
+						<?php
+					}
+					?>
+				</div>
+				<?php
+				if ( $has_visual ) {
+					?>
+					<div class="hero-visual">
+						<div class="hero-img-wrap">
+							<?php the_post_thumbnail( 'large', array( 'class' => 'hero-img' ) ); ?>
+						</div>
+					</div>
+					<?php
+				}
+				?>
+			</div>
 		</div>
 	</section>
+	<?php
+	if ( $has_visual ) {
+		?>
+		<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+				return;
+			}
 
+			var section = document.getElementById('post-hero');
+			if (!section) return;
+
+			var ticking = false;
+
+			function update() {
+				var rect = section.getBoundingClientRect();
+				var windowHeight = window.innerHeight;
+
+				if (rect.bottom > 0 && rect.top < windowHeight) {
+					var percent = (windowHeight - rect.top) / (windowHeight + rect.height);
+					percent = Math.max(0, Math.min(1, percent));
+					var translateY = (percent - 0.5) * 120;
+					section.style.setProperty('--hero-parallax-y', translateY.toFixed(1) + 'px');
+				}
+
+				ticking = false;
+			}
+
+			function onScroll() {
+				if (!ticking) {
+					window.requestAnimationFrame(update);
+					ticking = true;
+				}
+			}
+
+			window.addEventListener('scroll', onScroll, { passive: true });
+			window.addEventListener('resize', onScroll);
+			onScroll();
+		});
+		</script>
+		<?php
+	}
+	?>
 	<div class="container single-body">
 		<div class="row">
 			<div class="col-12 col-lg-9">
 				<article <?php post_class( 'single-article' ); ?>>
-					<?php
-					if ( has_post_thumbnail() ) {
-						the_post_thumbnail( 'full', array( 'class' => 'single-featured-image' ) );
-					}
-					?>
 					<?php echo $toc['content']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- the_content filter output, only mutated by cb_hts_js_2026_extract_toc() to add heading ids. ?>
 				</article>
 

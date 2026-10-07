@@ -218,9 +218,16 @@ inc/
                          shared `cb_hts_js_2026_render_post_card()` used by index.php and single.php's
                          related section (snapshots/restores the FAQ schema queue around its throwaway
                          the_content render so other posts' FAQs never leak into the page schema).
-  single.php/index.php   Insights templates: navy hero band(s), 9/3 article + sticky quick-links
-                         sidebar (toc.js), BlogPosting schema, prev/next, related cards; index hero is
-                         hardcoded (posts page is empty). Single-article h2s render at --fs-h3 and h3s
+  single.php/index.php   Insights templates: paper split heroes reusing the CB Home Hero
+                         `.hero-*` classes verbatim (meta strip, H1, lede, image, parallax — home
+                         hero stays white); single lede = first paragraph (full text, stripped from the body via
+                         `cb_hts_js_2026_lede_and_body()` so it never renders twice), badge removed, breadcrumbs below the hero,
+                         image stretched to hero height with min-height fallback; index badge = guide
+                         count; `.hero-split--single`
+                         fallback in src/css/single.css when there's no featured image), 9/3 article +
+                         sticky quick-links sidebar (toc.js), BlogPosting schema, prev/next, related
+                         cards; index hero is hardcoded (posts page is empty) with the latest post's
+                         image + a "Read the latest guide" CTA. Single-article h2s render at --fs-h3 and h3s
                          at --fs-h6; CB FAQs
                          renders plain there (h3 questions, no accordion/chrome, `is_singular('post')`
                          branch in its render.php + `.faq-plain` rules in src/css/single.css) so its
