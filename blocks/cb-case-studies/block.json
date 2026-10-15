@@ -1,0 +1,25 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "cb-hts-js-2026/cb-case-studies",
+	"title": "CB Case Studies",
+	"category": "cb-hts-js-2026",
+	"icon": "images-alt2",
+	"description": "Up to three case-study projects for one selected application, with an optional button.",
+	"attributes": {
+		"eyebrow": { "type": "string", "default": "" },
+		"headline": { "type": "string", "default": "" },
+		"applicationId": { "type": "number", "default": 0 },
+		"limit": { "type": "number", "default": 3 },
+		"buttonText": { "type": "string", "default": "" },
+		"buttonUrl": { "type": "string", "default": "" },
+		"buttonTarget": { "type": "boolean", "default": false }
+	},
+	"supports": {
+		"anchor": true,
+		"className": true,
+		"align": true
+	},
+	"editorScript": "file:./build/index.js",
+	"render": "file:./render.php"
+}
