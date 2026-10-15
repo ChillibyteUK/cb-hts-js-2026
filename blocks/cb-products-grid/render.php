@@ -9,20 +9,37 @@ defined( 'ABSPATH' ) || exit;
 
 $eyebrow          = $attributes['eyebrow'] ?? '';
 $headline         = $attributes['headline'] ?? '';
+$lede             = $attributes['lede'] ?? '';
+$selected_ids     = array_values(
+	array_filter(
+		array_map(
+			function ( $row ) {
+				return absint( $row['productId'] ?? 0 );
+			},
+			$attributes['productIds'] ?? array()
+		)
+	)
+);
 $headline_allowed = array(
 	'span' => array(),
 	'br'   => array(),
 );
 
-$products = new WP_Query(
-	array(
-		'post_type'      => 'product',
-		'posts_per_page' => -1,
-		'orderby'        => 'menu_order date',
-		'order'          => 'ASC',
-		'no_found_rows'  => true,
-	)
+$query_args = array(
+	'post_type'      => 'product',
+	'posts_per_page' => -1,
+	'orderby'        => 'menu_order date',
+	'order'          => 'ASC',
+	'no_found_rows'  => true,
 );
+
+// Hand-picked products show in the order chosen; none picked = all products.
+if ( $selected_ids ) {
+	$query_args['post__in'] = $selected_ids;
+	$query_args['orderby']  = 'post__in';
+}
+
+$products = new WP_Query( $query_args );
 
 if ( ! $products->have_posts() ) {
 	return;
@@ -40,7 +57,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 <section <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() already escapes. ?>>
 	<div class="container">
 		<div class="products-header row align-items-end g-4 g-lg-5">
-			<div class="col-12 col-lg-8">
+			<div class="col-12 <?php echo $lede ? 'col-lg-7' : 'col-lg-8'; ?>">
 				<?php if ( $eyebrow ) { ?>
 					<div class="eyebrow"><?= esc_html( $eyebrow ); ?></div>
 				<?php } ?>
@@ -48,6 +65,11 @@ $wrapper_attributes = get_block_wrapper_attributes(
 					<h2 class="products-headline h2"><?= wp_kses( $headline, $headline_allowed ); ?></h2>
 				<?php } ?>
 			</div>
+			<?php if ( $lede ) { ?>
+			<div class="col-12 col-lg-5">
+				<div class="products-intro prose-md"><?php echo wp_kses_post( $lede ); ?></div>
+			</div>
+			<?php } ?>
 		</div>
 
 		<?php
@@ -55,12 +77,9 @@ $wrapper_attributes = get_block_wrapper_attributes(
 			?>
 			<div class="product-grid">
 				<?php
-				$i = 0;
 				while ( $products->have_posts() ) {
 					$products->the_post();
-					++$i;
 					$the_post_id = get_the_ID();
-					$num         = str_pad( (string) $i, 2, '0', STR_PAD_LEFT );
 					$card_tag    = get_post_meta( $the_post_id, 'tag', true );
 					$card_intro  = get_post_meta( $the_post_id, 'card_intro', true );
 					$has_url     = (bool) trim( get_the_content() );
@@ -87,7 +106,6 @@ $wrapper_attributes = get_block_wrapper_attributes(
 								<?php
 							}
 							?>
-							<span class="product-card-num"><?= esc_html( $num ); ?></span>
 							<?php
 							if ( has_post_thumbnail() ) {
 								echo get_the_post_thumbnail(

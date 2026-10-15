@@ -7,7 +7,9 @@
 	"icon": "cover-image",
 	"attributes": {
 		"eyebrow": { "type": "string", "default": "" },
-		"headline": { "type": "string", "default": "" }
+		"headline": { "type": "string", "default": "" },
+		"lede": { "type": "string", "default": "" },
+		"productIds": { "type": "array", "default": [] }
 	},
 	"supports": {
 		"anchor": true,

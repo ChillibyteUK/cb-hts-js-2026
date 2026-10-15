@@ -1037,6 +1037,66 @@
 	}
 }
 
+/* --- src/blocks/cb-feature-grid.css --- */
+.feature-grid {
+	padding-block: clamp(4rem, 8vw, 7.5rem);
+	background: var(--col-white);
+}
+
+.feature-grid-headline {
+	margin-block-end: var(--space-5);
+}
+
+/* Hairlines: the grid owns top/left, each cell owns right/bottom — so an
+   incomplete last row leaves its empty slots borderless, as designed. */
+.feature-grid-cells {
+	display: grid;
+	grid-template-columns: 1fr;
+	border-block-start: 1px solid var(--col-rule);
+	border-inline-start: 1px solid var(--col-rule);
+}
+
+@media (min-width: 576px) {
+	.feature-grid-cells {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (min-width: 992px) {
+	.feature-grid-cells {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+
+.feature-grid-cell {
+	padding: var(--space-4);
+	border-inline-end: 1px solid var(--col-rule);
+	border-block-end: 1px solid var(--col-rule);
+}
+
+.feature-grid-title {
+	margin: 0 0 var(--space-2);
+	font-size: var(--fs-card-title);
+	font-weight: var(--fw-700);
+	line-height: var(--lh-title);
+	letter-spacing: var(--ls-snug);
+	color: var(--col-navy);
+}
+
+.feature-grid-content {
+	font-size: var(--fs-body-sm);
+	line-height: var(--lh-body);
+	color: var(--col-muted);
+
+	p {
+		margin: 0 0 var(--space-2);
+	}
+
+	p:last-child {
+		margin-block-end: 0;
+	}
+}
+
 /* --- src/blocks/cb-heading.css --- */
 /* =========================
    HEADING
@@ -1854,6 +1914,20 @@
 	margin-block-end: clamp(2.5rem, 6vw, 4rem);
 }
 
+.products-header {
+	gap: var(--space-4);
+}
+
+@media (min-width: 992px) {
+	.products-header {
+		gap: var(--space-5);
+	}
+}
+
+.products-intro {
+	color: var(--col-muted);
+}
+
 .products-headline {
 	color: var(--col-navy);
 	max-width: 600px;
@@ -1930,24 +2004,6 @@
 	letter-spacing: var(--ls-caps);
 	text-transform: var(--tt-upper);
 	line-height: var(--lh-flat);
-}
-
-.product-card-num {
-	position: absolute;
-	inset-block-start: 1.125rem;
-	inset-inline-end: 1.125rem;
-	z-index: 2;
-	inline-size: 2rem;
-	block-size: 2rem;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-radius: 50%;
-	background: rgba(15, 27, 51, 0.6);
-	backdrop-filter: blur(4px);
-	color: var(--col-white);
-	font-size: 0.8125rem;
-	font-weight: var(--fw-700);
 }
 
 .product-card-body {

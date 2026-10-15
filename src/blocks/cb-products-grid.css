@@ -7,6 +7,20 @@
 	margin-block-end: clamp(2.5rem, 6vw, 4rem);
 }
 
+.products-header {
+	gap: var(--space-4);
+}
+
+@media (min-width: 992px) {
+	.products-header {
+		gap: var(--space-5);
+	}
+}
+
+.products-intro {
+	color: var(--col-muted);
+}
+
 .products-headline {
 	color: var(--col-navy);
 	max-width: 600px;
@@ -83,24 +97,6 @@
 	letter-spacing: var(--ls-caps);
 	text-transform: var(--tt-upper);
 	line-height: var(--lh-flat);
-}
-
-.product-card-num {
-	position: absolute;
-	inset-block-start: 1.125rem;
-	inset-inline-end: 1.125rem;
-	z-index: 2;
-	inline-size: 2rem;
-	block-size: 2rem;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-radius: 50%;
-	background: rgba(15, 27, 51, 0.6);
-	backdrop-filter: blur(4px);
-	color: var(--col-white);
-	font-size: 0.8125rem;
-	font-weight: var(--fw-700);
 }
 
 .product-card-body {
