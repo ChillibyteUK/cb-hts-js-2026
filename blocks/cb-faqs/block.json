@@ -16,8 +16,7 @@
 		"className": true,
 		"align": true,
 		"color": {
-			"background": true,
-			"text": true
+			"background": true
 		}
 	},
 	"editorScript": "file:./build/index.js",

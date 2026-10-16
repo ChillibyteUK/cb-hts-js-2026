@@ -14,6 +14,9 @@ $features   = $attributes['features'] ?? '';
 $cta_text   = $attributes['ctaText'] ?? '';
 $cta_url    = $attributes['ctaUrl'] ?? '';
 $cta_target = ! empty( $attributes['ctaTarget'] );
+$cta2_text   = $attributes['cta2Text'] ?? '';
+$cta2_url    = $attributes['cta2Url'] ?? '';
+$cta2_target = ! empty( $attributes['cta2Target'] );
 $image_id   = $attributes['imageId'] ?? 0;
 
 $headline_allowed = array(
@@ -70,6 +73,11 @@ $wrapper_attributes = get_block_wrapper_attributes(
 				</ul>
 					<?php
 				}
+				if ( $cta_url && $cta2_url ) {
+					?>
+				<div class="config-actions">
+					<?php
+				}
 				if ( $cta_url ) {
 					?>
 				<a
@@ -82,6 +90,22 @@ $wrapper_attributes = get_block_wrapper_attributes(
 						<path d="M5 12h14M12 5l7 7-7 7" />
 					</svg>
 				</a>
+					<?php
+				}
+				if ( $cta2_url ) {
+					?>
+				<a
+					href="<?php echo esc_url( $cta2_url ); ?>"
+					<?php echo $cta2_target ? ' target="_blank" rel="noopener"' : ''; ?>
+					class="btn btn-outline-dark w-100 w-md-auto"
+				>
+					<?php echo esc_html( $cta2_text ? $cta2_text : 'Learn more' ); ?>
+				</a>
+					<?php
+				}
+				if ( $cta_url && $cta2_url ) {
+					?>
+				</div>
 					<?php
 				}
 				?>

@@ -1,7 +1,8 @@
 import { __ } from '@wordpress/i18n';
-import { useBlockProps, RichText, MediaUpload, MediaUploadCheck, URLInput } from '@wordpress/block-editor';
+import { useBlockProps, RichText, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 import { TextControl, TextareaControl, ToggleControl, Button } from '@wordpress/components';
 import EditorBlockShell from '../../_shared/EditorBlockShell';
+import URLInput from '../../_shared/URLInput';
 import SideloadImage from '../../_shared/SideloadImage';
 
 export default function Edit( { attributes, setAttributes, clientId } ) {

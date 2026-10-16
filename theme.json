@@ -145,6 +145,1415 @@
         }
       ]
     },
+    "blocks": {
+      "cb-hts-js-2026/cb-applications-grid": {
+        "color": {
+          "custom": false,
+          "palette": [
+            {
+              "name": "white",
+              "slug": "white",
+              "color": "#ffffff",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-100",
+              "slug": "grey-100",
+              "color": "#f5f5f5",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-300",
+              "slug": "grey-300",
+              "color": "#d9d9d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-10",
+              "slug": "navy-10",
+              "color": "#c2d0d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-5",
+              "slug": "navy-5",
+              "color": "#eef2f6",
+              "origin": "theme"
+            },
+            {
+              "name": "orange-15",
+              "slug": "orange-15",
+              "color": "#faded0",
+              "origin": "theme"
+            },
+            {
+              "name": "rule",
+              "slug": "rule",
+              "color": "#d1d5db",
+              "origin": "theme"
+            },
+            {
+              "name": "light-border",
+              "slug": "light-border",
+              "color": "#e5e7eb",
+              "origin": "theme"
+            },
+            {
+              "name": "paper",
+              "slug": "paper",
+              "color": "#f4f1ec",
+              "origin": "theme"
+            },
+            {
+              "name": "section-bg",
+              "slug": "section-bg",
+              "color": "#eef2f6",
+              "origin": "theme"
+            }
+          ]
+        }
+      },
+      "cb-hts-js-2026/cb-case-studies": {
+        "color": {
+          "custom": false,
+          "palette": [
+            {
+              "name": "white",
+              "slug": "white",
+              "color": "#ffffff",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-100",
+              "slug": "grey-100",
+              "color": "#f5f5f5",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-300",
+              "slug": "grey-300",
+              "color": "#d9d9d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-10",
+              "slug": "navy-10",
+              "color": "#c2d0d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-5",
+              "slug": "navy-5",
+              "color": "#eef2f6",
+              "origin": "theme"
+            },
+            {
+              "name": "orange-15",
+              "slug": "orange-15",
+              "color": "#faded0",
+              "origin": "theme"
+            },
+            {
+              "name": "rule",
+              "slug": "rule",
+              "color": "#d1d5db",
+              "origin": "theme"
+            },
+            {
+              "name": "light-border",
+              "slug": "light-border",
+              "color": "#e5e7eb",
+              "origin": "theme"
+            },
+            {
+              "name": "paper",
+              "slug": "paper",
+              "color": "#f4f1ec",
+              "origin": "theme"
+            },
+            {
+              "name": "section-bg",
+              "slug": "section-bg",
+              "color": "#eef2f6",
+              "origin": "theme"
+            }
+          ]
+        }
+      },
+      "cb-hts-js-2026/cb-client-projects-gallery": {
+        "color": {
+          "custom": false,
+          "palette": [
+            {
+              "name": "white",
+              "slug": "white",
+              "color": "#ffffff",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-100",
+              "slug": "grey-100",
+              "color": "#f5f5f5",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-300",
+              "slug": "grey-300",
+              "color": "#d9d9d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-10",
+              "slug": "navy-10",
+              "color": "#c2d0d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-5",
+              "slug": "navy-5",
+              "color": "#eef2f6",
+              "origin": "theme"
+            },
+            {
+              "name": "orange-15",
+              "slug": "orange-15",
+              "color": "#faded0",
+              "origin": "theme"
+            },
+            {
+              "name": "rule",
+              "slug": "rule",
+              "color": "#d1d5db",
+              "origin": "theme"
+            },
+            {
+              "name": "light-border",
+              "slug": "light-border",
+              "color": "#e5e7eb",
+              "origin": "theme"
+            },
+            {
+              "name": "paper",
+              "slug": "paper",
+              "color": "#f4f1ec",
+              "origin": "theme"
+            },
+            {
+              "name": "section-bg",
+              "slug": "section-bg",
+              "color": "#eef2f6",
+              "origin": "theme"
+            }
+          ]
+        }
+      },
+      "cb-hts-js-2026/cb-configurator": {
+        "color": {
+          "custom": false,
+          "palette": [
+            {
+              "name": "white",
+              "slug": "white",
+              "color": "#ffffff",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-100",
+              "slug": "grey-100",
+              "color": "#f5f5f5",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-300",
+              "slug": "grey-300",
+              "color": "#d9d9d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-10",
+              "slug": "navy-10",
+              "color": "#c2d0d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-5",
+              "slug": "navy-5",
+              "color": "#eef2f6",
+              "origin": "theme"
+            },
+            {
+              "name": "orange-15",
+              "slug": "orange-15",
+              "color": "#faded0",
+              "origin": "theme"
+            },
+            {
+              "name": "rule",
+              "slug": "rule",
+              "color": "#d1d5db",
+              "origin": "theme"
+            },
+            {
+              "name": "light-border",
+              "slug": "light-border",
+              "color": "#e5e7eb",
+              "origin": "theme"
+            },
+            {
+              "name": "paper",
+              "slug": "paper",
+              "color": "#f4f1ec",
+              "origin": "theme"
+            },
+            {
+              "name": "section-bg",
+              "slug": "section-bg",
+              "color": "#eef2f6",
+              "origin": "theme"
+            }
+          ]
+        }
+      },
+      "cb-hts-js-2026/cb-contact": {
+        "color": {
+          "custom": false,
+          "palette": [
+            {
+              "name": "white",
+              "slug": "white",
+              "color": "#ffffff",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-100",
+              "slug": "grey-100",
+              "color": "#f5f5f5",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-300",
+              "slug": "grey-300",
+              "color": "#d9d9d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-10",
+              "slug": "navy-10",
+              "color": "#c2d0d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-5",
+              "slug": "navy-5",
+              "color": "#eef2f6",
+              "origin": "theme"
+            },
+            {
+              "name": "orange-15",
+              "slug": "orange-15",
+              "color": "#faded0",
+              "origin": "theme"
+            },
+            {
+              "name": "rule",
+              "slug": "rule",
+              "color": "#d1d5db",
+              "origin": "theme"
+            },
+            {
+              "name": "light-border",
+              "slug": "light-border",
+              "color": "#e5e7eb",
+              "origin": "theme"
+            },
+            {
+              "name": "paper",
+              "slug": "paper",
+              "color": "#f4f1ec",
+              "origin": "theme"
+            },
+            {
+              "name": "section-bg",
+              "slug": "section-bg",
+              "color": "#eef2f6",
+              "origin": "theme"
+            }
+          ]
+        }
+      },
+      "cb-hts-js-2026/cb-downloads": {
+        "color": {
+          "custom": false,
+          "palette": [
+            {
+              "name": "white",
+              "slug": "white",
+              "color": "#ffffff",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-100",
+              "slug": "grey-100",
+              "color": "#f5f5f5",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-300",
+              "slug": "grey-300",
+              "color": "#d9d9d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-10",
+              "slug": "navy-10",
+              "color": "#c2d0d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-5",
+              "slug": "navy-5",
+              "color": "#eef2f6",
+              "origin": "theme"
+            },
+            {
+              "name": "orange-15",
+              "slug": "orange-15",
+              "color": "#faded0",
+              "origin": "theme"
+            },
+            {
+              "name": "rule",
+              "slug": "rule",
+              "color": "#d1d5db",
+              "origin": "theme"
+            },
+            {
+              "name": "light-border",
+              "slug": "light-border",
+              "color": "#e5e7eb",
+              "origin": "theme"
+            },
+            {
+              "name": "paper",
+              "slug": "paper",
+              "color": "#f4f1ec",
+              "origin": "theme"
+            },
+            {
+              "name": "section-bg",
+              "slug": "section-bg",
+              "color": "#eef2f6",
+              "origin": "theme"
+            }
+          ]
+        }
+      },
+      "cb-hts-js-2026/cb-faqs": {
+        "color": {
+          "custom": false,
+          "palette": [
+            {
+              "name": "white",
+              "slug": "white",
+              "color": "#ffffff",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-100",
+              "slug": "grey-100",
+              "color": "#f5f5f5",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-300",
+              "slug": "grey-300",
+              "color": "#d9d9d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-10",
+              "slug": "navy-10",
+              "color": "#c2d0d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-5",
+              "slug": "navy-5",
+              "color": "#eef2f6",
+              "origin": "theme"
+            },
+            {
+              "name": "orange-15",
+              "slug": "orange-15",
+              "color": "#faded0",
+              "origin": "theme"
+            },
+            {
+              "name": "rule",
+              "slug": "rule",
+              "color": "#d1d5db",
+              "origin": "theme"
+            },
+            {
+              "name": "light-border",
+              "slug": "light-border",
+              "color": "#e5e7eb",
+              "origin": "theme"
+            },
+            {
+              "name": "paper",
+              "slug": "paper",
+              "color": "#f4f1ec",
+              "origin": "theme"
+            },
+            {
+              "name": "section-bg",
+              "slug": "section-bg",
+              "color": "#eef2f6",
+              "origin": "theme"
+            }
+          ]
+        }
+      },
+      "cb-hts-js-2026/cb-feature-grid": {
+        "color": {
+          "custom": false,
+          "palette": [
+            {
+              "name": "white",
+              "slug": "white",
+              "color": "#ffffff",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-100",
+              "slug": "grey-100",
+              "color": "#f5f5f5",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-300",
+              "slug": "grey-300",
+              "color": "#d9d9d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-10",
+              "slug": "navy-10",
+              "color": "#c2d0d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-5",
+              "slug": "navy-5",
+              "color": "#eef2f6",
+              "origin": "theme"
+            },
+            {
+              "name": "orange-15",
+              "slug": "orange-15",
+              "color": "#faded0",
+              "origin": "theme"
+            },
+            {
+              "name": "rule",
+              "slug": "rule",
+              "color": "#d1d5db",
+              "origin": "theme"
+            },
+            {
+              "name": "light-border",
+              "slug": "light-border",
+              "color": "#e5e7eb",
+              "origin": "theme"
+            },
+            {
+              "name": "paper",
+              "slug": "paper",
+              "color": "#f4f1ec",
+              "origin": "theme"
+            },
+            {
+              "name": "section-bg",
+              "slug": "section-bg",
+              "color": "#eef2f6",
+              "origin": "theme"
+            }
+          ]
+        }
+      },
+      "cb-hts-js-2026/cb-home-hero": {
+        "color": {
+          "custom": false,
+          "palette": [
+            {
+              "name": "white",
+              "slug": "white",
+              "color": "#ffffff",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-100",
+              "slug": "grey-100",
+              "color": "#f5f5f5",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-300",
+              "slug": "grey-300",
+              "color": "#d9d9d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-10",
+              "slug": "navy-10",
+              "color": "#c2d0d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-5",
+              "slug": "navy-5",
+              "color": "#eef2f6",
+              "origin": "theme"
+            },
+            {
+              "name": "orange-15",
+              "slug": "orange-15",
+              "color": "#faded0",
+              "origin": "theme"
+            },
+            {
+              "name": "rule",
+              "slug": "rule",
+              "color": "#d1d5db",
+              "origin": "theme"
+            },
+            {
+              "name": "light-border",
+              "slug": "light-border",
+              "color": "#e5e7eb",
+              "origin": "theme"
+            },
+            {
+              "name": "paper",
+              "slug": "paper",
+              "color": "#f4f1ec",
+              "origin": "theme"
+            },
+            {
+              "name": "section-bg",
+              "slug": "section-bg",
+              "color": "#eef2f6",
+              "origin": "theme"
+            }
+          ]
+        }
+      },
+      "cb-hts-js-2026/cb-intro": {
+        "color": {
+          "custom": false,
+          "palette": [
+            {
+              "name": "white",
+              "slug": "white",
+              "color": "#ffffff",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-100",
+              "slug": "grey-100",
+              "color": "#f5f5f5",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-300",
+              "slug": "grey-300",
+              "color": "#d9d9d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-10",
+              "slug": "navy-10",
+              "color": "#c2d0d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-5",
+              "slug": "navy-5",
+              "color": "#eef2f6",
+              "origin": "theme"
+            },
+            {
+              "name": "orange-15",
+              "slug": "orange-15",
+              "color": "#faded0",
+              "origin": "theme"
+            },
+            {
+              "name": "rule",
+              "slug": "rule",
+              "color": "#d1d5db",
+              "origin": "theme"
+            },
+            {
+              "name": "light-border",
+              "slug": "light-border",
+              "color": "#e5e7eb",
+              "origin": "theme"
+            },
+            {
+              "name": "paper",
+              "slug": "paper",
+              "color": "#f4f1ec",
+              "origin": "theme"
+            },
+            {
+              "name": "section-bg",
+              "slug": "section-bg",
+              "color": "#eef2f6",
+              "origin": "theme"
+            }
+          ]
+        }
+      },
+      "cb-hts-js-2026/cb-product-hero": {
+        "color": {
+          "custom": false,
+          "palette": [
+            {
+              "name": "white",
+              "slug": "white",
+              "color": "#ffffff",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-100",
+              "slug": "grey-100",
+              "color": "#f5f5f5",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-300",
+              "slug": "grey-300",
+              "color": "#d9d9d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-10",
+              "slug": "navy-10",
+              "color": "#c2d0d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-5",
+              "slug": "navy-5",
+              "color": "#eef2f6",
+              "origin": "theme"
+            },
+            {
+              "name": "orange-15",
+              "slug": "orange-15",
+              "color": "#faded0",
+              "origin": "theme"
+            },
+            {
+              "name": "rule",
+              "slug": "rule",
+              "color": "#d1d5db",
+              "origin": "theme"
+            },
+            {
+              "name": "light-border",
+              "slug": "light-border",
+              "color": "#e5e7eb",
+              "origin": "theme"
+            },
+            {
+              "name": "paper",
+              "slug": "paper",
+              "color": "#f4f1ec",
+              "origin": "theme"
+            },
+            {
+              "name": "section-bg",
+              "slug": "section-bg",
+              "color": "#eef2f6",
+              "origin": "theme"
+            }
+          ]
+        }
+      },
+      "cb-hts-js-2026/cb-product-used": {
+        "color": {
+          "custom": false,
+          "palette": [
+            {
+              "name": "white",
+              "slug": "white",
+              "color": "#ffffff",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-100",
+              "slug": "grey-100",
+              "color": "#f5f5f5",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-300",
+              "slug": "grey-300",
+              "color": "#d9d9d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-10",
+              "slug": "navy-10",
+              "color": "#c2d0d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-5",
+              "slug": "navy-5",
+              "color": "#eef2f6",
+              "origin": "theme"
+            },
+            {
+              "name": "orange-15",
+              "slug": "orange-15",
+              "color": "#faded0",
+              "origin": "theme"
+            },
+            {
+              "name": "rule",
+              "slug": "rule",
+              "color": "#d1d5db",
+              "origin": "theme"
+            },
+            {
+              "name": "light-border",
+              "slug": "light-border",
+              "color": "#e5e7eb",
+              "origin": "theme"
+            },
+            {
+              "name": "paper",
+              "slug": "paper",
+              "color": "#f4f1ec",
+              "origin": "theme"
+            },
+            {
+              "name": "section-bg",
+              "slug": "section-bg",
+              "color": "#eef2f6",
+              "origin": "theme"
+            }
+          ]
+        }
+      },
+      "cb-hts-js-2026/cb-products-grid": {
+        "color": {
+          "custom": false,
+          "palette": [
+            {
+              "name": "white",
+              "slug": "white",
+              "color": "#ffffff",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-100",
+              "slug": "grey-100",
+              "color": "#f5f5f5",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-300",
+              "slug": "grey-300",
+              "color": "#d9d9d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-10",
+              "slug": "navy-10",
+              "color": "#c2d0d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-5",
+              "slug": "navy-5",
+              "color": "#eef2f6",
+              "origin": "theme"
+            },
+            {
+              "name": "orange-15",
+              "slug": "orange-15",
+              "color": "#faded0",
+              "origin": "theme"
+            },
+            {
+              "name": "rule",
+              "slug": "rule",
+              "color": "#d1d5db",
+              "origin": "theme"
+            },
+            {
+              "name": "light-border",
+              "slug": "light-border",
+              "color": "#e5e7eb",
+              "origin": "theme"
+            },
+            {
+              "name": "paper",
+              "slug": "paper",
+              "color": "#f4f1ec",
+              "origin": "theme"
+            },
+            {
+              "name": "section-bg",
+              "slug": "section-bg",
+              "color": "#eef2f6",
+              "origin": "theme"
+            }
+          ]
+        }
+      },
+      "cb-hts-js-2026/cb-products-nav": {
+        "color": {
+          "custom": false,
+          "palette": [
+            {
+              "name": "white",
+              "slug": "white",
+              "color": "#ffffff",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-100",
+              "slug": "grey-100",
+              "color": "#f5f5f5",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-300",
+              "slug": "grey-300",
+              "color": "#d9d9d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-10",
+              "slug": "navy-10",
+              "color": "#c2d0d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-5",
+              "slug": "navy-5",
+              "color": "#eef2f6",
+              "origin": "theme"
+            },
+            {
+              "name": "orange-15",
+              "slug": "orange-15",
+              "color": "#faded0",
+              "origin": "theme"
+            },
+            {
+              "name": "rule",
+              "slug": "rule",
+              "color": "#d1d5db",
+              "origin": "theme"
+            },
+            {
+              "name": "light-border",
+              "slug": "light-border",
+              "color": "#e5e7eb",
+              "origin": "theme"
+            },
+            {
+              "name": "paper",
+              "slug": "paper",
+              "color": "#f4f1ec",
+              "origin": "theme"
+            },
+            {
+              "name": "section-bg",
+              "slug": "section-bg",
+              "color": "#eef2f6",
+              "origin": "theme"
+            }
+          ]
+        }
+      },
+      "cb-hts-js-2026/cb-projects-grid": {
+        "color": {
+          "custom": false,
+          "palette": [
+            {
+              "name": "white",
+              "slug": "white",
+              "color": "#ffffff",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-100",
+              "slug": "grey-100",
+              "color": "#f5f5f5",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-300",
+              "slug": "grey-300",
+              "color": "#d9d9d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-10",
+              "slug": "navy-10",
+              "color": "#c2d0d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-5",
+              "slug": "navy-5",
+              "color": "#eef2f6",
+              "origin": "theme"
+            },
+            {
+              "name": "orange-15",
+              "slug": "orange-15",
+              "color": "#faded0",
+              "origin": "theme"
+            },
+            {
+              "name": "rule",
+              "slug": "rule",
+              "color": "#d1d5db",
+              "origin": "theme"
+            },
+            {
+              "name": "light-border",
+              "slug": "light-border",
+              "color": "#e5e7eb",
+              "origin": "theme"
+            },
+            {
+              "name": "paper",
+              "slug": "paper",
+              "color": "#f4f1ec",
+              "origin": "theme"
+            },
+            {
+              "name": "section-bg",
+              "slug": "section-bg",
+              "color": "#eef2f6",
+              "origin": "theme"
+            }
+          ]
+        }
+      },
+      "cb-hts-js-2026/cb-projects-index": {
+        "color": {
+          "custom": false,
+          "palette": [
+            {
+              "name": "white",
+              "slug": "white",
+              "color": "#ffffff",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-100",
+              "slug": "grey-100",
+              "color": "#f5f5f5",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-300",
+              "slug": "grey-300",
+              "color": "#d9d9d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-10",
+              "slug": "navy-10",
+              "color": "#c2d0d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-5",
+              "slug": "navy-5",
+              "color": "#eef2f6",
+              "origin": "theme"
+            },
+            {
+              "name": "orange-15",
+              "slug": "orange-15",
+              "color": "#faded0",
+              "origin": "theme"
+            },
+            {
+              "name": "rule",
+              "slug": "rule",
+              "color": "#d1d5db",
+              "origin": "theme"
+            },
+            {
+              "name": "light-border",
+              "slug": "light-border",
+              "color": "#e5e7eb",
+              "origin": "theme"
+            },
+            {
+              "name": "paper",
+              "slug": "paper",
+              "color": "#f4f1ec",
+              "origin": "theme"
+            },
+            {
+              "name": "section-bg",
+              "slug": "section-bg",
+              "color": "#eef2f6",
+              "origin": "theme"
+            }
+          ]
+        }
+      },
+      "cb-hts-js-2026/cb-selected-clients": {
+        "color": {
+          "custom": false,
+          "palette": [
+            {
+              "name": "white",
+              "slug": "white",
+              "color": "#ffffff",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-100",
+              "slug": "grey-100",
+              "color": "#f5f5f5",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-300",
+              "slug": "grey-300",
+              "color": "#d9d9d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-10",
+              "slug": "navy-10",
+              "color": "#c2d0d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-5",
+              "slug": "navy-5",
+              "color": "#eef2f6",
+              "origin": "theme"
+            },
+            {
+              "name": "orange-15",
+              "slug": "orange-15",
+              "color": "#faded0",
+              "origin": "theme"
+            },
+            {
+              "name": "rule",
+              "slug": "rule",
+              "color": "#d1d5db",
+              "origin": "theme"
+            },
+            {
+              "name": "light-border",
+              "slug": "light-border",
+              "color": "#e5e7eb",
+              "origin": "theme"
+            },
+            {
+              "name": "paper",
+              "slug": "paper",
+              "color": "#f4f1ec",
+              "origin": "theme"
+            },
+            {
+              "name": "section-bg",
+              "slug": "section-bg",
+              "color": "#eef2f6",
+              "origin": "theme"
+            }
+          ]
+        }
+      },
+      "cb-hts-js-2026/cb-specs": {
+        "color": {
+          "custom": false,
+          "palette": [
+            {
+              "name": "white",
+              "slug": "white",
+              "color": "#ffffff",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-100",
+              "slug": "grey-100",
+              "color": "#f5f5f5",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-300",
+              "slug": "grey-300",
+              "color": "#d9d9d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-10",
+              "slug": "navy-10",
+              "color": "#c2d0d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-5",
+              "slug": "navy-5",
+              "color": "#eef2f6",
+              "origin": "theme"
+            },
+            {
+              "name": "orange-15",
+              "slug": "orange-15",
+              "color": "#faded0",
+              "origin": "theme"
+            },
+            {
+              "name": "rule",
+              "slug": "rule",
+              "color": "#d1d5db",
+              "origin": "theme"
+            },
+            {
+              "name": "light-border",
+              "slug": "light-border",
+              "color": "#e5e7eb",
+              "origin": "theme"
+            },
+            {
+              "name": "paper",
+              "slug": "paper",
+              "color": "#f4f1ec",
+              "origin": "theme"
+            },
+            {
+              "name": "section-bg",
+              "slug": "section-bg",
+              "color": "#eef2f6",
+              "origin": "theme"
+            }
+          ]
+        }
+      },
+      "cb-hts-js-2026/cb-split-steps": {
+        "color": {
+          "custom": false,
+          "palette": [
+            {
+              "name": "white",
+              "slug": "white",
+              "color": "#ffffff",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-100",
+              "slug": "grey-100",
+              "color": "#f5f5f5",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-300",
+              "slug": "grey-300",
+              "color": "#d9d9d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-10",
+              "slug": "navy-10",
+              "color": "#c2d0d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-5",
+              "slug": "navy-5",
+              "color": "#eef2f6",
+              "origin": "theme"
+            },
+            {
+              "name": "orange-15",
+              "slug": "orange-15",
+              "color": "#faded0",
+              "origin": "theme"
+            },
+            {
+              "name": "rule",
+              "slug": "rule",
+              "color": "#d1d5db",
+              "origin": "theme"
+            },
+            {
+              "name": "light-border",
+              "slug": "light-border",
+              "color": "#e5e7eb",
+              "origin": "theme"
+            },
+            {
+              "name": "paper",
+              "slug": "paper",
+              "color": "#f4f1ec",
+              "origin": "theme"
+            },
+            {
+              "name": "section-bg",
+              "slug": "section-bg",
+              "color": "#eef2f6",
+              "origin": "theme"
+            }
+          ]
+        }
+      },
+      "cb-hts-js-2026/cb-steps": {
+        "color": {
+          "custom": false,
+          "palette": [
+            {
+              "name": "white",
+              "slug": "white",
+              "color": "#ffffff",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-100",
+              "slug": "grey-100",
+              "color": "#f5f5f5",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-300",
+              "slug": "grey-300",
+              "color": "#d9d9d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-10",
+              "slug": "navy-10",
+              "color": "#c2d0d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-5",
+              "slug": "navy-5",
+              "color": "#eef2f6",
+              "origin": "theme"
+            },
+            {
+              "name": "orange-15",
+              "slug": "orange-15",
+              "color": "#faded0",
+              "origin": "theme"
+            },
+            {
+              "name": "rule",
+              "slug": "rule",
+              "color": "#d1d5db",
+              "origin": "theme"
+            },
+            {
+              "name": "light-border",
+              "slug": "light-border",
+              "color": "#e5e7eb",
+              "origin": "theme"
+            },
+            {
+              "name": "paper",
+              "slug": "paper",
+              "color": "#f4f1ec",
+              "origin": "theme"
+            },
+            {
+              "name": "section-bg",
+              "slug": "section-bg",
+              "color": "#eef2f6",
+              "origin": "theme"
+            }
+          ]
+        }
+      },
+      "cb-hts-js-2026/cb-why-split": {
+        "color": {
+          "custom": false,
+          "palette": [
+            {
+              "name": "white",
+              "slug": "white",
+              "color": "#ffffff",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-100",
+              "slug": "grey-100",
+              "color": "#f5f5f5",
+              "origin": "theme"
+            },
+            {
+              "name": "grey-300",
+              "slug": "grey-300",
+              "color": "#d9d9d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-10",
+              "slug": "navy-10",
+              "color": "#c2d0d9",
+              "origin": "theme"
+            },
+            {
+              "name": "navy-5",
+              "slug": "navy-5",
+              "color": "#eef2f6",
+              "origin": "theme"
+            },
+            {
+              "name": "orange-15",
+              "slug": "orange-15",
+              "color": "#faded0",
+              "origin": "theme"
+            },
+            {
+              "name": "rule",
+              "slug": "rule",
+              "color": "#d1d5db",
+              "origin": "theme"
+            },
+            {
+              "name": "light-border",
+              "slug": "light-border",
+              "color": "#e5e7eb",
+              "origin": "theme"
+            },
+            {
+              "name": "paper",
+              "slug": "paper",
+              "color": "#f4f1ec",
+              "origin": "theme"
+            },
+            {
+              "name": "section-bg",
+              "slug": "section-bg",
+              "color": "#eef2f6",
+              "origin": "theme"
+            }
+          ]
+        }
+      }
+    },
     "typography": {
       "fontSizes": [
         {

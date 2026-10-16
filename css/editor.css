@@ -274,6 +274,35 @@
 }
 
 /*
+ * URLInput renders two nested .components-base-control wrappers (the field
+ * itself and its inner InputControl), so under the full-row field padding
+ * above it picks up 16px per level on top of the .cb-hts-js-2026-editor-field
+ * wrapper's own — pushing the input ~32px in from its label and from the
+ * neighbouring text fields. The editor-field wrapper already provides the
+ * padding, so reset both levels.
+ */
+.cb-hts-js-2026-editor-block .cb-hts-js-2026-editor-field .block-editor-url-input,
+.cb-hts-js-2026-editor-block .cb-hts-js-2026-editor-field .block-editor-url-input .components-base-control {
+	padding: 0;
+}
+
+/*
+ * Compact multi-column checklist (a group of CheckboxControls under an
+ * .cb-hts-js-2026-editor-field label). Each CheckboxControl is a
+ * .components-base-control and so would pick up the full-row field padding
+ * above — reset it, otherwise every checkbox becomes its own tall row.
+ */
+.cb-hts-js-2026-editor-checklist {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+	gap: 0.5rem 1rem;
+}
+
+.cb-hts-js-2026-editor-block .cb-hts-js-2026-editor-checklist .components-base-control {
+	padding: 0;
+}
+
+/*
  * Horizontal layout for a RadioControl — applied via className to every
  * variant/small-option-set radio field across blocks/*\/src/edit.js,
  * instead of RadioControl's default stacked-vertical layout. `className`

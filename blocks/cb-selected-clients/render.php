@@ -18,12 +18,18 @@ if ( ! $logos ) {
 	return;
 }
 
-$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'clients-strip' ) );
+$full_width = ! empty( $attributes['fullWidth'] );
+
+$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => $full_width ? 'clients-strip clients-strip--full' : 'clients-strip' ) );
 ?>
 <section <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() already escapes. ?>>
+	<?php if ( ! $full_width ) { ?>
 	<div class="container">
+	<?php } ?>
 		<div class="clients-inner">
+			<?php if ( ! $full_width ) { ?>
 			<div class="clients-label">Selected clients</div>
+			<?php } ?>
 			<div class="clients-marquee" data-marquee data-marquee-speed="50" aria-label="Selected clients">
 				<div class="clients-track" data-marquee-track>
 					<?php
@@ -42,5 +48,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'clients-s
 				</div>
 			</div>
 		</div>
+	<?php if ( ! $full_width ) { ?>
 	</div>
+	<?php } ?>
 </section>

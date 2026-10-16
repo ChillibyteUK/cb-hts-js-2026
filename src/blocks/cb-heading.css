@@ -12,3 +12,14 @@
     font-style: italic;
   }
 }
+
+/* Stand-alone section: its own container + spacing, for use between blocks. */
+.cb-heading-group--section {
+  padding-block-start: clamp(3rem, 6vw, 5.75rem);
+  padding-block-end: clamp(2rem, 4vw, 3.375rem);
+  background: var(--col-white);
+
+  .cb-heading {
+    margin-block-end: 0;
+  }
+}

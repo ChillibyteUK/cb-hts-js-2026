@@ -235,7 +235,6 @@ done
 
 blockeditor_imports="useBlockProps"
 [ "$need_richtext" = "1" ] && blockeditor_imports="${blockeditor_imports}, RichText"
-[ "$need_urlinput" = "1" ] && blockeditor_imports="${blockeditor_imports}, URLInput"
 [ "$need_media" = "1" ] && blockeditor_imports="${blockeditor_imports}, MediaUpload, MediaUploadCheck"
 
 components_imports=()
@@ -351,6 +350,7 @@ done
   echo "import { ${blockeditor_imports} } from '@wordpress/block-editor';"
   [ -n "$components_import_line" ] && echo "import { ${components_import_line} } from '@wordpress/components';"
   echo "import EditorBlockShell from '../../_shared/EditorBlockShell';"
+  [ "$need_urlinput" = "1" ] && echo "import URLInput from '../../_shared/URLInput';"
   [ "$need_media" = "1" ] && echo "import SideloadImage from '../../_shared/SideloadImage';"
   echo ""
   echo "export default function Edit( { attributes, setAttributes, clientId } ) {"

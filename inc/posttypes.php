@@ -45,7 +45,10 @@ function cb_hts_js_2026_register_post_types() {
 			'supports'            => array( 'title', 'editor', 'thumbnail' ),
 			'capability_type'     => 'post',
 			'map_meta_cap'        => true,
-			'rewrite'             => array( 'slug' => 'applications' ),
+			'rewrite'             => array(
+				'slug'       => 'applications',
+				'with_front' => false,
+			),
 		)
 	);
 
@@ -175,47 +178,56 @@ function cb_hts_js_2026_nav_cpt_parent_pages() {
 	return apply_filters(
 		'cb_hts_js_2026_nav_cpt_parent_pages',
 		array(
-			'product' => 'products',
-			'project' => 'projects',
+			'application' => 'applications',
+			'product'     => 'products',
+			'project'     => 'projects',
 		)
 	);
 }
 
 /**
  * Marks the parent menu page as current-menu-parent when viewing a singular
- * product/project — otherwise the primary nav has nothing highlighted at
- * all on those pages, since the CPT itself isn't in the menu.
+ * application/product/project — otherwise the primary nav has nothing
+ * highlighted at all on those pages, since the CPT itself isn't in the menu.
  *
- * @param array    $classes Menu item classes.
- * @param WP_Post  $item    Menu item data object.
- * @param stdClass $args    wp_nav_menu() arguments.
+ * Hooked on wp_nav_menu_objects rather than nav_menu_css_class: that filter
+ * only changes the class list printed on the <li>, while this theme's walker
+ * (inc/class-cb-hts-js-2026-nav-walker.php) reads $item->classes directly to
+ * decide which link is active, so classes added there never reached it.
+ *
+ * @param array    $items Sorted menu item objects.
+ * @param stdClass $args  wp_nav_menu() arguments.
  * @return array
  */
-function cb_hts_js_2026_nav_highlight_cpt_parent( $classes, $item, $args ) {
+function cb_hts_js_2026_nav_highlight_cpt_parent( $items, $args ) {
 	if ( ! isset( $args->theme_location ) || 'primary_nav' !== $args->theme_location ) {
-		return $classes;
+		return $items;
 	}
 
-	if ( ! is_singular() || 'page' !== $item->object ) {
-		return $classes;
+	if ( ! is_singular() ) {
+		return $items;
 	}
 
 	$map       = cb_hts_js_2026_nav_cpt_parent_pages();
 	$post_type = get_post_type();
 
 	if ( ! isset( $map[ $post_type ] ) ) {
-		return $classes;
+		return $items;
 	}
 
 	$parent = get_page_by_path( $map[ $post_type ] );
 
-	if ( ! $parent || (int) $item->object_id !== (int) $parent->ID ) {
-		return $classes;
+	if ( ! $parent ) {
+		return $items;
 	}
 
-	$classes[] = 'current-menu-parent';
-	$classes[] = 'current_page_parent';
+	foreach ( $items as $item ) {
+		if ( 'page' === $item->object && (int) $item->object_id === (int) $parent->ID ) {
+			$item->classes[] = 'current-menu-parent';
+			$item->classes[] = 'current_page_parent';
+		}
+	}
 
-	return $classes;
+	return $items;
 }
-add_filter( 'nav_menu_css_class', 'cb_hts_js_2026_nav_highlight_cpt_parent', 10, 3 );
+add_filter( 'wp_nav_menu_objects', 'cb_hts_js_2026_nav_highlight_cpt_parent', 10, 2 );

@@ -105,3 +105,10 @@
 	block-size: 100%;
 	object-fit: cover;
 }
+
+/* Two CTAs: primary + outlined side by side, wrapping on narrow screens. */
+.config-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+}

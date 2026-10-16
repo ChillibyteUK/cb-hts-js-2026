@@ -1,8 +1,9 @@
 import { __ } from '@wordpress/i18n';
-import { useBlockProps, URLInput } from '@wordpress/block-editor';
+import { useBlockProps } from '@wordpress/block-editor';
 import { TextControl, ToggleControl } from '@wordpress/components';
 import RepeaterField from '../../_shared/RepeaterField';
 import EditorBlockShell from '../../_shared/EditorBlockShell';
+import URLInput from '../../_shared/URLInput';
 
 const factsFields = [
 	{ name: 'label', label: __( 'Label', 'cb-hts-js-2026' ), type: 'text' },

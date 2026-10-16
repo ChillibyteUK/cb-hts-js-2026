@@ -1,8 +1,9 @@
 import { __ } from '@wordpress/i18n';
-import { useBlockProps, URLInput } from '@wordpress/block-editor';
+import { useBlockProps } from '@wordpress/block-editor';
 import { TextControl, TextareaControl, SelectControl, ToggleControl } from '@wordpress/components';
 import RepeaterField from '../../_shared/RepeaterField';
 import EditorBlockShell from '../../_shared/EditorBlockShell';
+import URLInput from '../../_shared/URLInput';
 
 const STAT_FIELDS = [
 	{ name: 'value', label: __( 'Value', 'cb-hts-js-2026' ), type: 'text', help: __( 'Supports <sup> for suffixes.', 'cb-hts-js-2026' ) },

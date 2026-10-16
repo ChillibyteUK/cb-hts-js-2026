@@ -2660,8 +2660,59 @@ select {
 }
 
 .case-studies-header {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: var(--space-3);
 	margin-block-end: clamp(2rem, 5vw, 3rem);
 }
+
+.case-studies-nav {
+	display: flex;
+	flex-shrink: 0;
+	gap: 0.5rem;
+}
+
+.case-studies-nav-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	inline-size: 2.5rem;
+	block-size: 2.5rem;
+	padding: 0;
+	border: 1.5px solid var(--col-navy);
+	background: transparent;
+	color: var(--col-navy);
+	cursor: pointer;
+	transition:
+		background var(--transition),
+		color var(--transition),
+		opacity var(--transition);
+}
+
+.case-studies-nav-btn svg {
+		inline-size: 1rem;
+		block-size: 1rem;
+	}
+
+.case-studies-nav-btn:hover:not(.swiper-button-disabled) {
+		background: var(--col-navy);
+		color: var(--col-white);
+	}
+
+.case-studies-nav-btn.swiper-button-disabled {
+		opacity: 0.35;
+		cursor: default;
+	}
+
+.case-studies-swiper .swiper-slide {
+	block-size: auto;
+	display: flex;
+}
+
+:is(.case-studies-swiper .swiper-slide) .case-card {
+		inline-size: 100%;
+	}
 
 .case-studies-headline {
 	color: var(--col-navy);
@@ -3136,6 +3187,13 @@ select {
 	inline-size: 100%;
 	block-size: 100%;
 	object-fit: cover;
+}
+
+/* Two CTAs: primary + outlined side by side, wrapping on narrow screens. */
+.config-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
 }
 
 /* --- src/blocks/cb-contact.css --- */
@@ -3639,7 +3697,13 @@ select {
 
 .feature-grid-headline {
 	margin-block-end: var(--space-5);
+	color: var(--col-navy);
 }
+
+.feature-grid-headline  > span {
+		color: var(--col-orange);
+		font-style: italic;
+	}
 
 /* Hairlines: the grid owns top/left, each cell owns right/bottom — so an
    incomplete last row leaves its empty slots borderless, as designed. */
@@ -3705,6 +3769,16 @@ select {
 .cb-heading  > span {
     color: var(--col-orange);
     font-style: italic;
+  }
+
+/* Stand-alone section: its own container + spacing, for use between blocks. */
+.cb-heading-group--section {
+  padding-block-start: clamp(3rem, 6vw, 5.75rem);
+  padding-block-end: clamp(2rem, 4vw, 3.375rem);
+  background: var(--col-white);
+}
+.cb-heading-group--section .cb-heading {
+    margin-block-end: 0;
   }
 
 /* --- src/blocks/cb-home-hero.css --- */

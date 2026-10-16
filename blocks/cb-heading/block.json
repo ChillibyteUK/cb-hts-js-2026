@@ -17,6 +17,14 @@
 		"size": {
 			"type": "string",
 			"default": ""
+		},
+		"eyebrow": {
+			"type": "string",
+			"default": ""
+		},
+		"asSection": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"supports": {

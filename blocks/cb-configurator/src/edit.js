@@ -1,11 +1,12 @@
 import { __ } from '@wordpress/i18n';
-import { useBlockProps, RichText, MediaUpload, MediaUploadCheck, URLInput } from '@wordpress/block-editor';
+import { useBlockProps, RichText, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 import { TextControl, TextareaControl, ToggleControl, Button } from '@wordpress/components';
 import EditorBlockShell from '../../_shared/EditorBlockShell';
+import URLInput from '../../_shared/URLInput';
 import SideloadImage from '../../_shared/SideloadImage';
 
 export default function Edit( { attributes, setAttributes, clientId } ) {
-	const { tag, headline, intro, features, ctaText, ctaUrl, ctaTarget, imageId, imageUrl, imageAlt } = attributes;
+	const { tag, headline, intro, features, ctaText, ctaUrl, ctaTarget, cta2Text, cta2Url, cta2Target, imageId, imageUrl, imageAlt } = attributes;
 	const blockProps = useBlockProps( { className: 'container cb-hts-js-2026-editor-block' } );
 
 	return (
@@ -58,6 +59,24 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 				label={ __( 'Open CTA in a new tab', 'cb-hts-js-2026' ) }
 				checked={ ctaTarget }
 				onChange={ ( value ) => setAttributes( { ctaTarget: value } ) }
+			/>
+			<TextControl
+				label={ __( 'Second CTA Text', 'cb-hts-js-2026' ) }
+				value={ cta2Text }
+				onChange={ ( value ) => setAttributes( { cta2Text: value } ) }
+				help={ __( 'Outlined button beside the first. Leave the URL blank to hide it.', 'cb-hts-js-2026' ) }
+			/>
+			<div className="cb-hts-js-2026-editor-field">
+				<label className="cb-hts-js-2026-editor-field__label">{ __( 'Second CTA URL', 'cb-hts-js-2026' ) }</label>
+				<URLInput
+					value={ cta2Url || '' }
+					onChange={ ( value ) => setAttributes( { cta2Url: value } ) }
+				/>
+			</div>
+			<ToggleControl
+				label={ __( 'Open second CTA in a new tab', 'cb-hts-js-2026' ) }
+				checked={ cta2Target }
+				onChange={ ( value ) => setAttributes( { cta2Target: value } ) }
 			/>
 			<div className="cb-hts-js-2026-editor-field">
 				<label className="cb-hts-js-2026-editor-field__label">{ __( 'Image', 'cb-hts-js-2026' ) }</label>

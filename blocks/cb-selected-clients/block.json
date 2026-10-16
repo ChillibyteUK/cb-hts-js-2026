@@ -5,12 +5,17 @@
 	"title": "CB Selected Clients",
 	"category": "cb-hts-js-2026",
 	"icon": "images-alt2",
-	"description": "A marquee of client logos, managed globally in Site-Wide Settings → Clients. Has no fields of its own.",
-	"attributes": {},
+	"description": "A marquee of client logos, managed globally in Site-Wide Settings → Clients. Option to run edge to edge, which also hides the rotated title.",
+	"attributes": {
+		"fullWidth": { "type": "boolean", "default": false }
+	},
 	"supports": {
 		"anchor": true,
 		"className": true,
-		"align": true
+		"align": true,
+		"color": {
+			"background": true
+		}
 	},
 	"editorScript": "file:./build/index.js",
 	"render": "file:./render.php"

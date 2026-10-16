@@ -1,14 +1,20 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps } from '@wordpress/block-editor';
-import { TextControl, SelectControl } from '@wordpress/components';
+import { TextControl, SelectControl, ToggleControl } from '@wordpress/components';
 import EditorBlockShell from '../../_shared/EditorBlockShell';
 
 export default function Edit( { attributes, setAttributes, clientId } ) {
-	const { heading, level, size } = attributes;
+	const { heading, level, size, eyebrow, asSection } = attributes;
 	const blockProps = useBlockProps( { className: 'container cb-hts-js-2026-editor-block' } );
 
 	return (
 		<EditorBlockShell blockProps={ blockProps } clientId={ clientId } title="CB Heading" textDomain="cb-hts-js-2026">
+			<TextControl
+				label={ __( 'Eyebrow', 'cb-hts-js-2026' ) }
+				value={ eyebrow }
+				onChange={ ( value ) => setAttributes( { eyebrow: value } ) }
+				help={ __( 'Optional small label above the heading.', 'cb-hts-js-2026' ) }
+			/>
 			<TextControl
 				label={ __( 'Heading', 'cb-hts-js-2026' ) }
 				value={ heading }
@@ -50,6 +56,12 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 			/>
 				</div>
 			</div>
+			<ToggleControl
+				label={ __( 'Stand-alone section', 'cb-hts-js-2026' ) }
+				checked={ asSection }
+				onChange={ ( value ) => setAttributes( { asSection: value } ) }
+				help={ __( 'Wraps the heading in its own container with section spacing, for use between blocks rather than inside one.', 'cb-hts-js-2026' ) }
+			/>
 		</EditorBlockShell>
 	);
 }

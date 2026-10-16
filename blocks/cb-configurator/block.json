@@ -13,6 +13,9 @@
 		"ctaText": { "type": "string", "default": "" },
 		"ctaUrl": { "type": "string", "default": "" },
 		"ctaTarget": { "type": "boolean", "default": false },
+		"cta2Text": { "type": "string", "default": "" },
+		"cta2Url": { "type": "string", "default": "" },
+		"cta2Target": { "type": "boolean", "default": false },
 		"imageId": { "type": "number", "default": 0 },
 		"imageUrl": { "type": "string", "default": "" },
 		"imageAlt": { "type": "string", "default": "" }
@@ -20,7 +23,10 @@
 	"supports": {
 		"anchor": true,
 		"className": true,
-		"align": true
+		"align": true,
+		"color": {
+			"background": true
+		}
 	},
 	"editorScript": "file:./build/index.js",
 	"render": "file:./render.php"

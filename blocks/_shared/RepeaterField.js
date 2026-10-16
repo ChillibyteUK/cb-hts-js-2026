@@ -1,5 +1,6 @@
 import { __ } from '@wordpress/i18n';
-import { MediaUpload, MediaUploadCheck, RichText, URLInput } from '@wordpress/block-editor';
+import { MediaUpload, MediaUploadCheck, RichText } from '@wordpress/block-editor';
+import URLInput from './URLInput';
 import { TextControl, TextareaControl, ToggleControl, Button, RadioControl } from '@wordpress/components';
 import { useEffect, useMemo } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';

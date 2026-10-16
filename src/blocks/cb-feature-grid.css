@@ -5,6 +5,12 @@
 
 .feature-grid-headline {
 	margin-block-end: var(--space-5);
+	color: var(--col-navy);
+
+	> span {
+		color: var(--col-orange);
+		font-style: italic;
+	}
 }
 
 /* Hairlines: the grid owns top/left, each cell owns right/bottom — so an

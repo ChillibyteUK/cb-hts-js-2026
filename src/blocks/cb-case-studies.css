@@ -4,7 +4,58 @@
 }
 
 .case-studies-header {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: var(--space-3);
 	margin-block-end: clamp(2rem, 5vw, 3rem);
+}
+
+.case-studies-nav {
+	display: flex;
+	flex-shrink: 0;
+	gap: 0.5rem;
+}
+
+.case-studies-nav-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	inline-size: 2.5rem;
+	block-size: 2.5rem;
+	padding: 0;
+	border: 1.5px solid var(--col-navy);
+	background: transparent;
+	color: var(--col-navy);
+	cursor: pointer;
+	transition:
+		background var(--transition),
+		color var(--transition),
+		opacity var(--transition);
+
+	svg {
+		inline-size: 1rem;
+		block-size: 1rem;
+	}
+
+	&:hover:not(.swiper-button-disabled) {
+		background: var(--col-navy);
+		color: var(--col-white);
+	}
+
+	&.swiper-button-disabled {
+		opacity: 0.35;
+		cursor: default;
+	}
+}
+
+.case-studies-swiper .swiper-slide {
+	block-size: auto;
+	display: flex;
+
+	.case-card {
+		inline-size: 100%;
+	}
 }
 
 .case-studies-headline {

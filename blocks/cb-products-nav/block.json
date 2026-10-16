@@ -13,7 +13,7 @@
     "anchor": true,
     "className": true,
     "align": true,
-    "color": { "background": true, "text": true }
+    "color": { "background": true }
   },
   "editorScript": "file:./build/index.js",
   "render": "file:./render.php"
