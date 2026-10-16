@@ -622,10 +622,14 @@ p.is-style-cb-callout {
 	visibility: hidden;
 }
 /*
- * Nav breakpoint: 992px, matching the "lg" breakpoint in
- * src/build/tokens.config.js. CSS custom properties can't be read inside an
- * @media condition, so this number is hand-kept in sync with that file —
- * if you change the "lg" breakpoint there, update it here too.
+ * Nav breakpoint: 1100px. The menu stays collapsed below it; from there the
+ * full row (logo, seven links, two CTA buttons) fits with the links' padding
+ * trimmed to 0.5rem and the CTAs in their small two-row form (header.css).
+ * Not one of the tokens.config.js breakpoints — it's the width at which the
+ * logo reaches its full size, measured against this exact content. CSS
+ * custom properties can't be read inside an @media condition, so the number
+ * is hand-kept in sync across this file and the .nav-cta rules in
+ * header.css.
  */
 
 #masthead.sticky-top {
@@ -657,7 +661,7 @@ p.is-style-cb-callout {
 
 .navbar-brand img {
 	display: block;
-	inline-size: clamp(10rem, 20vw, 15rem);
+	inline-size: clamp(10rem, 20vw, 12rem);
 	max-inline-size: 100%;
 	block-size: auto;
 }
@@ -749,7 +753,7 @@ p.is-style-cb-callout {
 	cursor: pointer;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1100px) {
 	.navbar-toggler {
 		display: none;
 	}
@@ -783,6 +787,13 @@ p.is-style-cb-callout {
 		white-space: nowrap;
 	}
 
+	/* Tighter link padding while the full nav is squeezed (1100–1399px; the
+	   usual 0.875rem is restored from 1400px, below) — it is the biggest
+	   single consumer of width. */
+	.nav-link {
+		padding-inline: 0.5rem;
+	}
+
 	.dropdown {
 		position: relative;
 	}
@@ -802,6 +813,13 @@ p.is-style-cb-callout {
 	}
 }
 
+/* Room to spare: back to the design's own link padding (10px 14px, from
+   cb-hts2026's _header.scss). */
+@media (min-width: 1400px) {
+	.navbar-nav .nav-link {
+		padding-inline: 0.875rem;
+	}
+}
 footer {
 	background: var(--col-navy-deep);
 	color: rgba(255, 255, 255, 0.6);
@@ -1214,7 +1232,8 @@ select {
 	margin-top: var(--space-3);
 }
 
-@media (min-width: 992px) {
+/* Same switch as the nav itself (see the note at the top of nav.css). */
+@media (min-width: 1100px) {
 	.nav-cta {
 		flex-direction: row;
 		align-items: center;
@@ -1228,6 +1247,22 @@ select {
 .nav-cta .btn {
 	padding: 0.8125rem 1.375rem; /* 13px 22px */
 	font-size: var(--fs-micro);
+}
+
+/* Small variant for the tight stretch of the full nav (1100–1279px): the CTA
+   text wraps onto two centred rows inside a narrower button, which frees the
+   room the logo and links need. From 1280px there is space for the regular
+   single-row buttons above, so they go back to normal. */
+@media (min-width: 1100px) and (max-width: 1279.98px) {
+	.nav-cta .btn {
+		inline-size: 6rem;
+		padding: 0.625rem 0.5rem;
+		font-size: var(--fs-nano);
+		line-height: 1.2;
+		text-align: center;
+		text-wrap: balance;
+		white-space: normal;
+	}
 }
 
 /* Non-clickable submenu group heading (menu items tagged "menu-divider-label") */

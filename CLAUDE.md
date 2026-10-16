@@ -68,7 +68,9 @@ doesn't exist, no matter how standard it looks.
 - **Breakpoints are the one exception to "tokens live in tokens.css."**
   A CSS custom property can't be read inside an `@media` condition, so
   breakpoints live in `src/build/tokens.config.js` instead. `src/css/nav.css`
-  hardcodes the `lg` breakpoint (992px) directly in a plain `@media` query
+  hardcodes the nav's own breakpoint (1100px, not a token — the nav stays
+  collapsed below it; it's where the logo reaches full size with the trimmed
+  link padding and small CTA buttons) directly in a plain `@media` query
   for the same reason, in a comment noting it must stay in sync with that
   file. If you change a breakpoint, grep for the old pixel value across
   `src/css/*.css` — there is no single source of truth enforced by tooling,
