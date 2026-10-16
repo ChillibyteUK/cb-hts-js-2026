@@ -32,16 +32,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LamcatUK/cb-hts-js-2026.git"
+    "url": "git+https://github.com/ChillibyteUK/cb-hts-js-2026.git"
   },
   "keywords": [
     "wordpress",
     "theme",
     "skeleton"
   ],
-  "author": "LamcatUK",
+  "author": "Chillibyte - DS",
   "license": "GPL-3.0",
-  "homepage": "https://github.com/LamcatUK/cb-hts-js-2026",
+  "homepage": "https://github.com/ChillibyteUK/cb-hts-js-2026",
   "devDependencies": {
     "@rollup/plugin-babel": "^6.0.4",
     "@babel/core": "^7.26.10",

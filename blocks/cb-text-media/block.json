@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "cb-hts-js-2026/cb-text-media",
+	"title": "CB Text Media",
+	"category": "cb-hts-js-2026",
+	"icon": "align-pull-left",
+	"description": "Sticky image beside an eyebrow, heading, lede, content and CTA. Column order and mobile stacking order are set independently.",
+	"attributes": {
+		"eyebrow": { "type": "string", "default": "" },
+		"headline": { "type": "string", "default": "" },
+		"lede": { "type": "string", "default": "" },
+		"content": { "type": "string", "default": "" },
+		"ctaText": { "type": "string", "default": "" },
+		"ctaUrl": { "type": "string", "default": "" },
+		"ctaTarget": { "type": "boolean", "default": false },
+		"imageId": { "type": "number", "default": 0 },
+		"imageUrl": { "type": "string", "default": "" },
+		"imageAlt": { "type": "string", "default": "" },
+		"order": { "type": "string", "default": "media-text" },
+		"mobileOrder": { "type": "string", "default": "media-text" }
+	},
+	"supports": {
+		"anchor": true,
+		"className": true,
+		"align": true,
+		"color": {
+			"background": true
+		}
+	},
+	"editorScript": "file:./build/index.js",
+	"render": "file:./render.php"
+}

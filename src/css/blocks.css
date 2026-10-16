@@ -1313,6 +1313,13 @@
   .cb-heading-group--section .row {
     gap: var(--space-5);
   }
+
+  /* Top-aligned columns: the eyebrow's caps sit ~3px below the intro's first
+     line (different font sizes, same top edge) — nudge the intro down so the
+     two cap-heights line up exactly. */
+  .cb-heading-intro {
+    padding-block-start: 0.1875rem;
+  }
 }
 
 /* --- src/blocks/cb-home-hero.css --- */
@@ -3460,6 +3467,99 @@
 	color: var(--col-muted);
 	font-size: var(--fs-body-xs);
 	line-height: var(--lh-body);
+}
+
+/* --- src/blocks/cb-text-media.css --- */
+.text-media {
+	padding-block: clamp(4rem, 8vw, 7.5rem);
+	background: var(--col-white);
+}
+
+/*
+ * Plain two-up grid rather than .row/.col-6: a 12-track .row with a wide
+ * gap overflows narrow viewports (11 gaps wider than the row itself).
+ */
+.text-media-grid {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: var(--space-4);
+	align-items: start;
+}
+
+.text-media--no-media .text-media-grid {
+	grid-template-columns: minmax(0, 48rem);
+}
+
+/* Desktop column order and mobile stacking order come from the block's order /
+   mobileOrder attributes; the markup is always text first. Each rule is scoped
+   to its own breakpoint (lg = 992px, same switch as nav.css). */
+@media (min-width: 992px) {
+	.text-media-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: clamp(var(--space-5), 6.67vw, 6rem);
+	}
+
+	.text-media-media--first {
+		order: -1;
+	}
+
+	/* Stays in view while the (usually taller) text column scrolls past. */
+	.text-media-media {
+		position: sticky;
+		top: calc(var(--nav-height) + var(--space-5));
+	}
+}
+
+@media (max-width: 991.98px) {
+	.text-media-media--mobile-first {
+		order: -1;
+	}
+}
+
+.text-media-img {
+	display: block;
+	inline-size: 100%;
+	block-size: auto;
+	aspect-ratio: 4 / 5;
+	object-fit: cover;
+}
+
+.text-media-headline {
+	color: var(--col-navy);
+
+	> span {
+		color: var(--col-orange);
+		font-style: italic;
+	}
+}
+
+.text-media-lede {
+	margin-block-end: var(--space-4);
+	color: var(--col-ink);
+
+	p {
+		margin-block-end: var(--space-3);
+	}
+
+	p:last-child {
+		margin-block-end: 0;
+	}
+}
+
+.text-media-content {
+	color: var(--col-muted);
+
+	p {
+		margin-block-end: var(--space-3);
+	}
+
+	p:last-child {
+		margin-block-end: 0;
+	}
+}
+
+.text-media-cta {
+	margin-block-start: var(--space-4);
 }
 
 /* --- src/blocks/cb-text-stats.css --- */

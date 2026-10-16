@@ -54,7 +54,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => $group_cla
 	if ( $as_section ) {
 		?>
 	<div class="container">
-		<div class="row align-items-end">
+		<div class="row align-items-start">
 			<div class="col-12 <?php echo $intro ? 'col-lg-5' : 'col-lg-8'; ?>">
 		<?php
 	}

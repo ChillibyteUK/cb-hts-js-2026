@@ -35,3 +35,26 @@ function cb_hts_js_2026_setup() {
 add_action( 'after_setup_theme', 'cb_hts_js_2026_setup' );
 
 add_filter( 'should_load_remote_block_patterns', '__return_false' );
+
+/**
+ * Turn off the block editor's Notes feature (WP core's "collaboration"
+ * commenting UI — the "Add note" block menu item, Ctrl+Alt+M, and its
+ * sidebar). It's on by default for post/page via 'editor' => array( 'notes'
+ * => true ) in wp-includes/post.php's core post type registration, run on
+ * init at priority 0 — this overrides it on the normal init priority for
+ * every registered post type, not just post/page, so it also covers any
+ * custom post type that inherits the same 'editor' support default. No
+ * project use for it identified so far; re-enable per post type with
+ * add_post_type_support( $post_type, 'editor', array( 'notes' => true ) )
+ * if one comes up.
+ *
+ * @return void
+ */
+function cb_hts_js_2026_disable_editor_notes() {
+	foreach ( get_post_types( array(), 'names' ) as $post_type ) {
+		if ( post_type_supports( $post_type, 'editor' ) ) {
+			add_post_type_support( $post_type, 'editor', array( 'notes' => false ) );
+		}
+	}
+}
+add_action( 'init', 'cb_hts_js_2026_disable_editor_notes', 20 );

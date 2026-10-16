@@ -1,6 +1,6 @@
 /*!
- * cb-hts-js-2026 v1.0.0 (https://github.com/LamcatUK/cb-hts-js-2026)
- * Copyright 2026 LamcatUK
+ * cb-hts-js-2026 v1.0.0 (https://github.com/ChillibyteUK/cb-hts-js-2026)
+ * Copyright 2026 Chillibyte - DS
  * Licensed under GPL-3.0
  */
 (function () {

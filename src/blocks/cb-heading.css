@@ -33,4 +33,11 @@
   .cb-heading-group--section .row {
     gap: var(--space-5);
   }
+
+  /* Top-aligned columns: the eyebrow's caps sit ~3px below the intro's first
+     line (different font sizes, same top edge) — nudge the intro down so the
+     two cap-heights line up exactly. */
+  .cb-heading-intro {
+    padding-block-start: 0.1875rem;
+  }
 }

@@ -12,6 +12,14 @@ defined( 'ABSPATH' ) || exit;
 
 define( 'CB_HTS_JS_2026_DIR', get_template_directory() );
 
+// Disable the Theme and Plugin file editors in wp-admin. Core omits both
+// menu items (and blocks direct access to theme-editor.php/plugin-editor.php)
+// when this is set; defining it here rather than wp-config.php keeps the
+// hardening with the theme, and the guard respects a wp-config.php value.
+if ( ! defined( 'DISALLOW_FILE_EDIT' ) ) {
+	define( 'DISALLOW_FILE_EDIT', true );
+}
+
 require_once CB_HTS_JS_2026_DIR . '/inc/setup.php';
 require_once CB_HTS_JS_2026_DIR . '/inc/enqueue.php';
 require_once CB_HTS_JS_2026_DIR . '/inc/class-cb-hts-js-2026-nav-walker.php';
