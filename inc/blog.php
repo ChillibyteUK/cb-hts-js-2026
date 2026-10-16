@@ -280,9 +280,31 @@ function cb_hts_js_2026_lede_and_body( $post ) {
 }
 
 /**
- * Render one post card (image, title, date/reading-time meta, excerpt) —
- * shared by index.php's card grid and single.php's related posts, so the
- * two don't drift out of sync with each other.
+ * Tag text for a post card's pill: the post's first category that isn't the
+ * site's default ("Uncategorized"). Returns an empty string when there is
+ * none, so the card shows no pill rather than a placeholder.
+ *
+ * @param int $post_id Post ID; defaults to the current post.
+ * @return string
+ */
+function cb_hts_js_2026_post_card_tag( $post_id = 0 ) {
+	$post_id = $post_id ? $post_id : get_the_ID();
+	$default = (int) get_option( 'default_category' );
+
+	foreach ( get_the_category( $post_id ) as $term ) {
+		if ( (int) $term->term_id !== $default ) {
+			return $term->name;
+		}
+	}
+
+	return '';
+}
+
+/**
+ * Render one post card (image with tag pill, title, date/reading-time meta,
+ * excerpt, link row) — laid out like the product/case-study cards. Shared
+ * by index.php's card grid, single.php's related posts and CB Latest News,
+ * so they don't drift out of sync with each other.
  *
  * Expects the loop to already be on this post (called between the_post()
  * and the next iteration), same as template tags like the_title().
@@ -305,30 +327,44 @@ function cb_hts_js_2026_render_post_card() {
 	$faq_schema_items          = $faq_schema_items_snapshot;
 	?>
 	<a class="post-card" href="<?php the_permalink(); ?>">
-		<?php
-		if ( has_post_thumbnail() ) {
-			// the_post_thumbnail() (not the_post_thumbnail_url()) so the <img>
-			// gets explicit width/height/srcset from WordPress — without those,
-			// the browser can't reserve the card's image space before the CSS
-			// (which is what actually sizes it) has loaded, so the layout jumps
-			// once it does. 'large' rather than 'medium' (300w) — at the 3-up
-			// desktop card width this card can render past 300px, and 'medium'
-			// upscaled past its own intrinsic size looks visibly soft.
-			the_post_thumbnail( 'large', array( 'class' => 'post-card__image' ) );
-		}
-		?>
-		<span class="post-card__title"><?php the_title(); ?></span>
-		<span class="post-card__meta">
-			<span class="post-card__meta-item">
-				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-				<?php echo esc_html( get_the_date() ); ?>
+		<span class="post-card__media">
+			<?php
+			$tag = cb_hts_js_2026_post_card_tag();
+			if ( $tag ) {
+				?>
+			<span class="post-card__tag"><?php echo esc_html( $tag ); ?></span>
+				<?php
+			}
+			if ( has_post_thumbnail() ) {
+				// the_post_thumbnail() (not the_post_thumbnail_url()) so the <img>
+				// gets explicit width/height/srcset from WordPress — without those,
+				// the browser can't reserve the card's image space before the CSS
+				// (which is what actually sizes it) has loaded, so the layout jumps
+				// once it does. 'large' rather than 'medium' (300w) — at the 3-up
+				// desktop card width this card can render past 300px, and 'medium'
+				// upscaled past its own intrinsic size looks visibly soft.
+				the_post_thumbnail( 'large', array( 'class' => 'post-card__image' ) );
+			}
+			?>
+		</span>
+		<span class="post-card__body">
+			<span class="post-card__title"><?php the_title(); ?></span>
+			<span class="post-card__meta">
+				<span class="post-card__meta-item">
+					<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+					<?php echo esc_html( get_the_date() ); ?>
+				</span>
+				<span class="post-card__meta-item">
+					<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+					<?php echo esc_html( $minutes ) . ' '; esc_html_e( 'min read', 'cb-hts-js-2026' ); ?>
+				</span>
 			</span>
-			<span class="post-card__meta-item">
-				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-				<?php echo esc_html( $minutes ) . ' '; esc_html_e( 'min read', 'cb-hts-js-2026' ); ?>
+			<span class="post-card__excerpt"><?php echo esc_html( wp_trim_words( get_the_excerpt(), 18 ) ); ?></span>
+			<span class="post-card__link">
+				<?php esc_html_e( 'Read article', 'cb-hts-js-2026' ); ?>
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
 			</span>
 		</span>
-		<span class="post-card__excerpt"><?php echo esc_html( wp_trim_words( get_the_excerpt(), 18 ) ); ?></span>
 	</a>
 	<?php
 }

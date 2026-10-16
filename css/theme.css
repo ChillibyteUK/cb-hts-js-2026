@@ -1469,29 +1469,62 @@ select {
 .post-card {
 	display: flex;
 	flex-direction: column;
-	color: inherit;
-	background-color: var(--col-white);
-	border: 1px solid var(--col-light-border);
-	border-radius: var(--radius-lg);
 	overflow: hidden;
+	background: var(--col-white);
+	border: 1px solid var(--col-rule);
+	color: inherit;
+	text-decoration: none;
+	transition:
+		transform 0.3s ease,
+		box-shadow 0.3s ease;
 }
 
-.post-card:hover {
-	border-color: var(--col-orange);
+.post-card__media {
+	position: relative;
+	display: block;
+	aspect-ratio: 16 / 9;
+	overflow: hidden;
+	background: var(--col-navy);
 }
 
 .post-card__image {
+	display: block;
 	width: 100%;
-	height: auto;
-	aspect-ratio: 16 / 10;
+	height: 100% !important;
 	object-fit: cover;
+	object-position: center;
+	transition: transform 0.6s ease;
+}
+
+.post-card__tag {
+	position: absolute;
+	inset-block-start: 1.125rem;
+	inset-inline-start: 1.125rem;
+	z-index: 2;
+	padding: 0.375rem 0.75rem;
+	background: var(--col-white);
+	color: var(--col-navy);
+	font-size: var(--fs-nano);
+	font-weight: var(--fw-700);
+	letter-spacing: var(--ls-caps);
+	text-transform: var(--tt-upper);
+	line-height: var(--lh-flat);
+}
+
+.post-card__body {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	padding: 2rem 1.75rem;
 }
 
 .post-card__title {
-	margin: var(--space-3) var(--space-3) var(--space-1);
-	font-size: var(--fs-card-title);
+	margin-block-end: 0.75rem;
+	font-size: var(--fs-h5);
 	font-weight: var(--fw-700);
 	line-height: var(--lh-title);
+	letter-spacing: var(--ls-snug);
+	color: var(--col-navy);
 	text-wrap: pretty;
 }
 
@@ -1499,7 +1532,7 @@ select {
 	display: flex;
 	flex-wrap: wrap;
 	gap: var(--space-1) var(--space-3);
-	margin: 0 var(--space-3) var(--space-2);
+	margin-block-end: 0.75rem;
 	color: var(--col-muted);
 	font-size: var(--fs-meta);
 }
@@ -1515,10 +1548,49 @@ select {
 }
 
 .post-card__excerpt {
-	margin: 0 var(--space-3) var(--space-3);
-	color: var(--col-body);
+	flex: 1;
+	margin-block-end: 1.5rem;
 	font-size: var(--fs-body-sm);
+	line-height: var(--lh-relaxed);
+	color: var(--col-muted);
 	text-wrap: pretty;
+}
+
+.post-card__link {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding-block-start: 1.125rem;
+	border-block-start: 1px solid var(--col-rule);
+	font-size: var(--fs-micro);
+	font-weight: var(--fw-700);
+	letter-spacing: var(--ls-caps);
+	text-transform: var(--tt-upper);
+	color: var(--col-navy);
+	transition: color 0.2s ease;
+}
+
+.post-card__link svg {
+	inline-size: 0.875rem;
+	block-size: 0.875rem;
+	transition: transform 0.25s ease;
+}
+
+.post-card:hover {
+	transform: translateY(-6px);
+	box-shadow: 0 1.5rem 3.75rem rgba(15, 27, 51, 0.12);
+}
+
+.post-card:hover .post-card__image {
+	transform: scale(1.04);
+}
+
+.post-card:hover .post-card__link {
+	color: var(--col-orange);
+}
+
+.post-card:hover .post-card__link svg {
+	transform: translateX(6px);
 }
 
 /* Insights index */
@@ -4372,6 +4444,103 @@ select {
 		height: 15px;
 		color: var(--col-orange);
 	}
+
+/* --- src/blocks/cb-latest-news.css --- */
+.latest-news {
+	padding-block: clamp(3rem, 6vw, 5.75rem);
+	background: var(--col-white);
+}
+
+.latest-news-header {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--space-3);
+	margin-block-end: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.latest-news-headline {
+	margin: 0;
+	color: var(--col-navy);
+}
+
+.latest-news-headline  > span {
+		color: var(--col-orange);
+		font-style: italic;
+	}
+
+/* Keeps the button on the right even when there is no title. */
+.latest-news-cta {
+	flex-shrink: 0;
+	margin-inline-start: auto;
+}
+
+/*
+ * Swiper's own CSS gives .swiper overflow: hidden and padding: 0 (it loads
+ * after the theme CSS, hence the doubled selector), which crops the cards'
+ * hover shadow and lift at the block's bottom edge. Extra bottom padding
+ * (pulled back with an equal negative margin so the section spacing is
+ * unchanged) gives the shadow room on the slider, and on desktop — where
+ * Swiper isn't running — the clip is lifted altogether (see below).
+ */
+.latest-news .latest-news-swiper {
+	padding-block-end: var(--space-5);
+	margin-block-end: calc(-1 * var(--space-5));
+}
+
+/* Equal-height cards in both layouts (slides on mobile, grid cells on desktop). */
+.latest-news-swiper .swiper-slide {
+	block-size: auto;
+	display: flex;
+}
+
+.latest-news .post-card {
+	inline-size: 100%;
+}
+
+/*
+ * Slider (below lg, 992px — the same switch as nav.css): break out of the
+ * container so the neighbouring card bleeds all the way to the screen edge
+ * instead of being clipped at the container's inner edge. The slider box
+ * spans the full viewport; render.php adds the container's padding back as
+ * Swiper slide offsets (slidesOffsetBefore / slidesOffsetAfter) so the first
+ * card still lines up with the heading. Slides are CSS-sized
+ * (slidesPerView: "auto"), which leaves a peek of the next card:
+ *  - phones: 88% of the content width, one card at a time;
+ *  - tablets (576px+): two cards across the content width with a sliver of
+ *    the third, instead of three squeezed into the grid.
+ * The 16px in the tablet calc is render.php's spaceBetween.
+ */
+@media (max-width: 991.98px) {
+	.latest-news .latest-news-swiper {
+		margin-inline: calc(-1 * var(--container-padding));
+	}
+
+	.latest-news .latest-news-swiper .swiper-slide {
+		inline-size: calc((100% - 2 * var(--container-padding)) * 0.88);
+	}
+}
+
+@media (min-width: 576px) and (max-width: 991.98px) {
+	.latest-news .latest-news-swiper .swiper-slide {
+		inline-size: calc((100% - 2 * var(--container-padding) - 32px) / 2.1);
+	}
+}
+
+/* Desktop: a plain 3-up grid. Swiper is only initialised below this width
+   (see render.php), so there are no inline slide widths to fight. */
+@media (min-width: 992px) {
+	.latest-news .latest-news-swiper {
+		overflow: visible;
+	}
+
+	.latest-news-swiper .swiper-wrapper {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: var(--space-4);
+	}
+}
 
 /* --- src/blocks/cb-marquee-stats.css --- */
 /* =========================
