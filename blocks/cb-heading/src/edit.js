@@ -1,10 +1,10 @@
 import { __ } from '@wordpress/i18n';
-import { useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { TextControl, SelectControl, ToggleControl } from '@wordpress/components';
 import EditorBlockShell from '../../_shared/EditorBlockShell';
 
 export default function Edit( { attributes, setAttributes, clientId } ) {
-	const { heading, level, size, eyebrow, asSection } = attributes;
+	const { heading, level, size, eyebrow, asSection, intro } = attributes;
 	const blockProps = useBlockProps( { className: 'container cb-hts-js-2026-editor-block' } );
 
 	return (
@@ -62,6 +62,24 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 				onChange={ ( value ) => setAttributes( { asSection: value } ) }
 				help={ __( 'Wraps the heading in its own container with section spacing, for use between blocks rather than inside one.', 'cb-hts-js-2026' ) }
 			/>
+			{ asSection && (
+				<div className="cb-hts-js-2026-editor-field">
+					<label className="cb-hts-js-2026-editor-field__label">{ __( 'Intro', 'cb-hts-js-2026' ) }</label>
+					<RichText
+						tagName="div"
+						multiline="p"
+						className="cb-hts-js-2026-editor-field__control"
+						aria-label={ __( 'Intro', 'cb-hts-js-2026' ) }
+						placeholder={ __( 'Intro', 'cb-hts-js-2026' ) }
+						value={ intro }
+						onChange={ ( value ) => setAttributes( { intro: value } ) }
+						allowedFormats={ [ 'core/bold', 'core/italic', 'core/link', 'cb-hts-js-2026/small-text' ] }
+					/>
+					<p className="cb-hts-js-2026-editor-field__help">
+						{ __( 'Optional paragraph shown beside the heading.', 'cb-hts-js-2026' ) }
+					</p>
+				</div>
+			) }
 		</EditorBlockShell>
 	);
 }

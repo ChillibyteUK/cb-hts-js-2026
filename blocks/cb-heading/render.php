@@ -15,6 +15,7 @@ if ( ! $heading ) {
 
 $eyebrow    = $attributes['eyebrow'] ?? '';
 $as_section = ! empty( $attributes['asSection'] );
+$intro      = $as_section ? ( $attributes['intro'] ?? '' ) : '';
 
 $level = ! empty( $attributes['level'] ) ? strtolower( $attributes['level'] ) : 'h2';
 if ( ! in_array( $level, array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ), true ) ) {
@@ -53,8 +54,8 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => $group_cla
 	if ( $as_section ) {
 		?>
 	<div class="container">
-		<div class="row">
-			<div class="col-12 col-lg-8">
+		<div class="row align-items-end">
+			<div class="col-12 <?php echo $intro ? 'col-lg-5' : 'col-lg-8'; ?>">
 		<?php
 	}
 	if ( $eyebrow ) {
@@ -71,6 +72,15 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => $group_cla
 	if ( $as_section ) {
 		?>
 			</div>
+			<?php
+			if ( $intro ) {
+				?>
+			<div class="col-12 col-lg-7">
+				<div class="cb-heading-intro prose-md"><?php echo wp_kses_post( $intro ); ?></div>
+			</div>
+				<?php
+			}
+			?>
 		</div>
 	</div>
 		<?php

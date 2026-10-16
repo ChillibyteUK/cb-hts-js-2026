@@ -25,6 +25,10 @@
 		"asSection": {
 			"type": "boolean",
 			"default": false
+		},
+		"intro": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"supports": {

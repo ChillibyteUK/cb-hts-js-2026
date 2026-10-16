@@ -1304,6 +1304,17 @@
   }
 }
 
+/* Heading + intro row: same gutters as the other section headers (e.g. .apps-header). */
+.cb-heading-group--section .row {
+  gap: var(--space-4);
+}
+
+@media (min-width: 992px) {
+  .cb-heading-group--section .row {
+    gap: var(--space-5);
+  }
+}
+
 /* --- src/blocks/cb-home-hero.css --- */
 /* =========================
    CB HOME HERO — split layout, white bg, tick-list bullets
