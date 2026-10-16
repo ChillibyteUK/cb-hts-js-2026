@@ -108,17 +108,6 @@
 	opacity: 0.85;
 }
 
-.app-card-num {
-	position: absolute;
-	inset-block-start: 1.25rem;
-	inset-inline-start: 1.5rem;
-	z-index: 2;
-	font-size: var(--fs-micro);
-	font-weight: var(--fw-600);
-	letter-spacing: var(--ls-caps);
-	color: var(--col-orange-bright);
-}
-
 .app-card-arrow {
 	position: absolute;
 	inset-block-start: 1.5rem;

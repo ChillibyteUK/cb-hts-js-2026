@@ -70,11 +70,8 @@ $wrapper_attributes = get_block_wrapper_attributes(
 			?>
 		<div class="apps-grid">
 			<?php
-			$i = 0;
 			while ( $apps->have_posts() ) {
 				$apps->the_post();
-				++$i;
-				$num      = str_pad( (string) $i, 2, '0', STR_PAD_LEFT );
 				$has_url  = (bool) trim( get_the_content() );
 				$html_tag = $has_url ? 'a' : 'div';
 				$classes  = 'app-card';
@@ -96,7 +93,6 @@ $wrapper_attributes = get_block_wrapper_attributes(
 				}
 				?>
 				<div class="app-card-overlay" aria-hidden="true"></div>
-				<div class="app-card-num"><?php echo esc_html( $num ); ?></div>
 				<?php
 				if ( $has_url ) {
 					?>
