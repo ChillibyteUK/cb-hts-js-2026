@@ -1,9 +1,9 @@
 import { __ } from '@wordpress/i18n';
-import { useBlockProps, RichText, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
-import { TextControl, TextareaControl, ToggleControl, RadioControl, Button } from '@wordpress/components';
+import { useBlockProps, RichText } from '@wordpress/block-editor';
+import { TextControl, TextareaControl, ToggleControl, RadioControl } from '@wordpress/components';
 import EditorBlockShell from '../../_shared/EditorBlockShell';
-import SideloadImage from '../../_shared/SideloadImage';
-import URLInput from '../../_shared/URLInput';
+import ImagePicker from '../../_shared/ImagePicker';
+import SiteUrlInput from '../../_shared/SiteUrlInput';
 
 // Every RichText needs its own `identifier` when a block has more than one:
 // without it the fields share a selection identity and the caret/focus jumps
@@ -52,28 +52,12 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 			</div>
 			<div className="cb-hts-js-2026-editor-field">
 				<label className="cb-hts-js-2026-editor-field__label">{ __( 'Image', 'cb-hts-js-2026' ) }</label>
-				<MediaUploadCheck>
-					<MediaUpload
-						onSelect={ setImage }
-						allowedTypes={ [ 'image' ] }
-						value={ imageId }
-						render={ ( { open } ) => (
-							<div className="cb-hts-js-2026-editor-field__control">
-								{ imageUrl && (
-									<img
-										src={ imageUrl }
-										alt={ imageAlt }
-										style={ { maxWidth: '200px', display: 'block', marginBottom: '8px' } }
-									/>
-								) }
-								<Button variant="secondary" onClick={ open }>
-									{ imageUrl ? __( 'Replace Image', 'cb-hts-js-2026' ) : __( 'Select Image', 'cb-hts-js-2026' ) }
-								</Button>
-							</div>
-						) }
-					/>
-				</MediaUploadCheck>
-				<SideloadImage onSelect={ setImage } />
+				<ImagePicker
+					id={ imageId }
+					url={ imageUrl }
+					onSelect={ setImage }
+					onRemove={ () => setAttributes( { imageId: 0, imageUrl: '', imageAlt: '' } ) }
+				/>
 				<p className="cb-hts-js-2026-editor-field__help">
 					{ __( 'Stays in view (sticky) while the text scrolls on large screens.', 'cb-hts-js-2026' ) }
 				</p>
@@ -128,7 +112,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 				<div style={ { flex: '50 1 0%' } }>
 					<div className="cb-hts-js-2026-editor-field">
 						<label className="cb-hts-js-2026-editor-field__label">{ __( 'CTA URL', 'cb-hts-js-2026' ) }</label>
-						<URLInput
+						<SiteUrlInput
 							value={ ctaUrl || '' }
 							onChange={ ( value ) => setAttributes( { ctaUrl: value } ) }
 						/>

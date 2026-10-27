@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps } from '@wordpress/block-editor';
 import { TextControl, TextareaControl, ToggleControl } from '@wordpress/components';
 import EditorBlockShell from '../../_shared/EditorBlockShell';
-import URLInput from '../../_shared/URLInput';
+import SiteUrlInput from '../../_shared/SiteUrlInput';
 
 export default function Edit( { attributes, setAttributes, clientId } ) {
 	const { headline, buttonText, buttonUrl, buttonTarget } = attributes;
@@ -28,7 +28,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 				<div style={ { flex: '50 1 0%' } }>
 					<div className="cb-hts-js-2026-editor-field">
 						<label className="cb-hts-js-2026-editor-field__label">{ __( 'Button URL', 'cb-hts-js-2026' ) }</label>
-						<URLInput
+						<SiteUrlInput
 							value={ buttonUrl || '' }
 							onChange={ ( value ) => setAttributes( { buttonUrl: value } ) }
 						/>

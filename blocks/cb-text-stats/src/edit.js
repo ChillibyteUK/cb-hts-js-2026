@@ -2,8 +2,8 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps } from '@wordpress/block-editor';
 import { TextControl, TextareaControl, SelectControl, ToggleControl } from '@wordpress/components';
 import RepeaterField from '../../_shared/RepeaterField';
+import SiteUrlInput from '../../_shared/SiteUrlInput';
 import EditorBlockShell from '../../_shared/EditorBlockShell';
-import URLInput from '../../_shared/URLInput';
 
 const STAT_FIELDS = [
 	{ name: 'value', label: __( 'Value', 'cb-hts-js-2026' ), type: 'text', help: __( 'Supports <sup> for suffixes.', 'cb-hts-js-2026' ) },
@@ -50,7 +50,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 			/>
 			<div className="cb-hts-js-2026-editor-field">
 				<label className="cb-hts-js-2026-editor-field__label">{ __( 'Link URL', 'cb-hts-js-2026' ) }</label>
-				<URLInput
+				<SiteUrlInput
 					value={ linkUrl || '' }
 					onChange={ ( value ) => setAttributes( { linkUrl: value } ) }
 				/>

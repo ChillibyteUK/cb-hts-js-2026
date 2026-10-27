@@ -568,4 +568,19 @@
 	margin-bottom: 1.5rem;
 }
 
+/* Shared image / file picker (blocks/_shared/ImagePicker.js, FilePicker.js): thumbnail or file name, then Replace and Remove. */
+.cb-hts-js-2026-image-picker img {
+	display: block;
+	height: auto;
+	margin-bottom: 0.5rem;
+	border: 1px solid #ddd;
+	background: #fff;
+}
+
+.cb-hts-js-2026-image-picker__actions {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+}
+
 /*# sourceMappingURL=editor.css.map */

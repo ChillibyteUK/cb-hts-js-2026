@@ -1,9 +1,9 @@
 import { __ } from '@wordpress/i18n';
-import { useBlockProps, RichText, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
-import { TextControl, TextareaControl, ToggleControl, Button } from '@wordpress/components';
+import { useBlockProps, RichText } from '@wordpress/block-editor';
+import { TextControl, TextareaControl, ToggleControl } from '@wordpress/components';
+import SiteUrlInput from '../../_shared/SiteUrlInput';
 import EditorBlockShell from '../../_shared/EditorBlockShell';
-import URLInput from '../../_shared/URLInput';
-import SideloadImage from '../../_shared/SideloadImage';
+import ImagePicker from '../../_shared/ImagePicker';
 
 export default function Edit( { attributes, setAttributes, clientId } ) {
 	const {
@@ -26,34 +26,9 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 		<EditorBlockShell blockProps={ blockProps } clientId={ clientId } title={ __( 'CB Image CTA', 'cb-hts-js-2026' ) } textDomain="cb-hts-js-2026">
 			<div className="cb-hts-js-2026-editor-field">
 				<label className="cb-hts-js-2026-editor-field__label">{ __( 'Background Image', 'cb-hts-js-2026' ) }</label>
-				<MediaUploadCheck>
-					<MediaUpload
-						onSelect={ ( media ) =>
-							setAttributes( {
-								imageId: media.id,
-								imageUrl: media.url,
-								imageAlt: media.alt || '',
-							} )
-						}
-						allowedTypes={ [ 'image' ] }
-						value={ imageId }
-						render={ ( { open } ) => (
-							<div className="cb-hts-js-2026-editor-field__control">
-								{ imageUrl && (
-									<img
-										src={ imageUrl }
-										alt={ imageAlt }
-										style={ { maxWidth: '200px', display: 'block', marginBottom: '8px' } }
-									/>
-								) }
-								<Button variant="secondary" onClick={ open }>
-									{ imageUrl ? __( 'Replace Image', 'cb-hts-js-2026' ) : __( 'Select Image', 'cb-hts-js-2026' ) }
-								</Button>
-							</div>
-						) }
-					/>
-				</MediaUploadCheck>
-				<SideloadImage
+				<ImagePicker
+					id={ imageId }
+					url={ imageUrl }
 					onSelect={ ( media ) =>
 						setAttributes( {
 							imageId: media.id,
@@ -61,7 +36,8 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 							imageAlt: media.alt || '',
 						} )
 					}
-			 />
+					onRemove={ () => setAttributes( { imageId: 0, imageUrl: '', imageAlt: '' } ) }
+				/>
 			</div>
 			<TextControl
 				label={ __( 'Eyebrow', 'cb-hts-js-2026' ) }
@@ -96,7 +72,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 					/>
 					<div className="cb-hts-js-2026-editor-field">
 						<label className="cb-hts-js-2026-editor-field__label">{ __( 'Button URL', 'cb-hts-js-2026' ) }</label>
-						<URLInput
+						<SiteUrlInput
 							value={ buttonUrl || '' }
 							onChange={ ( value ) => setAttributes( { buttonUrl: value } ) }
 						/>
@@ -115,7 +91,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 					/>
 					<div className="cb-hts-js-2026-editor-field">
 						<label className="cb-hts-js-2026-editor-field__label">{ __( 'Secondary Button URL', 'cb-hts-js-2026' ) }</label>
-						<URLInput
+						<SiteUrlInput
 							value={ buttonSecondaryUrl || '' }
 							onChange={ ( value ) => setAttributes( { buttonSecondaryUrl: value } ) }
 						/>

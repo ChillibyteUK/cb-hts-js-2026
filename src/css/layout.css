@@ -42,6 +42,11 @@
 	gap: var(--grid-gutter);
 }
 
+/* Ceiling on a .gap-* utility's horizontal gutter when it's applied to a .row —
+   emitted per-utility by src/build/generate-utilities.js (`.row.gap-N`), not
+   here, so the block/footer scoped `.row` gap overrides elsewhere in this
+   theme are left exactly as authored. */
+
 /* Grid items default to `min-width: auto`, so a text-heavy .col-* refuses to
    shrink below its own content's min-content width — on a narrow viewport
    this blows the whole row past the container instead of wrapping. */

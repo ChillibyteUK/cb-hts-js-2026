@@ -1,9 +1,9 @@
 import { __ } from '@wordpress/i18n';
-import { useBlockProps, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
-import { TextControl, TextareaControl, Button } from '@wordpress/components';
+import { useBlockProps } from '@wordpress/block-editor';
+import { TextControl, TextareaControl } from '@wordpress/components';
 import PostTypePicker from '../../_shared/PostTypePicker';
 import EditorBlockShell from '../../_shared/EditorBlockShell';
-import SideloadImage from '../../_shared/SideloadImage';
+import ImagePicker from '../../_shared/ImagePicker';
 
 export default function Edit( { attributes, setAttributes, clientId } ) {
 	const { productId, eyebrow, heading, summary, imageId, imageUrl, imageAlt } = attributes;
@@ -44,34 +44,9 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 			/>
 			<div className="cb-hts-js-2026-editor-field">
 				<label className="cb-hts-js-2026-editor-field__label">{ __( 'Image', 'cb-hts-js-2026' ) }</label>
-				<MediaUploadCheck>
-					<MediaUpload
-						onSelect={ ( media ) =>
-							setAttributes( {
-								imageId: media.id,
-								imageUrl: media.url,
-								imageAlt: media.alt || '',
-							} )
-						}
-						allowedTypes={ [ 'image' ] }
-						value={ imageId }
-						render={ ( { open } ) => (
-							<div className="cb-hts-js-2026-editor-field__control">
-								{ imageUrl && (
-									<img
-										src={ imageUrl }
-										alt={ imageAlt }
-										style={ { maxWidth: '200px', display: 'block', marginBottom: '8px' } }
-									/>
-								) }
-								<Button variant="secondary" onClick={ open }>
-									{ imageUrl ? __( 'Replace Image', 'cb-hts-js-2026' ) : __( 'Select Image', 'cb-hts-js-2026' ) }
-								</Button>
-							</div>
-						) }
-					/>
-				</MediaUploadCheck>
-				<SideloadImage
+				<ImagePicker
+					id={ imageId }
+					url={ imageUrl }
 					onSelect={ ( media ) =>
 						setAttributes( {
 							imageId: media.id,
@@ -79,7 +54,8 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 							imageAlt: media.alt || '',
 						} )
 					}
-			 />
+					onRemove={ () => setAttributes( { imageId: 0, imageUrl: '', imageAlt: '' } ) }
+				/>
 				<p className="cb-hts-js-2026-editor-field__help">{ __( 'Defaults to the product featured image.', 'cb-hts-js-2026' ) }</p>
 			</div>
 		</EditorBlockShell>

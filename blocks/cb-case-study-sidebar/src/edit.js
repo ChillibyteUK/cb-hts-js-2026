@@ -2,8 +2,8 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps } from '@wordpress/block-editor';
 import { TextControl, ToggleControl } from '@wordpress/components';
 import RepeaterField from '../../_shared/RepeaterField';
+import SiteUrlInput from '../../_shared/SiteUrlInput';
 import EditorBlockShell from '../../_shared/EditorBlockShell';
-import URLInput from '../../_shared/URLInput';
 
 const factsFields = [
 	{ name: 'label', label: __( 'Label', 'cb-hts-js-2026' ), type: 'text' },
@@ -34,7 +34,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 			/>
 			<div className="cb-hts-js-2026-editor-field">
 				<label className="cb-hts-js-2026-editor-field__label">{ __( 'CTA URL', 'cb-hts-js-2026' ) }</label>
-				<URLInput
+				<SiteUrlInput
 					value={ ctaUrl || '' }
 					onChange={ ( value ) => setAttributes( { ctaUrl: value } ) }
 				/>

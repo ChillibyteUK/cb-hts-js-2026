@@ -1,12 +1,11 @@
 import { __ } from '@wordpress/i18n';
-import { MediaUpload, MediaUploadCheck, RichText } from '@wordpress/block-editor';
-import URLInput from './URLInput';
+import { RichText } from '@wordpress/block-editor';
 import { TextControl, TextareaControl, ToggleControl, Button, RadioControl } from '@wordpress/components';
 import { useEffect, useMemo } from '@wordpress/element';
-import { useSelect } from '@wordpress/data';
-import { store as coreStore } from '@wordpress/core-data';
 import PostTypePicker from './PostTypePicker';
-import SideloadImage from './SideloadImage';
+import ImagePicker from './ImagePicker';
+import FilePicker from './FilePicker';
+import SiteUrlInput from './SiteUrlInput';
 
 /**
  * Makes a legacy plain-text value safe to hand to RichText. RichText's
@@ -49,66 +48,31 @@ function generateRowId() {
 }
 
 /**
- * A repeater row's own image field, as a real component rather than
- * inlined into the big fields.map() below — needed so it can call its own
- * useSelect() per row/field to derive the preview URL live from the
- * attachment id, instead of trusting a `{field}Url` value stored only at
- * the moment of selection. A row backfilled from existing data, or any path
- * that doesn't go through onSelect, leaves that stored Url empty forever
- * even though the id itself is genuinely valid — showing as a blank preview
- * with a working "Replace" button, easy to mistake for "this row has no
- * image" when it does. The stored Url is still written on select and kept
- * as a fallback for the reverse case (a Url with no id to look up).
+ * Image sub-field: thumbnail resolved from the stored attachment ID (the
+ * stored Url is only a fallback for a row with no ID), with Select / Replace
+ * and Remove via the shared ImagePicker.
  */
 function RepeaterImageField( { field, row, index, updateRow, isColumn } ) {
 	const id = row[ field.name ];
-	const liveUrl = useSelect(
-		( select ) => {
-			if ( ! id ) {
-				return '';
-			}
-			return select( coreStore ).getMedia( id )?.source_url || '';
-		},
-		[ id ]
-	);
-	const url = liveUrl || row[ `${ field.name }Url` ] || '';
 
 	return (
-		<MediaUploadCheck key={ field.name }>
-			<MediaUpload
+		<div className="cb-hts-js-2026-repeater-field__image">
+			<span className={ isColumn || field.labelPerRow ? 'cb-hts-js-2026-editor-field__label' : 'screen-reader-text' }>
+				{ field.label }
+			</span>
+			<ImagePicker
+				id={ id }
+				url={ id ? '' : row[ `${ field.name }Url` ] || '' }
+				size={ 80 }
 				onSelect={ ( media ) =>
 					updateRow( index, {
 						[ field.name ]: media.id,
 						[ `${ field.name }Url` ]: media.url,
 					} )
 				}
-				allowedTypes={ [ 'image' ] }
-				value={ id }
-				render={ ( { open } ) => (
-					<div className="cb-hts-js-2026-repeater-field__image">
-						<span className={ isColumn || field.labelPerRow ? 'cb-hts-js-2026-editor-field__label' : 'screen-reader-text' }>
-							{ field.label }
-						</span>
-						{ url && (
-							<img src={ url } alt="" />
-						) }
-						<Button variant="secondary" size="small" onClick={ open }>
-							{ id
-								? __( 'Replace', 'cb-hts-js-2026' )
-								: __( 'Select', 'cb-hts-js-2026' ) }
-						</Button>
-						<SideloadImage
-							onSelect={ ( media ) =>
-								updateRow( index, {
-									[ field.name ]: media.id,
-									[ `${ field.name }Url` ]: media.url,
-								} )
-							}
-						/>
-					</div>
-				) }
+				onRemove={ () => updateRow( index, { [ field.name ]: '', [ `${ field.name }Url` ]: '' } ) }
 			/>
-		</MediaUploadCheck>
+		</div>
 	);
 }
 
@@ -152,7 +116,7 @@ function renderRowField( field, row, index, updateRow, isColumn ) {
 				<span className={ isColumn || field.labelPerRow ? 'cb-hts-js-2026-editor-field__label' : 'screen-reader-text' }>
 					{ __( `${ field.label } URL`, 'cb-hts-js-2026' ) }
 				</span>
-				<URLInput
+				<SiteUrlInput
 					value={ row[ field.name ] || '' }
 					onChange={ ( v ) => updateRow( index, { [ field.name ]: v } ) }
 				/>
@@ -170,35 +134,23 @@ function renderRowField( field, row, index, updateRow, isColumn ) {
 
 	if ( 'file' === field.type ) {
 		return (
-			<MediaUploadCheck key={ field.name }>
-				<MediaUpload
+			<div className="cb-hts-js-2026-repeater-field__image" key={ field.name }>
+				<span className={ isColumn || field.labelPerRow ? 'cb-hts-js-2026-editor-field__label' : 'screen-reader-text' }>
+					{ field.label }
+				</span>
+				<FilePicker
+					id={ row[ field.name ] }
+					name={ row[ `${ field.name }Name` ] }
+					mimeTypes={ field.mimeTypes }
 					onSelect={ ( media ) =>
 						updateRow( index, {
 							[ field.name ]: media.id,
 							[ `${ field.name }Name` ]: media.filename || media.title || '',
 						} )
 					}
-					allowedTypes={ field.mimeTypes || [] }
-					value={ row[ field.name ] }
-					render={ ( { open } ) => (
-						<div className="cb-hts-js-2026-repeater-field__image">
-							<span className={ isColumn || field.labelPerRow ? 'cb-hts-js-2026-editor-field__label' : 'screen-reader-text' }>
-								{ field.label }
-							</span>
-							{ row[ `${ field.name }Name` ] && (
-								<span className="cb-hts-js-2026-repeater-field__file-name">
-									{ row[ `${ field.name }Name` ] }
-								</span>
-							) }
-							<Button variant="secondary" size="small" onClick={ open }>
-								{ row[ field.name ]
-									? __( 'Replace', 'cb-hts-js-2026' )
-									: __( 'Select', 'cb-hts-js-2026' ) }
-							</Button>
-						</div>
-					) }
+					onRemove={ () => updateRow( index, { [ field.name ]: '', [ `${ field.name }Name` ]: '' } ) }
 				/>
-			</MediaUploadCheck>
+			</div>
 		);
 	}
 
@@ -330,7 +282,7 @@ function renderRowField( field, row, index, updateRow, isColumn ) {
  *                                  `linkTarget` (link fields only) adds an "open in new tab" toggle,
  *                                  storing `{name}Target` on the row — same opt-in shape as the
  *                                  top-level `link` field type's `link_target` option. A link
- *                                  field's URL input is core's URLInput (type-ahead post/page
+ *                                  field's URL input is the shared SiteUrlInput (type-ahead post/page
  *                                  search with manual-URL fallback), not a plain TextControl. `options`
  *                                  (radio fields only) is `[ { label, value } ]`, mirroring the
  *                                  top-level `select`/`radio` field types' options shape.

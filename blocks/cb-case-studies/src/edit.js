@@ -1,11 +1,11 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps } from '@wordpress/block-editor';
-import { TextControl, TextareaControl, ToggleControl, CheckboxControl } from '@wordpress/components';
+import { TextControl, TextareaControl, ToggleControl, SelectControl } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { store as coreStore } from '@wordpress/core-data';
 import { decodeEntities } from '@wordpress/html-entities';
+import SiteUrlInput from '../../_shared/SiteUrlInput';
 import EditorBlockShell from '../../_shared/EditorBlockShell';
-import URLInput from '../../_shared/URLInput';
 
 export default function Edit( { attributes, setAttributes, clientId } ) {
 	const { eyebrow, headline, applicationId, applicationIds, buttonText, buttonUrl, buttonTarget } = attributes;
@@ -65,7 +65,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 				<div style={ { flex: '50 1 0%' } }>
 					<div className="cb-hts-js-2026-editor-field">
 						<label className="cb-hts-js-2026-editor-field__label">{ __( 'Button URL', 'cb-hts-js-2026' ) }</label>
-						<URLInput
+						<SiteUrlInput
 							value={ buttonUrl || '' }
 							onChange={ ( value ) => setAttributes( { buttonUrl: value } ) }
 						/>

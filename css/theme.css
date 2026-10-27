@@ -571,6 +571,11 @@ p.is-style-cb-callout {
 	gap: var(--grid-gutter);
 }
 
+/* Ceiling on a .gap-* utility's horizontal gutter when it's applied to a .row —
+   emitted per-utility by src/build/generate-utilities.js (`.row.gap-N`), not
+   here, so the block/footer scoped `.row` gap overrides elsewhere in this
+   theme are left exactly as authored. */
+
 /* Grid items default to `min-width: auto`, so a text-heavy .col-* refuses to
    shrink below its own content's min-content width — on a narrow viewport
    this blows the whole row past the container instead of wrapping. */
@@ -1732,11 +1737,17 @@ select {
 .w-100 { width: 100%; }
 .w-auto { width: auto; }
 .gap-0 { gap: var(--space-0); }
+.row.gap-0 { column-gap: min(var(--space-0), 5%); }
 .gap-1 { gap: var(--space-1); }
+.row.gap-1 { column-gap: min(var(--space-1), 5%); }
 .gap-2 { gap: var(--space-2); }
+.row.gap-2 { column-gap: min(var(--space-2), 5%); }
 .gap-3 { gap: var(--space-3); }
+.row.gap-3 { column-gap: min(var(--space-3), 5%); }
 .gap-4 { gap: var(--space-4); }
+.row.gap-4 { column-gap: min(var(--space-4), 5%); }
 .gap-5 { gap: var(--space-5); }
+.row.gap-5 { column-gap: min(var(--space-5), 5%); }
 .col-1 { grid-column: span 1; }
 .col-2 { grid-column: span 2; }
 .col-3 { grid-column: span 3; }
@@ -1876,11 +1887,17 @@ select {
 	.w-sm-100 { width: 100%; }
 	.w-sm-auto { width: auto; }
 	.gap-sm-0 { gap: var(--space-0); }
+	.row.gap-sm-0 { column-gap: min(var(--space-0), 5%); }
 	.gap-sm-1 { gap: var(--space-1); }
+	.row.gap-sm-1 { column-gap: min(var(--space-1), 5%); }
 	.gap-sm-2 { gap: var(--space-2); }
+	.row.gap-sm-2 { column-gap: min(var(--space-2), 5%); }
 	.gap-sm-3 { gap: var(--space-3); }
+	.row.gap-sm-3 { column-gap: min(var(--space-3), 5%); }
 	.gap-sm-4 { gap: var(--space-4); }
+	.row.gap-sm-4 { column-gap: min(var(--space-4), 5%); }
 	.gap-sm-5 { gap: var(--space-5); }
+	.row.gap-sm-5 { column-gap: min(var(--space-5), 5%); }
 	.col-sm-1 { grid-column: span 1; }
 	.col-sm-2 { grid-column: span 2; }
 	.col-sm-3 { grid-column: span 3; }
@@ -2021,11 +2038,17 @@ select {
 	.w-md-100 { width: 100%; }
 	.w-md-auto { width: auto; }
 	.gap-md-0 { gap: var(--space-0); }
+	.row.gap-md-0 { column-gap: min(var(--space-0), 5%); }
 	.gap-md-1 { gap: var(--space-1); }
+	.row.gap-md-1 { column-gap: min(var(--space-1), 5%); }
 	.gap-md-2 { gap: var(--space-2); }
+	.row.gap-md-2 { column-gap: min(var(--space-2), 5%); }
 	.gap-md-3 { gap: var(--space-3); }
+	.row.gap-md-3 { column-gap: min(var(--space-3), 5%); }
 	.gap-md-4 { gap: var(--space-4); }
+	.row.gap-md-4 { column-gap: min(var(--space-4), 5%); }
 	.gap-md-5 { gap: var(--space-5); }
+	.row.gap-md-5 { column-gap: min(var(--space-5), 5%); }
 	.col-md-1 { grid-column: span 1; }
 	.col-md-2 { grid-column: span 2; }
 	.col-md-3 { grid-column: span 3; }
@@ -2166,11 +2189,17 @@ select {
 	.w-lg-100 { width: 100%; }
 	.w-lg-auto { width: auto; }
 	.gap-lg-0 { gap: var(--space-0); }
+	.row.gap-lg-0 { column-gap: min(var(--space-0), 5%); }
 	.gap-lg-1 { gap: var(--space-1); }
+	.row.gap-lg-1 { column-gap: min(var(--space-1), 5%); }
 	.gap-lg-2 { gap: var(--space-2); }
+	.row.gap-lg-2 { column-gap: min(var(--space-2), 5%); }
 	.gap-lg-3 { gap: var(--space-3); }
+	.row.gap-lg-3 { column-gap: min(var(--space-3), 5%); }
 	.gap-lg-4 { gap: var(--space-4); }
+	.row.gap-lg-4 { column-gap: min(var(--space-4), 5%); }
 	.gap-lg-5 { gap: var(--space-5); }
+	.row.gap-lg-5 { column-gap: min(var(--space-5), 5%); }
 	.col-lg-1 { grid-column: span 1; }
 	.col-lg-2 { grid-column: span 2; }
 	.col-lg-3 { grid-column: span 3; }
@@ -2311,11 +2340,17 @@ select {
 	.w-xl-100 { width: 100%; }
 	.w-xl-auto { width: auto; }
 	.gap-xl-0 { gap: var(--space-0); }
+	.row.gap-xl-0 { column-gap: min(var(--space-0), 5%); }
 	.gap-xl-1 { gap: var(--space-1); }
+	.row.gap-xl-1 { column-gap: min(var(--space-1), 5%); }
 	.gap-xl-2 { gap: var(--space-2); }
+	.row.gap-xl-2 { column-gap: min(var(--space-2), 5%); }
 	.gap-xl-3 { gap: var(--space-3); }
+	.row.gap-xl-3 { column-gap: min(var(--space-3), 5%); }
 	.gap-xl-4 { gap: var(--space-4); }
+	.row.gap-xl-4 { column-gap: min(var(--space-4), 5%); }
 	.gap-xl-5 { gap: var(--space-5); }
+	.row.gap-xl-5 { column-gap: min(var(--space-5), 5%); }
 	.col-xl-1 { grid-column: span 1; }
 	.col-xl-2 { grid-column: span 2; }
 	.col-xl-3 { grid-column: span 3; }
@@ -2456,11 +2491,17 @@ select {
 	.w-xxl-100 { width: 100%; }
 	.w-xxl-auto { width: auto; }
 	.gap-xxl-0 { gap: var(--space-0); }
+	.row.gap-xxl-0 { column-gap: min(var(--space-0), 5%); }
 	.gap-xxl-1 { gap: var(--space-1); }
+	.row.gap-xxl-1 { column-gap: min(var(--space-1), 5%); }
 	.gap-xxl-2 { gap: var(--space-2); }
+	.row.gap-xxl-2 { column-gap: min(var(--space-2), 5%); }
 	.gap-xxl-3 { gap: var(--space-3); }
+	.row.gap-xxl-3 { column-gap: min(var(--space-3), 5%); }
 	.gap-xxl-4 { gap: var(--space-4); }
+	.row.gap-xxl-4 { column-gap: min(var(--space-4), 5%); }
 	.gap-xxl-5 { gap: var(--space-5); }
+	.row.gap-xxl-5 { column-gap: min(var(--space-5), 5%); }
 	.col-xxl-1 { grid-column: span 1; }
 	.col-xxl-2 { grid-column: span 2; }
 	.col-xxl-3 { grid-column: span 3; }

@@ -63,6 +63,14 @@ function generateUtilities() {
 		for (const n of spacingScale) {
 			const className = bp ? `gap-${bp}-${n}` : `gap-${n}`;
 			rulesByBreakpoint[bp].push(`.${className} { gap: var(--space-${n}); }`);
+			// Ceiling on the horizontal gutter when the utility sits on a .row:
+			// a .col-N spans N tracks plus N-1 gaps, so 11 gaps wider than the
+			// row itself collapse every 1fr track to 0 and overflow the container
+			// (`gap-5` = 528px of gutter in a 343px row at 375px). 5% caps the
+			// gutters at 55% of the row. It only engages when the requested gap is
+			// already too big, so every gap that fits is untouched; vertical
+			// spacing is not clamped. .row.gap-N out-specifies the plain utility.
+			rulesByBreakpoint[bp].push(`.row.${className} { column-gap: min(var(--space-${n}), 5%); }`);
 		}
 	}
 
