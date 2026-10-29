@@ -24,6 +24,7 @@ require_once CB_HTS_JS_2026_DIR . '/inc/setup.php';
 require_once CB_HTS_JS_2026_DIR . '/inc/enqueue.php';
 require_once CB_HTS_JS_2026_DIR . '/inc/class-cb-hts-js-2026-nav-walker.php';
 require_once CB_HTS_JS_2026_DIR . '/inc/blocks.php';
+require_once CB_HTS_JS_2026_DIR . '/inc/patterns.php';
 require_once CB_HTS_JS_2026_DIR . '/inc/editor.php';
 require_once CB_HTS_JS_2026_DIR . '/inc/options.php';
 require_once CB_HTS_JS_2026_DIR . '/inc/social-icons.php';

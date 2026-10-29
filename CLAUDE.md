@@ -853,6 +853,20 @@ since, not just the one originally flagged.
   `center` class. Only `eyebrow--plain` (the one real, correctly-prefixed
   modifier) made it into this block's markup.
 
+### Page-recipe block patterns (`patterns/`)
+
+Three full-page recipes — `product-page`, `application-page`, `case-study-page`
+(for the `project` CPT) — as plain WordPress theme patterns in `patterns/*.php`
+(core auto-registers them from the file headers; `inc/patterns.php` only adds the
+`cb-hts-js-2026-pages` category). Each declares `Post Types` + `Block Types:
+core/post-content`, so it is offered as a starter layout on a new post of that
+type. Block order was taken from the real live pages (structure only, placeholder
+copy). `cb-projects-grid`'s `productId`, `cb-product-used`'s `productId` and the
+image fields are deliberately left empty for authors to fill. **Pitfall:** core
+caches the pattern file list in a *site* transient (`wp_theme_files_patterns-*`)
+keyed on the theme Version — after adding/renaming a pattern file, delete that
+transient (or bump the version) or the pattern won't appear.
+
 ### Generic tabs pattern (Site-Wide Settings, and reusable beyond it)
 
 The Site-Wide Settings page tabs its five sections (General, Social, Footer,
