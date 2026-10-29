@@ -1,0 +1,23 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "cb-hts-js-2026/cb-client-names",
+	"title": "CB Client Names",
+	"category": "cb-hts-js-2026",
+	"icon": "groups",
+	"description": "A strip of client names (text, no logos) beside a rotated title. For clients whose logos are not available.",
+	"attributes": {
+		"label": { "type": "string", "default": "Selected clients" },
+		"names": { "type": "array", "default": [] }
+	},
+	"supports": {
+		"anchor": true,
+		"className": true,
+		"align": true,
+		"color": {
+			"background": true
+		}
+	},
+	"editorScript": "file:./build/index.js",
+	"render": "file:./render.php"
+}
