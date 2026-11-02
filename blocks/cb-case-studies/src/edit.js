@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps } from '@wordpress/block-editor';
-import { TextControl, TextareaControl, ToggleControl, SelectControl } from '@wordpress/components';
+import { TextControl, TextareaControl, ToggleControl, CheckboxControl } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { store as coreStore } from '@wordpress/core-data';
 import { decodeEntities } from '@wordpress/html-entities';
