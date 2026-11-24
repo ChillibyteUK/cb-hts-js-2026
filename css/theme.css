@@ -465,6 +465,13 @@ ol {
 	font-size: var(--fs-body-xs);
 }
 
+/* "Accent" inline format (blocks/_editor-formats) — same look as the <span>
+   accent in headline fields: italic orange. */
+.text-accent {
+	color: var(--col-orange);
+	font-style: italic;
+}
+
 /*
  * "Ticked list" core/list block style — ported from cb-hts2026's
  * _case_study_narrative.scss. Registered in inc/blocks.php
@@ -4527,6 +4534,27 @@ select {
 
 .intro-body p + p {
 		margin-top: 1.25rem;
+	}
+
+.intro-body h2,.intro-body h3 {
+		color: var(--col-navy);
+		font-weight: var(--fw-700);
+		line-height: var(--lh-title);
+		letter-spacing: var(--ls-tight);
+		margin-top: 2rem;
+		margin-bottom: 0.75rem;
+	}
+
+.intro-body h2 {
+		font-size: var(--fs-h4);
+	}
+
+.intro-body h3 {
+		font-size: var(--fs-h6);
+	}
+
+.intro-body  > :first-child {
+		margin-top: 0;
 	}
 
 .intro-signature {

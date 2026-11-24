@@ -1,11 +1,32 @@
 import { __ } from '@wordpress/i18n';
-import { useBlockProps, RichText } from '@wordpress/block-editor';
+import { useEffect } from '@wordpress/element';
+import { useSelect, useDispatch } from '@wordpress/data';
+import { createBlock } from '@wordpress/blocks';
+import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 import { TextControl, TextareaControl } from '@wordpress/components';
 import EditorBlockShell from '../../_shared/EditorBlockShell';
+
+const BODY_BLOCKS = [ 'core/paragraph', 'core/heading' ];
+const BODY_TEMPLATE = [ [ 'core/paragraph' ] ];
 
 export default function Edit( { attributes, setAttributes, clientId } ) {
 	const { eyebrow, headline, body, signature, highlights, watermark } = attributes;
 	const blockProps = useBlockProps( { className: 'container cb-hts-js-2026-editor-block' } );
+
+	const hasInnerBlocks = useSelect( ( select ) => select( 'core/block-editor' ).getBlockCount( clientId ) > 0, [ clientId ] );
+	const { replaceInnerBlocks } = useDispatch( 'core/block-editor' );
+
+	// One-off migration: copy the legacy RichText `body` attribute into
+	// paragraph inner blocks the first time an older instance is opened.
+	useEffect( () => {
+		if ( ! body || hasInnerBlocks ) {
+			return;
+		}
+		const paragraphs = [ ...body.matchAll( /<p[^>]*>([\s\S]*?)<\/p>/gi ) ].map( ( m ) => m[ 1 ] );
+		const contents = paragraphs.length ? paragraphs : [ body ];
+		replaceInnerBlocks( clientId, contents.map( ( content ) => createBlock( 'core/paragraph', { content } ) ), false );
+		setAttributes( { body: '' } );
+	}, [] );
 
 	return (
 		<EditorBlockShell blockProps={ blockProps } clientId={ clientId } title={ __( 'CB Intro', 'cb-hts-js-2026' ) } textDomain="cb-hts-js-2026">
@@ -22,17 +43,14 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 			/>
 			<div className="cb-hts-js-2026-editor-field">
 				<label className="cb-hts-js-2026-editor-field__label">{ __( 'Body', 'cb-hts-js-2026' ) }</label>
-				<RichText
-					tagName="div"
-					multiline="p"
-					className="cb-hts-js-2026-editor-field__control"
-					aria-label={ __( 'Body', 'cb-hts-js-2026' ) }
-					placeholder={ __( 'Body', 'cb-hts-js-2026' ) }
-					value={ body }
-					onChange={ ( value ) => setAttributes( { body: value } ) }
-					allowedFormats={ [ 'core/bold', 'core/italic', 'core/link', 'cb-hts-js-2026/small-text' ] }
-				/>
-				<p className="cb-hts-js-2026-editor-field__help">{ __( 'First paragraph renders larger as a lede.', 'cb-hts-js-2026' ) }</p>
+				<div className="cb-hts-js-2026-editor-field__control">
+					<InnerBlocks
+						allowedBlocks={ BODY_BLOCKS }
+						template={ BODY_TEMPLATE }
+						templateLock={ false }
+					/>
+				</div>
+				<p className="cb-hts-js-2026-editor-field__help">{ __( 'Paragraphs plus H2 / H3 headings. First paragraph renders larger as a lede.', 'cb-hts-js-2026' ) }</p>
 			</div>
 			<div style={ { display: 'flex', flexWrap: 'wrap', gap: '12px' } }>
 				<div style={ { flex: '50 1 0%' } }>

@@ -1885,6 +1885,28 @@
 	p + p {
 		margin-top: 1.25rem;
 	}
+
+	h2,
+	h3 {
+		color: var(--col-navy);
+		font-weight: var(--fw-700);
+		line-height: var(--lh-title);
+		letter-spacing: var(--ls-tight);
+		margin-top: 2rem;
+		margin-bottom: 0.75rem;
+	}
+
+	h2 {
+		font-size: var(--fs-h4);
+	}
+
+	h3 {
+		font-size: var(--fs-h6);
+	}
+
+	> :first-child {
+		margin-top: 0;
+	}
 }
 
 .intro-signature {

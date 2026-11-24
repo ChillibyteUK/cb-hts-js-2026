@@ -285,5 +285,42 @@ add_action( 'init', 'cb_hts_js_2026_register_block_styles' );
  * @return string
  */
 function cb_hts_js_2026_wrap_block_in_container( $attributes, $content ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found
+	// Inside one of this theme's own blocks (e.g. CB Intro's InnerBlocks body)
+	// the parent already provides the container — wrapping each child would
+	// also make every paragraph its own :first-child.
+	if ( ! empty( $GLOBALS['cb_hts_js_2026_theme_block_depth'] ) ) {
+		return $content;
+	}
 	return '<div class="container">' . $content . '</div>';
 }
+
+/**
+ * Track when a theme block is mid-render so its inner core blocks aren't
+ * wrapped in .container (inner blocks render before the parent's render.php).
+ *
+ * @param string|null $pre_render Unused.
+ * @param array       $block      Parsed block.
+ * @return string|null
+ */
+function cb_hts_js_2026_theme_block_enter( $pre_render, $block ) {
+	if ( ! empty( $block['blockName'] ) && 0 === strpos( $block['blockName'], wp_get_theme()->get( 'TextDomain' ) . '/' ) ) {
+		$GLOBALS['cb_hts_js_2026_theme_block_depth'] = ( $GLOBALS['cb_hts_js_2026_theme_block_depth'] ?? 0 ) + 1;
+	}
+	return $pre_render;
+}
+add_filter( 'pre_render_block', 'cb_hts_js_2026_theme_block_enter', 10, 2 );
+
+/**
+ * Counterpart to cb_hts_js_2026_theme_block_enter().
+ *
+ * @param string $block_content Rendered content.
+ * @param array  $block         Parsed block.
+ * @return string
+ */
+function cb_hts_js_2026_theme_block_leave( $block_content, $block ) {
+	if ( ! empty( $block['blockName'] ) && 0 === strpos( $block['blockName'], wp_get_theme()->get( 'TextDomain' ) . '/' ) ) {
+		$GLOBALS['cb_hts_js_2026_theme_block_depth'] = max( 0, ( $GLOBALS['cb_hts_js_2026_theme_block_depth'] ?? 0 ) - 1 );
+	}
+	return $block_content;
+}
+add_filter( 'render_block', 'cb_hts_js_2026_theme_block_leave', 10, 2 );

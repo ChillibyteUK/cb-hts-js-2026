@@ -41,3 +41,31 @@ registerFormatType( FORMAT_NAME, {
 		);
 	},
 } );
+
+/**
+ * "Accent" inline format — highlight a word or phrase in a heading and
+ * click the toolbar button to turn it italic orange (the same treatment as
+ * a <span> in a headline field, without anyone typing HTML). Click again
+ * to remove. Styled by .text-accent in src/css/typography.css.
+ */
+const ACCENT_FORMAT_NAME = 'cb-hts-js-2026/accent';
+
+registerFormatType( ACCENT_FORMAT_NAME, {
+	title: __( 'Accent', 'cb-hts-js-2026' ),
+	tagName: 'span',
+	className: 'text-accent',
+	edit( { isActive, value, onChange } ) {
+		return (
+			<RichTextToolbarButton
+				icon={
+					<svg viewBox="0 0 20 20" aria-hidden="true">
+						<text x="10" y="15" textAnchor="middle" fontSize="14" fontWeight="700" fontStyle="italic" fill="currentColor">A</text>
+					</svg>
+				}
+				title={ __( 'Accent (italic orange)', 'cb-hts-js-2026' ) }
+				onClick={ () => onChange( toggleFormat( value, { type: ACCENT_FORMAT_NAME } ) ) }
+				isActive={ isActive }
+			/>
+		);
+	},
+} );

@@ -180,6 +180,13 @@
 	font-size: var(--fs-body-xs);
 }
 
+/* "Accent" inline format (blocks/_editor-formats) — same look as the <span>
+   accent in headline fields: italic orange. */
+.text-accent {
+	color: var(--col-orange);
+	font-style: italic;
+}
+
 /*
  * "Ticked list" core/list block style — ported from cb-hts2026's
  * _case_study_narrative.scss. Registered in inc/blocks.php

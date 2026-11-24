@@ -70,9 +70,10 @@ if ( $highlights ) {
 			</div>
 			<div class="intro-col-body">
 				<?php
-				if ( $body ) {
+				// Body is InnerBlocks ($content); $body is the legacy RichText attribute for unmigrated posts.
+				if ( trim( $content ) || $body ) {
 					?>
-				<div class="intro-body"><?php echo wp_kses_post( $body ); ?></div>
+				<div class="intro-body"><?php echo trim( $content ) ? $content : wp_kses_post( $body ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $content is already-rendered inner blocks. ?></div>
 					<?php
 				}
 				if ( $signature ) {
