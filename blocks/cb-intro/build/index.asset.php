@@ -6,9 +6,9 @@
 		'wp-components',
 		'wp-compose',
 		'wp-data',
+		'wp-dom-ready',
 		'wp-element',
-		'wp-hooks',
 		'wp-i18n'
 	),
-	'version' => '0817d52fca2f2fef5c87'
+	'version' => '8ec4902ecc20d567b53b'
 );

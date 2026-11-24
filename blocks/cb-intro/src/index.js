@@ -1,7 +1,5 @@
-import { registerBlockType } from '@wordpress/blocks';
-import { addFilter } from '@wordpress/hooks';
-import { createHigherOrderComponent } from '@wordpress/compose';
-import { useSelect } from '@wordpress/data';
+import { registerBlockType, unregisterBlockVariation } from '@wordpress/blocks';
+import domReady from '@wordpress/dom-ready';
 import { InnerBlocks } from '@wordpress/block-editor';
 import Edit from './edit';
 import metadata from '../block.json';
@@ -11,19 +9,11 @@ registerBlockType( metadata.name, {
 	save: () => <InnerBlocks.Content />,
 } );
 
-// Limit headings inside CB Intro's body to H2 / H3 (core/heading's
-// `levelOptions` drives its toolbar level picker).
-addFilter(
-	'editor.BlockEdit',
-	'cb-hts-js-2026/cb-intro-heading-levels',
-	createHigherOrderComponent( ( BlockEdit ) => ( props ) => {
-		const insideIntro = useSelect(
-			( select ) => 'core/heading' === props.name && select( 'core/block-editor' ).getBlockParentsByBlockName( props.clientId, metadata.name ).length > 0,
-			[ props.clientId, props.name ]
-		);
-		if ( ! insideIntro ) {
-			return <BlockEdit { ...props } />;
-		}
-		return <BlockEdit { ...props } attributes={ { ...props.attributes, levelOptions: [ 2, 3 ] } } />;
-	}, 'withCbIntroHeadingLevels' )
-);
+// Headings are H2 / H3 only in the editor. WP 7.1's heading level picker is
+// the block switcher's per-level variations (not the block's `levelOptions`
+// attribute), and variations can't be scoped to a parent block, so this
+// applies to every core Heading in the editor. Existing H1/H4–H6 headings
+// still render; they just can't be newly picked.
+domReady( () => {
+	[ 'h1', 'h4', 'h5', 'h6' ].forEach( ( variation ) => unregisterBlockVariation( 'core/heading', variation ) );
+} );

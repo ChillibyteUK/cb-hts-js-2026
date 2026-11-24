@@ -43,7 +43,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 			/>
 			<div className="cb-hts-js-2026-editor-field">
 				<label className="cb-hts-js-2026-editor-field__label">{ __( 'Body', 'cb-hts-js-2026' ) }</label>
-				<div className="cb-hts-js-2026-editor-field__control">
+				<div className="cb-hts-js-2026-editor-field__control intro-body">
 					<InnerBlocks
 						allowedBlocks={ BODY_BLOCKS }
 						template={ BODY_TEMPLATE }
