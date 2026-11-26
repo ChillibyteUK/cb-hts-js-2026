@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { TextControl, TextareaControl, ToggleControl, CheckboxControl } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { store as coreStore } from '@wordpress/core-data';
@@ -8,7 +8,7 @@ import SiteUrlInput from '../../_shared/SiteUrlInput';
 import EditorBlockShell from '../../_shared/EditorBlockShell';
 
 export default function Edit( { attributes, setAttributes, clientId } ) {
-	const { eyebrow, headline, applicationId, applicationIds, buttonText, buttonUrl, buttonTarget } = attributes;
+	const { eyebrow, headline, lede, applicationId, applicationIds, buttonText, buttonUrl, buttonTarget } = attributes;
 	const blockProps = useBlockProps( { className: 'container cb-hts-js-2026-editor-block' } );
 
 	const terms = useSelect(
@@ -37,6 +37,20 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 				onChange={ ( value ) => setAttributes( { headline: value } ) }
 				help={ __( 'Wrap emphasised text in a <span> to render it italic + orange.', 'cb-hts-js-2026' ) }
 			/>
+			<div className="cb-hts-js-2026-editor-field">
+				<label className="cb-hts-js-2026-editor-field__label">{ __( 'Lede', 'cb-hts-js-2026' ) }</label>
+				<RichText
+					tagName="div"
+					multiline="p"
+					className="cb-hts-js-2026-editor-field__control"
+					aria-label={ __( 'Lede', 'cb-hts-js-2026' ) }
+					placeholder={ __( 'Lede', 'cb-hts-js-2026' ) }
+					value={ lede }
+					onChange={ ( value ) => setAttributes( { lede: value } ) }
+					allowedFormats={ [ 'core/bold', 'core/italic', 'core/link', 'cb-hts-js-2026/small-text' ] }
+				/>
+				<p className="cb-hts-js-2026-editor-field__help">{ __( 'Optional. Shown to the right of the headline.', 'cb-hts-js-2026' ) }</p>
+			</div>
 			<div className="cb-hts-js-2026-editor-field" role="group" aria-label={ __( 'Applications', 'cb-hts-js-2026' ) }>
 				<span className="cb-hts-js-2026-editor-field__label">{ __( 'Applications', 'cb-hts-js-2026' ) }</span>
 				<div className="cb-hts-js-2026-editor-checklist">

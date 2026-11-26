@@ -9,6 +9,7 @@
 	"attributes": {
 		"eyebrow": { "type": "string", "default": "" },
 		"headline": { "type": "string", "default": "" },
+		"lede": { "type": "string", "default": "" },
 		"applicationId": { "type": "number", "default": 0 },
 		"applicationIds": { "type": "array", "items": { "type": "number" }, "default": [] },
 		"limit": { "type": "number", "default": 3 },

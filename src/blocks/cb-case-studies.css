@@ -11,6 +11,34 @@
 	margin-block-end: clamp(2rem, 5vw, 3rem);
 }
 
+.case-studies-title {
+	flex: 1 1 auto;
+}
+
+/* Right-hand lede, as in CB Products Grid (7/5 split from lg up). */
+.case-studies-intro {
+	flex: 0 1 41.666%;
+	color: var(--col-muted);
+}
+
+@media (min-width: 992px) {
+	.case-studies-header:has(.case-studies-intro) .case-studies-title {
+		flex: 0 1 58.333%;
+	}
+}
+
+@media (max-width: 991.98px) {
+	.case-studies-header:has(.case-studies-intro) {
+		flex-wrap: wrap;
+		align-items: flex-start;
+	}
+
+	.case-studies-intro {
+		flex-basis: 100%;
+		order: 3;
+	}
+}
+
 .case-studies-nav {
 	display: flex;
 	flex-shrink: 0;

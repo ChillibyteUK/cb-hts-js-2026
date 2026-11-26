@@ -13,6 +13,7 @@ defined( 'ABSPATH' ) || exit;
 
 $eyebrow      = $attributes['eyebrow'] ?? '';
 $headline     = $attributes['headline'] ?? '';
+$lede         = $attributes['lede'] ?? '';
 $term_ids     = array_values( array_filter( array_map( 'absint', (array) ( $attributes['applicationIds'] ?? array() ) ) ) );
 $legacy_id    = absint( $attributes['applicationId'] ?? 0 );
 if ( ! $term_ids && $legacy_id ) {
@@ -60,7 +61,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'case-stud
 <section <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() already escapes. ?>>
 	<div class="container">
 		<div class="case-studies-header">
-			<div>
+			<div class="case-studies-title">
 				<?php if ( $eyebrow ) { ?>
 					<div class="eyebrow"><?php echo esc_html( $eyebrow ); ?></div>
 				<?php } ?>
@@ -68,6 +69,9 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'case-stud
 					<h2 class="case-studies-headline h2"><?php echo wp_kses( $headline, $headline_allowed ); ?></h2>
 				<?php } ?>
 			</div>
+			<?php if ( $lede ) { ?>
+				<div class="case-studies-intro prose-md"><?php echo wp_kses_post( $lede ); ?></div>
+			<?php } ?>
 			<?php if ( $is_slider ) { ?>
 				<div class="case-studies-nav">
 					<button type="button" class="case-studies-nav-btn" id="<?php echo esc_attr( $slider_id ); ?>-prev" aria-label="<?php esc_attr_e( 'Previous case studies', 'cb-hts-js-2026' ); ?>">
